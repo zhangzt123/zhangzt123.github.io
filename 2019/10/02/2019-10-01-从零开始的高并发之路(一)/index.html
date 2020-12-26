@@ -88,7 +88,7 @@
 <meta property="og:description" content="多线程创建一个多线程的三种方式123456789101112131415161718192021222324252627282930public class Testthread &amp;#123;        public static void main(String[] args) &amp;#123;        ThreadA threadA = new ThreadA();//第一种 继承thr">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://zhangzt123.github.io/2019/10/02/2019-10-01-从零开始的高并发之路(一)/threadstatus.png">
-<meta property="og:updated_time" content="2020-04-20T01:09:11.569Z">
+<meta property="og:updated_time" content="2020-11-29T02:48:19.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零开始的高并发之路(一)">
 <meta name="twitter:description" content="多线程创建一个多线程的三种方式123456789101112131415161718192021222324252627282930public class Testthread &amp;#123;        public static void main(String[] args) &amp;#123;        ThreadA threadA = new ThreadA();//第一种 继承thr">
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-04-20T09:09:11+08:00">
-                2020-04-20
+              <time title="更新于" itemprop="dateModified" datetime="2020-11-29T10:48:19+08:00">
+                2020-11-29
               </time>
             
           </span>
@@ -451,6 +451,25 @@
 <p>我们知道在线程中，stop()方法存在安全问题，suspend()会发生死锁， 那么我们应该如何正确的结束一个线程呢，首先， 我们可以想到 ，守护线程会随着父线程的消亡而消亡，那么就可以把要执行的程序设置为某一父线程的守护线程，我们想办法让他的父线程停止，守护线程就随之停止了，然后，当我们中断一个线程时，被中断的线程在调用 wait sleep join 等方法时会抛出InterruptedException异常，终止当前线程，我们可以利用这个原理，中断守护线程的父线程。达到停止我们要执行的任务的目的。</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Threadinterrupt</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Threadservice threadservice = <span class="keyword">new</span> Threadservice();</span><br><span class="line">        threadservice.exec(()-&gt;&#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">                System.out.println(<span class="string">"正在执行线程"</span>+Thread.currentThread().getName());</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">            threadservice.stop();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Threadservice</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Thread thread;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">void</span>  <span class="title">exec</span><span class="params">(Runnable runnable)</span></span></span><br><span class="line"><span class="function">       </span>&#123;</span><br><span class="line">           <span class="keyword">if</span>(thread==<span class="keyword">null</span>)</span><br><span class="line">           thread = <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">               Thread threadinner = <span class="keyword">new</span> Thread(runnable);</span><br><span class="line">               <span class="comment">/*设定为守护线程*/</span></span><br><span class="line">               threadinner.setDaemon(<span class="keyword">true</span>);</span><br><span class="line">               threadinner.start();</span><br><span class="line">           &#125;);</span><br><span class="line">           thread.start();</span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               thread.join();</span><br><span class="line">           &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span></span><br><span class="line"><span class="function">       </span>&#123;</span><br><span class="line">           <span class="comment">/*调用*/</span></span><br><span class="line">           <span class="keyword">if</span>(thread!=<span class="keyword">null</span>&amp;&amp; thread.isAlive())</span><br><span class="line">           thread.interrupt();</span><br><span class="line">           System.out.println(<span class="string">"中断守护线程的父线程"</span>);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h2><blockquote>
+<p>CountDownLatch是一个同步工具类 可以理解为线程同步计数器</p>
+</blockquote>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">countdownlatchdemo</span></span>{
+
+CountDownLatch c = <span class="keyword">new</span> CountDownLatch(<span class="number">10</span>);
+    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">9</span>; i++) {
+                <span class="keyword">new</span> Thread(()-&gt;{
+                c.countDown()
+                 System.out.println(Thread.currentThread().getThreadID);
+                }).start();
+    }
+
+c.await()
+
+}
+</code></pre>
+
       
     </div>
     
@@ -571,7 +590,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -582,7 +601,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -593,7 +612,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -626,7 +645,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">1.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个多线程的三种方式"><span class="nav-number">2.</span> <span class="nav-text">创建一个多线程的三种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程状态"><span class="nav-number">3.</span> <span class="nav-text">线程状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#策略模式在线程类中的应用"><span class="nav-number">4.</span> <span class="nav-text">策略模式在线程类中的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#守护线程"><span class="nav-number">5.</span> <span class="nav-text">守护线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程优先级"><span class="nav-number">6.</span> <span class="nav-text">线程优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#thread-join"><span class="nav-number">7.</span> <span class="nav-text">thread.join()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中断"><span class="nav-number">8.</span> <span class="nav-text">中断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束线程"><span class="nav-number">9.</span> <span class="nav-text">结束线程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">1.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个多线程的三种方式"><span class="nav-number">2.</span> <span class="nav-text">创建一个多线程的三种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程状态"><span class="nav-number">3.</span> <span class="nav-text">线程状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#策略模式在线程类中的应用"><span class="nav-number">4.</span> <span class="nav-text">策略模式在线程类中的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#守护线程"><span class="nav-number">5.</span> <span class="nav-text">守护线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程优先级"><span class="nav-number">6.</span> <span class="nav-text">线程优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#thread-join"><span class="nav-number">7.</span> <span class="nav-text">thread.join()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中断"><span class="nav-number">8.</span> <span class="nav-text">中断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束线程"><span class="nav-number">9.</span> <span class="nav-text">结束线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CountDownLatch"><span class="nav-number">10.</span> <span class="nav-text">CountDownLatch</span></a></li></ol></div>
             
 
           </div>

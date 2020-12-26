@@ -85,7 +85,7 @@
 <meta property="og:url" content="https://zhangzt123.github.io/2020/06/19/2020-06-19-Oracle常用命令/index.html">
 <meta property="og:site_name">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-30T01:18:04.873Z">
+<meta property="og:updated_time" content="2020-11-29T08:00:51.560Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle常用命令">
 
@@ -327,8 +327,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-09-30T09:18:04+08:00">
-                2020-09-30
+              <time title="更新于" itemprop="dateModified" datetime="2020-11-29T16:00:51+08:00">
+                2020-11-29
               </time>
             
           </span>
@@ -393,7 +393,7 @@
 
 <h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--客户端</span></span><br><span class="line">exp username/passowrd@ip:port/sid file=/test.dmp tables=tablename1,tablename2,......</span><br><span class="line"><span class="comment">--服务端 oracle10g及之后版本</span></span><br><span class="line">expdp username/passowrd@ip:port/sid directory=/path dumpfile=filename.dp  logfile=filename.dp.log schema= \</span><br><span class="line">     Full=y \<span class="comment">-- 备份全表</span></span><br><span class="line">     tables='table1','table2','table3' \ <span class="comment">--指定表</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--客户端</span></span><br><span class="line">imp username/passowrd@ip:port/sid file=/test.dmp full=y ignore=y</span><br><span class="line"><span class="comment">--服务端 oracle10g及之后版本</span></span><br><span class="line">impdp username/passowrd@ip:port/sid directory=/path dumpfile=filename.dp  logfile=filename.dp.log remap_schema=</span><br></pre></td></tr></table></figure>
+<h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--客户端</span></span><br><span class="line">imp username/passowrd@ip:port/sid file=/test.dmp  from user1 to user2   full=y ignore=y</span><br><span class="line"><span class="comment">--服务端 oracle10g及之后版本</span></span><br><span class="line">impdp username/passowrd@ip:port/sid directory=/path dumpfile=filename.dp  logfile=filename.dp.log remap_schema=</span><br></pre></td></tr></table></figure>
 
 <h2 id="sql查询"><a href="#sql查询" class="headerlink" title="sql查询"></a>sql查询</h2><h3 id="填充函数"><a href="#填充函数" class="headerlink" title="填充函数"></a>填充函数</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Lpad(str , len,  padstr);  <span class="comment">--左填充  str 字段 len 填充长度，padstr 填充字符</span></span><br><span class="line">Rpad(str , len,  padstr);  <span class="comment">--右填充</span></span><br><span class="line">eg：左边补0 <span class="keyword">select</span> <span class="keyword">Lpad</span>(<span class="string">'test'</span>, <span class="number">10</span>, <span class="string">'0'</span>) <span class="keyword">from</span> dual ; <span class="comment">-- out：   0000000000test</span></span><br></pre></td></tr></table></figure>
 
@@ -516,7 +516,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -527,7 +527,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -538,7 +538,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
