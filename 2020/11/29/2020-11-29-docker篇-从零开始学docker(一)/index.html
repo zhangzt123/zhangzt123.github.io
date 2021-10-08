@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Docker,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Docker 下载安装Docker下载: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/Docker  安装：https://docs.docker.com/install/linux/docker-ce/centos/ Docker6个命名空间1.UTS2.USER3.MOUNT4.IPC5.PID6.NET">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="-docker篇-从零开始学docker(一)">
+<meta property="og:url" content="https://zhangzt123.github.io/2020/11/29/2020-11-29-docker篇-从零开始学docker(一)/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="Docker 下载安装Docker下载: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/Docker  安装：https://docs.docker.com/install/linux/docker-ce/centos/ Docker6个命名空间1.UTS2.USER3.MOUNT4.IPC5.PID6.NET">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-11-29T07:49:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="-docker篇-从零开始学docker(一)">
+<meta name="twitter:description" content="Docker 下载安装Docker下载: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/Docker  安装：https://docs.docker.com/install/linux/docker-ce/centos/ Docker6个命名空间1.UTS2.USER3.MOUNT4.IPC5.PID6.NET">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhangzt123.github.io/2020/11/29/2020-11-29-docker篇-从零开始学docker(一)/">
+
+
+
+
+
+  <title>-docker篇-从零开始学docker(一) | </title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title"></span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangzt123.github.io/2020/11/29/2020-11-29-docker篇-从零开始学docker(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MR.zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">-docker篇-从零开始学docker(一)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-29T10:49:41+08:00">
+                2020-11-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-11-29T15:49:13+08:00">
+                2020-11-29
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Docker-下载安装"><a href="#Docker-下载安装" class="headerlink" title="Docker 下载安装"></a>Docker 下载安装</h2><p>Docker下载: <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank" rel="noopener">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/</a><br>Docker  安装：<a href="https://docs.docker.com/install/linux/docker-ce/centos/" target="_blank" rel="noopener">https://docs.docker.com/install/linux/docker-ce/centos/</a></p>
+<h2 id="Docker6个命名空间"><a href="#Docker6个命名空间" class="headerlink" title="Docker6个命名空间"></a>Docker6个命名空间</h2><p>1.<strong>UTS</strong><br>2.<strong>USER</strong><br>3.<strong>MOUNT</strong><br>4.<strong>IPC</strong><br>5.<strong>PID</strong><br>6.<strong>NET</strong> </p>
+<h2 id="Docker使用"><a href="#Docker使用" class="headerlink" title="Docker使用"></a>Docker使用</h2><h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><blockquote>
+<p><strong>docker run / docker container run –name name  –rm  name:tag</strong>（镜像）<br>启动名字为name 的镜像  –rm停止就删除<br><strong>Docker container exec  -it  name  [commend]</strong> 执行交互 和容器<br><strong>Docker container ps/docker ps</strong> 查看正在运行的容器<br><strong>Docker container ps -a/docker ps -a</strong> 查看所以启动过的容器<br><strong>Docker container ls /Docker container ls -a</strong> 同上</p>
+</blockquote>
+<h2 id="Docker-配置文件-daemon-json"><a href="#Docker-配置文件-daemon-json" class="headerlink" title="Docker 配置文件 daemon.json"></a>Docker 配置文件 daemon.json</h2><blockquote>
+<p><strong>文件路径:</strong> &nbsp;/etc/docker/daemon.json</p>
+</blockquote>
+<p>可以支持http协议推送仓库</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;    </span><br><span class="line">    //http</span><br><span class="line">      "insecure-registries":["ip:port","p:port","ip:port" "......"],</span><br><span class="line">    //https      </span><br><span class="line">      "registry-mirrors": ["http://harbor.test.com","http://harbor.test.com"],</span><br><span class="line">    //非SSL源管理镜像，这里加上</span><br><span class="line">    "max-concurrent-downloads": 10</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>核心为bip 【bridge ip】用于指定docker0自身ip地址 其他选项可通过此地址计算得出</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"bip"</span> : <span class="string">"192.168.2.1/24"</span>,</span><br><span class="line">    <span class="attr">"fixed-cidr"</span> : <span class="string">"10.20.0.0/16"</span>,</span><br><span class="line">    <span class="attr">"fixed-cidr-v6"</span> : <span class="string">"2001:db8::/64"</span>,</span><br><span class="line">    <span class="attr">"mtu"</span> : <span class="string">"1500"</span>,</span><br><span class="line">    <span class="attr">"default-getway"</span> : <span class="string">"192.168.2.1"</span>,</span><br><span class="line">    <span class="attr">"default-getway-v6"</span> : <span class="string">"2001:db8:abcd::89"</span>,</span><br><span class="line">    <span class="attr">"dns"</span> : [<span class="string">"8.8.8.8"</span>,<span class="string">"1.1.1.1"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="容器网络"><a href="#容器网络" class="headerlink" title="容器网络"></a>容器网络</h2><p>相关命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Commands:</span><br><span class="line">  connect     Connect a container to a network</span><br><span class="line">  create      Create a network</span><br><span class="line">  disconnect  Disconnect a container from a network</span><br><span class="line">  inspect     Display detailed information on one or more networks</span><br><span class="line">  ls          List networks</span><br><span class="line">  prune       Remove all unused networks</span><br><span class="line">  rm          Remove one or more networks</span><br></pre></td></tr></table></figure>
+
+<p>docker container run   -h b1   –network host   {容器}<br>-h / –hostname添加主机名<br>  –add-host list                  Add a custom host-to-IP mapping (host:ip)<br>–dns  1.1.1.1<br>–newwork host  使用宿主机网络<br>-P 80<br>-p 192.168.118.136::80  ip:prot:ip:prot / prot:port  / ip:port:port<br>Docker 支持的网络类型<br>Network:  &emsp; <strong>bridge</strong> <strong>host</strong> <strong>ipvlan</strong> <strong>macvlan</strong> <strong>null</strong> <strong>overlay</strong><br>创建一个网络:<br>Docker network create  -d bridge  –subnet 192.168.3.1/24 –getway 192.168.3.1 mydocker0 </p>
+<h2 id="存储卷"><a href="#存储卷" class="headerlink" title="存储卷"></a>存储卷</h2><p>必须斜杠结束文件目录 且文件路径会被自动创建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run -v hostdir:volumedir &#123;容器&#125; </span><br><span class="line"></span><br><span class="line"> -v, --volume list                    Bind mount a volume绑定存储卷</span><br><span class="line">      --volume-driver string           Optional volume driver for the container </span><br><span class="line">                                        可选择的存储卷驱动                   </span><br><span class="line">      --volumes-from list              Mount volumes from the specified container(s) </span><br><span class="line">                                       从一个指定的容器挂载存储</span><br><span class="line">只查看部分信息</span><br><span class="line">docker container inspect -f &#123;&#123;.***.***.***&#125;&#125; &#123;容器&#125;</span><br><span class="line">容器间共享数据可以挂载在相同的存储卷位置</span><br></pre></td></tr></table></figure>
+
+<h2 id="镜像管理"><a href="#镜像管理" class="headerlink" title="镜像管理"></a>镜像管理</h2><h3 id="镜像推送"><a href="#镜像推送" class="headerlink" title="镜像推送"></a>镜像推送</h3><p>1  登录<br>Docker  login -u username<br>2 docker push name:[tag]      推送镜像 （有tag单个标签和 无tag全部标签）到仓库<br>镜像导入导出<br>docker  image save -o filename [镜像1] [镜像2] [镜像3]…<br>将镜像导出为.tar文件<br>Docker image load -i filename<br>将文件导入为镜像</p>
+<h3 id="私有镜像仓库-harbor"><a href="#私有镜像仓库-harbor" class="headerlink" title="私有镜像仓库 harbor"></a>私有镜像仓库 harbor</h3><p>下载地址：<a href="https://github.com/goharbor/harbor" target="_blank" rel="noopener">https://github.com/goharbor/harbor</a><br><a href="https://goharbor.io/" target="_blank" rel="noopener">https://goharbor.io/</a> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar harbor-offline-installer-v1.7.1.tgz -C /usr/local/</span><br><span class="line">   cd /usr/local/</span><br><span class="line">   ./install.sh 安装 harbor仓库</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置设置地址:</strong><a href="https://github.com/goharbor/harbor/blob/master/docs/installation_guide.md" target="_blank" rel="noopener">https://github.com/goharbor/harbor/blob/master/docs/installation_guide.md</a><br><strong>管理主页:</strong><a href="http://192.168.118.139/harbor/sign-in" target="_blank" rel="noopener">http://192.168.118.139/harbor/sign-in</a> Harbor</p>
+<h2 id="编写dockerFile-构建docker镜像"><a href="#编写dockerFile-构建docker镜像" class="headerlink" title="编写dockerFile 构建docker镜像"></a>编写dockerFile 构建docker镜像</h2><blockquote>
+<p><strong>构建命令:</strong>&nbsp; docker image build<br>Dockerfile 通过环境变量修改<br>参数 使用$param 或者 ${param}<br>${param+word} 变量不为空使用word<br>${param-word} 变量为空使用默认值word  </p>
+</blockquote>
+<p><strong>Dockerfile语法</strong></p>
+<ol>
+<li>注释信息 以# 开头</li>
+<li>命令</li>
+<li>语句顺序执行</li>
+<li>对大小写不敏感 约定俗称 关键字使用大写</li>
+<li>第一个非注释行必须为FROM 命令 通过一个已有镜像制作</li>
+</ol>
+<p>*创建专门Dockerfile文件 D必须大写<br>*所有需要文件必须在这个在这个文件下的子目录中</p>
+<ul>
+<li>创建 .dockeringore 文件 可以在打包镜像忽略部分指定文件</li>
+</ul>
+<p><strong>Dockerfile指令</strong><br>\ 反斜杠用于换行</p>
+<ol>
+<li><p>FROM  【使用：FROM busybox：latest  】镜像来源  </p>
+</li>
+<li><p>MAINTANIER 【使用：MAINTANIER “zzt<a href="mailto:&#x7a;&#x7a;&#116;&#64;&#x65;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;" target="_blank" rel="noopener">&#x7a;&#x7a;&#116;&#64;&#x65;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;</a>“】镜像作者</p>
+</li>
+<li><p>LABEL【使用: LABEL <key>=<value> <key>=<value> … 】</value></key></value></key></p>
+</li>
+<li><p>COPY 【使用：COPY 原文件路径 原文件路径 目标文件路径 或COPY “原文件路径””原文件路径””目标文件路径”】用于从docker主机复制文件到创建的新镜像 复制目录时 将目录内容复制到指定位置 通常使用第二种方式 原路径不会被复制 只复制内容。且原目录必须以 / 结尾 </p>
+</li>
+<li><p>由于docker采用分层结构所以 每条语句都会产生新的层 ，所以尽量将语句放在一起写</p>
+</li>
+<li><p>ADD 使用方法同COPY 但是 如果原文件是tar压缩文件（或下载链接文件） 会被自动展开为到路径下（url地址不会展开压缩文件）</p>
+</li>
+<li><p>WORKDIR 指定目录 之后的语句可以使用 ./ 指定为当前目录 直到下一个WORKDIR定义出现 </p>
+</li>
+<li><p>VOLUME  仅可指定挂载点 【VOLUME /data/***/】</p>
+</li>
+<li><p>EXPOSE  用于为容器打开指定要监听的端口实现与外部通信【EXPOSE 8080/tcp 8080/udp】 tcp 和udp二选一 默认为tcp 该端口为可以暴露的接口  启动时并不会直接暴露</p>
+</li>
+<li><p>ENV 用于为镜像定义所需环境变量 可被dockerfile文件之后的指令所使用  【使用：ENV <key>=<value> <key>=<value>  ….. 】\反斜杠在此处还可用于转义空格 和docker run –env 不同 此处是用在build过程中设置好的环境变量</value></key></value></key></p>
+</li>
+<li><p>RUN 运行sh命令在build过程【使用 ：RUN 命令1 &amp;&amp; 命令2 】 </p>
+</li>
+<li><p>CMD 运行sh命令在启动过程 【使用 ：CMD 命令1 &amp;&amp; 命令2】<br>Cmd  命令可以被docker run <command> 启动时的命令替换掉<br>定义多个cmd仅仅最后一个生效<br>数组写法不可使用环境变量参数</p>
+</li>
+<li><p>ENTRYPOINT<br>和CMD相比 默认情况命令不会类替换掉 如要替换 使用<br>Docker container run –entrypoints “<command>“ container<br>定义多个ENTRYPOINT  最后一个生效<br>和CMD同时存在情况下 CMD会被当做参数交给ENTRYPOINT  执行<br>可通过添加entrypoint.sh  来让ENTRYPOINT  执行该文件 带入参数</p>
+</li>
+<li><p>USER 在某个用户下运行</p>
+</li>
+<li><p>HEALTHCHECK  健康检查</p>
+</li>
+<li><p>SHELL  指定程序默认要使用的shell程序<br>Eg:<br>SHELL[“shell工具”,”参数”]</p>
+</li>
+<li><p>STOPSIGNAL 停止进程</p>
+</li>
+<li><p>ARG 语句向dockerfile 中传递参数(build 过程使用)<br>Eg： ARG <name>[=<default value>]<br>Docker file中<br>ARG latest_tag=”latest”<br>EXPOSE ${latest_tag}<br>执行<br>Docker image build –arg latest_tag=”7”  -t centos:v0.1.1  ./</default></name></p>
+</li>
+<li><p>ONBUILD 用于dockerfile中定义触发器<br>在其他人使用此镜像制作新镜像时执行dockerfile的指令<br>Eg : ONBUILD ADD  “tomcat.zip”  “/data”（dockerfile的指令）<br>自己制作镜像时不执行该语句 在其他基于此镜像制作新镜像时 会执行</p>
+</li>
+</ol>
+<h2 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</span><br><span class="line">sudo chmod +x /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker资源限制（默认无限制）"><a href="#docker资源限制（默认无限制）" class="headerlink" title="docker资源限制（默认无限制）"></a>docker资源限制（默认无限制）</h2><blockquote>
+<p>内存为非可压缩资源 限制避免oom内存溢出<br>发生oom会触发进程被按照相对内存的使用量依次强制杀掉（kill -9 pid） 直到没有异常<br> –oom-score-adj int              Tune host’s OOM preferences (-1000 to 1000)<br>调整优先级 尽量避免被杀掉<br>Ram 物理内存<br>Swap 交换内存<br>-m 设置物理内存使用量<br>–memory-swap *  设置交换内存使用量  必须先限制物理内存 -m   </p>
+</blockquote>
+<h2 id="–oom-kill-disable-禁止发生oom时被kill-必须先限制物理内存-m"><a href="#–oom-kill-disable-禁止发生oom时被kill-必须先限制物理内存-m" class="headerlink" title="–oom-kill-disable 禁止发生oom时被kill 必须先限制物理内存 -m"></a>–oom-kill-disable 禁止发生oom时被kill 必须先限制物理内存 -m</h2><table border="5">
+<thead>
+<tr>
+    <td width="100px">--memory-swap</td>
+    <td width="50px">--memory</td>
+    <td>功能</td>
+</tr>
+</thead>
+<tbody>
+
+</tbody>
+<tr>
+    <td>正数S</td>
+    <td>正数M</td>
+    <td>容器可用空间为S其中 RAM为M swap为（S-M）若S=M 则无可用swap资源</td>
+</tr>
+
+<tr>
+    <td>0</td>
+    <td>正数M</td>
+    <td>相当于未设置swap</td>
+</tr>
+<tr>
+    <td>unset</td>
+    <td>正数M</td>
+    <td>若docker host 开启swap 容器可用则为2M </td>
+</tr>
+<tr>
+    <td>-1</td>
+    <td>正数M</td>
+    <td>若docker host 开启swap 则容器可使用主机全部swap资源  </td>
+</tr>
+</table>
+
+<p><strong>*NOTE:</strong>在容器中使用free命令查看的swap并不具有展示空间的指示意义。</p>
+<blockquote>
+<p>Cpu 为可压缩性资源<br>进程优先级交由cfs 内核调度器调整<br>进程分2类：<br>Cpu密集型<br>IO密集型<br>     –cpu-period int                 Limit CPU CFS (Completely Fair Scheduler) period<br>     –cpu-quota int                  Limit CPU CFS (Completely Fair Scheduler) quota<br>     –cpu-rt-period int              Limit CPU real-time period in microseconds限制cpu使用时间<br>     –cpu-rt-runtime int             Limit CPU real-time runtime in microseconds<br>  -c, –cpu-shares int                 CPU shares (relative weight)<br>     –cpus decimal                   Number of CPUs<br>     –cpuset-cpus string             CPUs in which to allow execution (0-3, 0,1)运行在那个cpu上 0开始<br>     –cpuset-mems string             MEMs in which to allow execution (0-3, 0,1)<br>docker top containername 查看资源使用情况</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
++ <div style="text-align:center;color: #ccc;font-size:14px;">---------------- The End ----------------</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" <i class="fa fa-tag"> Docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/14/2020-10-14-Activiti工作流/" rel="next" title="Activiti工作流">
+                <i class="fa fa-chevron-left"></i> Activiti工作流
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/29/2020-11-29-数据库遇见问题总结/" rel="prev" title="数据库遇见问题总结">
+                数据库遇见问题总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">MR.zhang</p>
+              <p class="site-description motion-element" itemprop="description">坚持是一种态度,每一分都值得</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-下载安装"><span class="nav-number">1.</span> <span class="nav-text">Docker 下载安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker6个命名空间"><span class="nav-number">2.</span> <span class="nav-text">Docker6个命名空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker使用"><span class="nav-number">3.</span> <span class="nav-text">Docker使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动容器"><span class="nav-number">3.1.</span> <span class="nav-text">启动容器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-配置文件-daemon-json"><span class="nav-number">4.</span> <span class="nav-text">Docker 配置文件 daemon.json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容器网络"><span class="nav-number">5.</span> <span class="nav-text">容器网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储卷"><span class="nav-number">6.</span> <span class="nav-text">存储卷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#镜像管理"><span class="nav-number">7.</span> <span class="nav-text">镜像管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像推送"><span class="nav-number">7.1.</span> <span class="nav-text">镜像推送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#私有镜像仓库-harbor"><span class="nav-number">7.2.</span> <span class="nav-text">私有镜像仓库 harbor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写dockerFile-构建docker镜像"><span class="nav-number">8.</span> <span class="nav-text">编写dockerFile 构建docker镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Compose"><span class="nav-number">9.</span> <span class="nav-text">Docker Compose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker资源限制（默认无限制）"><span class="nav-number">10.</span> <span class="nav-text">docker资源限制（默认无限制）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#–oom-kill-disable-禁止发生oom时被kill-必须先限制物理内存-m"><span class="nav-number">11.</span> <span class="nav-text">–oom-kill-disable 禁止发生oom时被kill 必须先限制物理内存 -m</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MR.zhang</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
