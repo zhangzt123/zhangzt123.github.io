@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="Docker 下载安装Docker下载: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/Docker  安装：https://docs.docker.com/install/linux/docker-ce/centos/ Docker6个命名空间1.UTS2.USER3.MOUNT4.IPC5.PID6.NET">
+<meta name="description" content="Docker 下载安装Docker下载: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/Docker  安装：https://docs.docker.com/install/linux/docker-ce/centos/  手动安装许按照以下依赖进行  Docker6个命名空间1.UTS  名称空间2.USER">
 <meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="-docker篇-从零开始学docker(一)">
 <meta property="og:url" content="https://zhangzt123.github.io/2020/11/29/2020-11-29-docker篇-从零开始学docker(一)/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Docker 下载安装Docker下载: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/Docker  安装：https://docs.docker.com/install/linux/docker-ce/centos/ Docker6个命名空间1.UTS2.USER3.MOUNT4.IPC5.PID6.NET">
+<meta property="og:description" content="Docker 下载安装Docker下载: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/Docker  安装：https://docs.docker.com/install/linux/docker-ce/centos/  手动安装许按照以下依赖进行  Docker6个命名空间1.UTS  名称空间2.USER">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-29T07:49:13.000Z">
+<meta property="og:image" content="https://zhangzt123.github.io/2020/11/29/2020-11-29-docker篇-从零开始学docker(一)/docker_install.jpg">
+<meta property="og:updated_time" content="2022-05-08T04:09:17.352Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="-docker篇-从零开始学docker(一)">
-<meta name="twitter:description" content="Docker 下载安装Docker下载: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/Docker  安装：https://docs.docker.com/install/linux/docker-ce/centos/ Docker6个命名空间1.UTS2.USER3.MOUNT4.IPC5.PID6.NET">
+<meta name="twitter:description" content="Docker 下载安装Docker下载: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/Docker  安装：https://docs.docker.com/install/linux/docker-ce/centos/  手动安装许按照以下依赖进行  Docker6个命名空间1.UTS  名称空间2.USER">
+<meta name="twitter:image" content="https://zhangzt123.github.io/2020/11/29/2020-11-29-docker篇-从零开始学docker(一)/docker_install.jpg">
 
 
 
@@ -330,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-11-29T15:49:13+08:00">
-                2020-11-29
+              <time title="更新于" itemprop="dateModified" datetime="2022-05-08T12:09:17+08:00">
+                2022-05-08
               </time>
             
           </span>
@@ -387,7 +389,10 @@
 
       
         <h2 id="Docker-下载安装"><a href="#Docker-下载安装" class="headerlink" title="Docker 下载安装"></a>Docker 下载安装</h2><p>Docker下载: <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank" rel="noopener">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/</a><br>Docker  安装：<a href="https://docs.docker.com/install/linux/docker-ce/centos/" target="_blank" rel="noopener">https://docs.docker.com/install/linux/docker-ce/centos/</a></p>
-<h2 id="Docker6个命名空间"><a href="#Docker6个命名空间" class="headerlink" title="Docker6个命名空间"></a>Docker6个命名空间</h2><p>1.<strong>UTS</strong><br>2.<strong>USER</strong><br>3.<strong>MOUNT</strong><br>4.<strong>IPC</strong><br>5.<strong>PID</strong><br>6.<strong>NET</strong> </p>
+<blockquote>
+<p>手动安装许按照以下依赖进行<br><img src="/2020/11/29/2020-11-29-docker篇-从零开始学docker(一)/docker_install.jpg" alt="docker_install.jpg" title="docker_install.jpg"></p>
+</blockquote>
+<h2 id="Docker6个命名空间"><a href="#Docker6个命名空间" class="headerlink" title="Docker6个命名空间"></a>Docker6个命名空间</h2><p>1.<strong>UTS</strong>  名称空间<br>2.<strong>USER</strong>  用户<br>3.<strong>MOUNT</strong>  存储<br>4.<strong>IPC</strong>  进程间通信<br>5.<strong>PID</strong><br>6.<strong>NET</strong> 网络</p>
 <h2 id="Docker使用"><a href="#Docker使用" class="headerlink" title="Docker使用"></a>Docker使用</h2><h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><blockquote>
 <p><strong>docker run / docker container run –name name  –rm  name:tag</strong>（镜像）<br>启动名字为name 的镜像  –rm停止就删除<br><strong>Docker container exec  -it  name  [commend]</strong> 执行交互 和容器<br><strong>Docker container ps/docker ps</strong> 查看正在运行的容器<br><strong>Docker container ps -a/docker ps -a</strong> 查看所以启动过的容器<br><strong>Docker container ls /Docker container ls -a</strong> 同上</p>
 </blockquote>
@@ -400,7 +405,13 @@
 <p>核心为bip 【bridge ip】用于指定docker0自身ip地址 其他选项可通过此地址计算得出</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"bip"</span> : <span class="string">"192.168.2.1/24"</span>,</span><br><span class="line">    <span class="attr">"fixed-cidr"</span> : <span class="string">"10.20.0.0/16"</span>,</span><br><span class="line">    <span class="attr">"fixed-cidr-v6"</span> : <span class="string">"2001:db8::/64"</span>,</span><br><span class="line">    <span class="attr">"mtu"</span> : <span class="string">"1500"</span>,</span><br><span class="line">    <span class="attr">"default-getway"</span> : <span class="string">"192.168.2.1"</span>,</span><br><span class="line">    <span class="attr">"default-getway-v6"</span> : <span class="string">"2001:db8:abcd::89"</span>,</span><br><span class="line">    <span class="attr">"dns"</span> : [<span class="string">"8.8.8.8"</span>,<span class="string">"1.1.1.1"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="容器网络"><a href="#容器网络" class="headerlink" title="容器网络"></a>容器网络</h2><p>相关命令</p>
+<p>指定docker连接的服务器 默认本机”unix:///var/run/docker.sock”<br>Unix Socket 这是类unix系统进程间通讯的一种方式<br>指定tcp连接后可通过 docker -H xxx.xxx.xx.xxx:2375  连接到指定的docker服务端</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"hosts"</span>:[</span><br><span class="line">              //tcp默认端口<span class="number">2375</span></span><br><span class="line">              <span class="string">"tcp:00.00.00.00:2375"</span>,</span><br><span class="line">              //tcp_tls 默认端口 <span class="number">2376</span></span><br><span class="line">              <span class="string">"tcp_tls:00.00.00.00:2376"</span>,</span><br><span class="line">              <span class="string">"unix:///var/run/docker.sock"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="容器网络"><a href="#容器网络" class="headerlink" title="容器网络"></a>容器网络</h2><p>docker 支持的网络   bridge【桥接网络】 host【NET】 ipvlan macvlan null【封闭网络】 overlay 【叠加网络】</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># docker默认的三个网络</span><br><span class="line">[root@<span class="number">192</span> /]# docker network ls</span><br><span class="line">NETWORK ID     NAME      DRIVER    SCOPE</span><br><span class="line"><span class="number">97940</span>d8b8322   bridge    bridge    local</span><br><span class="line"><span class="number">76531</span>fe7ff13   host      host      local</span><br><span class="line"><span class="number">54850</span>a3c5408   none      null      local</span><br></pre></td></tr></table></figure>
+
+<p>相关命令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Commands:</span><br><span class="line">  connect     Connect a container to a network</span><br><span class="line">  create      Create a network</span><br><span class="line">  disconnect  Disconnect a container from a network</span><br><span class="line">  inspect     Display detailed information on one or more networks</span><br><span class="line">  ls          List networks</span><br><span class="line">  prune       Remove all unused networks</span><br><span class="line">  rm          Remove one or more networks</span><br></pre></td></tr></table></figure>
 
 <p>docker container run   -h b1   –network host   {容器}<br>-h / –hostname添加主机名<br>  –add-host list                  Add a custom host-to-IP mapping (host:ip)<br>–dns  1.1.1.1<br>–newwork host  使用宿主机网络<br>-P 80<br>-p 192.168.118.136::80  ip:prot:ip:prot / prot:port  / ip:port:port<br>Docker 支持的网络类型<br>Network:  &emsp; <strong>bridge</strong> <strong>host</strong> <strong>ipvlan</strong> <strong>macvlan</strong> <strong>null</strong> <strong>overlay</strong><br>创建一个网络:<br>Docker network create  -d bridge  –subnet 192.168.3.1/24 –getway 192.168.3.1 mydocker0 </p>
@@ -427,47 +438,29 @@
 <ul>
 <li>创建 .dockeringore 文件 可以在打包镜像忽略部分指定文件</li>
 </ul>
-<p><strong>Dockerfile指令</strong><br>\ 反斜杠用于换行</p>
-<ol>
-<li><p>FROM  【使用：FROM busybox：latest  】镜像来源  </p>
-</li>
-<li><p>MAINTANIER 【使用：MAINTANIER “zzt<a href="mailto:&#x7a;&#122;&#x74;&#x40;&#x65;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#111;&#109;" target="_blank" rel="noopener">&#x7a;&#122;&#x74;&#x40;&#x65;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#111;&#109;</a>“】镜像作者</p>
-</li>
-<li><p>LABEL【使用: LABEL <key>=<value> <key>=<value> … 】</value></key></value></key></p>
-</li>
-<li><p>COPY 【使用：COPY 原文件路径 原文件路径 目标文件路径 或COPY “原文件路径””原文件路径””目标文件路径”】用于从docker主机复制文件到创建的新镜像 复制目录时 将目录内容复制到指定位置 通常使用第二种方式 原路径不会被复制 只复制内容。且原目录必须以 / 结尾 </p>
-</li>
-<li><p>由于docker采用分层结构所以 每条语句都会产生新的层 ，所以尽量将语句放在一起写</p>
-</li>
-<li><p>ADD 使用方法同COPY 但是 如果原文件是tar压缩文件（或下载链接文件） 会被自动展开为到路径下（url地址不会展开压缩文件）</p>
-</li>
-<li><p>WORKDIR 指定目录 之后的语句可以使用 ./ 指定为当前目录 直到下一个WORKDIR定义出现 </p>
-</li>
-<li><p>VOLUME  仅可指定挂载点 【VOLUME /data/***/】</p>
-</li>
-<li><p>EXPOSE  用于为容器打开指定要监听的端口实现与外部通信【EXPOSE 8080/tcp 8080/udp】 tcp 和udp二选一 默认为tcp 该端口为可以暴露的接口  启动时并不会直接暴露</p>
-</li>
-<li><p>ENV 用于为镜像定义所需环境变量 可被dockerfile文件之后的指令所使用  【使用：ENV <key>=<value> <key>=<value>  ….. 】\反斜杠在此处还可用于转义空格 和docker run –env 不同 此处是用在build过程中设置好的环境变量</value></key></value></key></p>
-</li>
-<li><p>RUN 运行sh命令在build过程【使用 ：RUN 命令1 &amp;&amp; 命令2 】 </p>
-</li>
-<li><p>CMD 运行sh命令在启动过程 【使用 ：CMD 命令1 &amp;&amp; 命令2】<br>Cmd  命令可以被docker run <command> 启动时的命令替换掉<br>定义多个cmd仅仅最后一个生效<br>数组写法不可使用环境变量参数</p>
-</li>
-<li><p>ENTRYPOINT<br>和CMD相比 默认情况命令不会类替换掉 如要替换 使用<br>Docker container run –entrypoints “<command>“ container<br>定义多个ENTRYPOINT  最后一个生效<br>和CMD同时存在情况下 CMD会被当做参数交给ENTRYPOINT  执行<br>可通过添加entrypoint.sh  来让ENTRYPOINT  执行该文件 带入参数</p>
-</li>
-<li><p>USER 在某个用户下运行</p>
-</li>
-<li><p>HEALTHCHECK  健康检查</p>
-</li>
-<li><p>SHELL  指定程序默认要使用的shell程序<br>Eg:<br>SHELL[“shell工具”,”参数”]</p>
-</li>
-<li><p>STOPSIGNAL 停止进程</p>
-</li>
-<li><p>ARG 语句向dockerfile 中传递参数(build 过程使用)<br>Eg： ARG <name>[=<default value>]<br>Docker file中<br>ARG latest_tag=”latest”<br>EXPOSE ${latest_tag}<br>执行<br>Docker image build –arg latest_tag=”7”  -t centos:v0.1.1  ./</default></name></p>
-</li>
-<li><p>ONBUILD 用于dockerfile中定义触发器<br>在其他人使用此镜像制作新镜像时执行dockerfile的指令<br>Eg : ONBUILD ADD  “tomcat.zip”  “/data”（dockerfile的指令）<br>自己制作镜像时不执行该语句 在其他基于此镜像制作新镜像时 会执行</p>
-</li>
-</ol>
+<p><strong>Dockerfile指令</strong><br>\ 反斜杠用于换行<br><strong>1.</strong>    FROM  【使用：FROM busybox：latest  】镜像来源<br><strong>2.</strong>    MAINTANIER 【使用：MAINTANIER “zzt<a href="mailto:&#122;&#122;&#x74;&#x40;&#101;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#111;&#109;" target="_blank" rel="noopener">&#122;&#122;&#x74;&#x40;&#101;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#111;&#109;</a>“】镜像作者<br><strong>3.</strong>    LABEL【使用: LABEL <key>=<value> <key>=<value> … 】<br><strong>4.</strong>    COPY 【使用：COPY 原文件路径 原文件路径 目标文件路径 或COPY “原文件路径””原文件路径””目标文件路径”】用于从docker主机复制文件到创建的新镜像 复制目录时 将目录内容复制到指定位置 通常使用第二种方式 原路径不会被复制 只复制内容。且原目录必须以 / 结尾<br><strong>5.</strong>    由于docker采用分层结构所以 每条语句都会产生新的层 ，所以尽量将语句放在一起写<br><strong>6.</strong>    ADD 使用方法同COPY 但是 如果原文件是tar压缩文件（或下载链接文件） 会被自动展开为到路径下（url地址不会展开压缩文件）<br><strong>7.</strong>    WORKDIR 指定目录 之后的语句可以使用 ./ 指定为当前目录 直到下一个WORKDIR定义出现<br><strong>8.</strong>    VOLUME  仅可指定挂载点 【VOLUME /data/<strong><em>/】<br>*</em>9.</strong>    EXPOSE  用于为容器打开指定要监听的端口实现与外部通信【EXPOSE 8080/tcp 8080/udp】 tcp 和udp二选一 默认为tcp 该端口为可以暴露的接口  启动时并不会直接暴露</value></key></value></key></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPOSE 8080/tcp 8080/udp</span><br></pre></td></tr></table></figure>
+
+<p><strong>10.</strong>    ENV 用于为镜像定义所需环境变量 可被dockerfile文件之后的指令所使用  【使用：ENV <key>=<value> <key>=<value>  ….. 】\反斜杠在此处还可用于转义空格 和docker run –env 不同 此处是用在build过程中设置好的环境变量</value></key></value></key></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ENV key val1,val2,....</span><br><span class="line">ENV key1=val1 \</span><br><span class="line">    key2=val2 \</span><br><span class="line">    key3=val3</span><br><span class="line">COPY XXXXX  $key1</span><br></pre></td></tr></table></figure>
+
+<p><strong>11.</strong>    RUN 运行sh命令在<strong>build</strong>过程【使用 ：RUN 命令1 &amp;&amp; 命令2 】 仅可运行基础镜像中存在的命令<br><strong>12.</strong>    CMD 运行sh命令在<strong>启动</strong>过程 【使用 ：CMD 命令1 &amp;&amp; 命令2】 仅可运行基础镜像中存在的命令<br>Cmd  命令可以被docker run <command> 启动时的命令替换掉<br>定义多个cmd仅仅最后一个生效<br>数组写法不可使用环境变量参数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>RUN</span><br><span class="line">RUN &lt;command&gt;</span><br><span class="line">RUN ["&lt;command&gt;","param1","param2"....]</span><br><span class="line">eg: RUN cd /usr/local &amp;&amp; \</span><br><span class="line">       java -jar xxxxxx.jar</span><br><span class="line"><span class="meta">#</span>CMD</span><br><span class="line">CMD &lt;command&gt;</span><br><span class="line">CMD ["&lt;command&gt;","param1","param2"....]</span><br><span class="line"><span class="meta">#</span> 配合ENTRYPOINT 使用</span><br><span class="line">CMD ["param1","param2"....]</span><br></pre></td></tr></table></figure>
+
+<p><strong>13.</strong>    ENTRYPOINT<br>和CMD相比 <strong>默认情况命令不会类替换掉</strong> 如要替换 使用<br>Docker container run –entrypoints “<command>“ container<br>定义多个ENTRYPOINT  最后一个生效<br>和CMD同时存在情况下 CMD会被当做参数交给ENTRYPOINT  执行<br>可通过添加entrypoint.sh  来让ENTRYPOINT  执行该文件 带入参数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 单独使用</span><br><span class="line">ENTRYPOINT &lt;command&gt;</span><br><span class="line"><span class="meta">#</span>             命令          参数1     参数2</span><br><span class="line">ENTRYPOINT [ "&lt;command&gt;" ,"param1" ,"param2" ]</span><br><span class="line"><span class="meta">#</span>和CMD同时出现 cmd会作为参数传给 ENTRYPOINT</span><br><span class="line">CMD ["param3","param4"]</span><br><span class="line">ENTRYPOINT [ "&lt;command&gt;" ,"param1" ,"param2" ]</span><br><span class="line"><span class="meta">#</span> 相当于执行 ENTRYPOINT [ "&lt;command&gt;" ,"param1" ,"param2" "param3","param4" ]</span><br></pre></td></tr></table></figure>
+
+<p><strong>14.</strong>    USER 指定<strong>在容器中</strong>某个用户下运行</p>
+<p><strong>15.</strong>    HEALTHCHECK  健康检查</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">HEALTHCHECK [options] CMD &lt;command&gt;</span><br><span class="line"> [options]</span><br><span class="line"><span class="meta">#</span> 每隔30检查一次</span><br><span class="line"> --interval=30s(default)</span><br><span class="line"><span class="meta">#</span>  超时时间</span><br><span class="line">    --timeout= 30s (default)</span><br><span class="line"><span class="meta">#</span>  启动时健康检查延迟时间（等待程序启动完成）</span><br><span class="line">    --start-period= 0s  (default)</span><br><span class="line"><span class="meta">#</span>   允许的失败次数 </span><br><span class="line">    --retries=3 (default)</span><br><span class="line">eg:HEALTHCHECK --interval=30s --timeout= 30s --start-period= 0s --retries=3 CMD &lt;command&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>16.</strong>    SHELL  指定程序默认要使用的shell程序 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Eg:</span><br><span class="line">SHELL[&quot;shell工具&quot;,&quot;参数&quot;]</span><br></pre></td></tr></table></figure>
+
+<p><strong>17.</strong>    STOPSIGNAL 停止进程<br><strong>18.</strong>    ARG 语句向dockerfile 中传递参数 <strong>(build 过程使用)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Eg： ARG &lt;name&gt;[=&lt;default value&gt;]</span><br><span class="line">Docker file中</span><br><span class="line">ARG latest_tag=&quot;latest&quot;</span><br><span class="line">EXPOSE $&#123;latest_tag&#125;</span><br><span class="line">执行</span><br><span class="line">Docker image build --arg latest_tag=&quot;7&quot;  -t centos:v0.1.1  ./</span><br></pre></td></tr></table></figure>
+
+<p><strong>19.</strong>    ONBUILD 用于dockerfile中定义触发器<br>在其他人使用此镜像制作新镜像时执行dockerfile的指令<br>Eg : ONBUILD ADD  “tomcat.zip”  “/data”（dockerfile的指令）<br>自己制作镜像时不执行该语句 在其他基于此镜像制作新镜像时 会执行</p>
 <h2 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</span><br><span class="line">sudo chmod +x /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
 
 <h2 id="docker资源限制（默认无限制）"><a href="#docker资源限制（默认无限制）" class="headerlink" title="docker资源限制（默认无限制）"></a>docker资源限制（默认无限制）</h2><blockquote>
@@ -630,7 +623,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -712,7 +705,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
