@@ -87,14 +87,14 @@
 <meta property="og:site_name">
 <meta property="og:description" content="网络   网络驱动汇总 描述    none 无网络   bridge 桥接 多个容器之间通过桥接网络交互   Host 主机网络 容器应用使用主机的网络   overlay 叠加网络 应用在多台机器之间通过叠加网络交互   ipvlan 虚拟ip   macvlan Mac的虚拟ip网络   Third-party network plugins 三方网络插件     容器网络 2个容器之间共享">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(三)/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%89)%5Ccontainer.png">
-<meta property="og:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(三)/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%89)%5Chost.png">
-<meta property="og:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(三)/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%89)%5Cbridge.png">
-<meta property="og:updated_time" content="2023-01-26T03:03:03.858Z">
+<meta property="og:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(三)/container.png">
+<meta property="og:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(三)/host.png">
+<meta property="og:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(三)/bridge.png">
+<meta property="og:updated_time" content="2023-01-26T03:14:28.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零开始学docker(三)">
 <meta name="twitter:description" content="网络   网络驱动汇总 描述    none 无网络   bridge 桥接 多个容器之间通过桥接网络交互   Host 主机网络 容器应用使用主机的网络   overlay 叠加网络 应用在多台机器之间通过叠加网络交互   ipvlan 虚拟ip   macvlan Mac的虚拟ip网络   Third-party network plugins 三方网络插件     容器网络 2个容器之间共享">
-<meta name="twitter:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(三)/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%89)%5Ccontainer.png">
+<meta name="twitter:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(三)/container.png">
 
 
 
@@ -334,7 +334,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-01-26T11:03:03+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2023-01-26T11:14:28+08:00">
                 2023-01-26
               </time>
             
@@ -431,7 +431,7 @@
 <h3 id="容器网络"><a href="#容器网络" class="headerlink" title="容器网络"></a><strong>容器网络</strong></h3><blockquote>
 <p>2个容器之间共享同一个网络 ip 端口等,除去网络外其他的2个容器之间是相互隔离的 比如文件系统 主机名等</p>
 </blockquote>
-<p><img src="/2023/01/26/2023-01-26-从零开始学docker(三)/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%89)%5Ccontainer.png" alt="container.png">e0dc2026-28b6-4418-a097-0a1460eb0610.jpeg</p>
+<p><img src="/2023/01/26/2023-01-26-从零开始学docker(三)/container.png" alt="container.png">e0dc2026-28b6-4418-a097-0a1460eb0610.jpeg</p>
 <br>
 
 <h4 id="Host主机"><a href="#Host主机" class="headerlink" title="Host主机"></a><strong>Host主机</strong></h4><br>
@@ -439,13 +439,13 @@
 <blockquote>
 <p>容器启动共享主机网络,但其他仍然是隔离的,比如文件系统等. 使用主机网络时-p,–publish -P,–publish-all 这些参数会被忽略，容器使用的端口会占用主机端口</p>
 </blockquote>
-<p><img src="/2023/01/26/2023-01-26-从零开始学docker(三)/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%89)%5Chost.png" alt="host.png"></p>
+<p><img src="/2023/01/26/2023-01-26-从零开始学docker(三)/host.png" alt="host.png"></p>
 <h4 id="bridge桥接"><a href="#bridge桥接" class="headerlink" title="bridge桥接"></a><strong>bridge桥接</strong></h4><br>
 
 <blockquote>
 <p>docker规定允许容器连接到同一个桥接网络上，连接到不同桥接网络的不能进行交互,docker启动后会在宿主机上默认创建一个名为docker0的虚拟桥接网络（可以理解为交换机）默认情况下 多个启动的容器都是通过docker0连接 相互可以访问。运行一个容器时会在容器中和容器外虚拟出一对网卡 一端连接到容器中一段连接到虚拟网桥上。docker0会为容器分配ip  构成以docker0为网桥的二层网络</p>
 </blockquote>
-<p><img src="/2023/01/26/2023-01-26-从零开始学docker(三)/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%89)%5Cbridge.png" alt="bridge.png"></p>
+<p><img src="/2023/01/26/2023-01-26-从零开始学docker(三)/bridge.png" alt="bridge.png"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span> 创建2个容器在同一个网桥上（未指定时默认docker0）容器之间可通过主机名相互访问</span><br><span class="line">docker container run --name nginx2 --rm -d -p 9091:80 nginx</span><br><span class="line">docker container run --name nginx1 --rm -d -p 9092:80 nginx</span><br><span class="line"><span class="meta">#</span>不同网络之间相互访问 一个在docker0 桥 一个在docker1</span><br><span class="line"></span><br><span class="line">docker container run --name nginx1 --rm -d -p 9091:80 --network docker0 nginx</span><br><span class="line">docker container run --name nginx2 --rm -d -p 9092:80 --network docker1 nginx</span><br><span class="line">docker network connect docker1 nginx1</span><br><span class="line">docker network connect docker0 nginx2</span><br></pre></td></tr></table></figure>
 
 <blockquote>
