@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Jdbc连接的方式1-- jdbc:mysql://hostname:port/schema?useUnicode=true&amp;amp;characterEncoding=utf8&amp;amp;autoReconnect=true&amp;amp;zeroDateTimeBehavior=convertToNull&amp;amp;transformedBitIsBoolean=true&amp;amp;serverTimez">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-10-08T05:58:43.750Z">
+<meta property="og:updated_time" content="2023-01-26T02:29:16.292Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql常用">
 <meta name="twitter:description" content="Jdbc连接的方式1-- jdbc:mysql://hostname:port/schema?useUnicode=true&amp;amp;characterEncoding=utf8&amp;amp;autoReconnect=true&amp;amp;zeroDateTimeBehavior=convertToNull&amp;amp;transformedBitIsBoolean=true&amp;amp;serverTimez">
@@ -330,8 +330,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-10-08T13:58:43+08:00">
-                2021-10-08
+              <time title="更新于" itemprop="dateModified" datetime="2023-01-26T10:29:16+08:00">
+                2023-01-26
               </time>
             
           </span>
@@ -390,8 +390,7 @@
 
 <h3 id="查询表结构"><a href="#查询表结构" class="headerlink" title="查询表结构"></a>查询表结构</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 利用 information_schema 查询</span></span><br><span class="line"><span class="keyword">SELECT</span>  x.TABLE_SCHEMA,x.COLUMN_NAME,x.DATA_TYPE,x.COLUMN_COMMENT,x.COLUMN_DEFAULT</span><br><span class="line"><span class="keyword">FROM</span> information_schema.COLUMNS  x</span><br><span class="line"><span class="keyword">WHERE</span> table_schema = <span class="string">'table_schema'</span> <span class="keyword">AND</span> table_name = <span class="string">'table_name'</span>;</span><br></pre></td></tr></table></figure>
 
-<p>###</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">COALESCE ( expression,value1,value2……)</span><br><span class="line"><span class="comment">-- 函数的第一个参数expression为待检测的表达式，而其后的参数个数不定。</span></span><br><span class="line"><span class="comment">-- expression 不为空返回 expression 否则 判断value1不为空返回value1 </span></span><br><span class="line"><span class="comment">-- 否则判断value2不为空返回value2 以此类推</span></span><br></pre></td></tr></table></figure>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">COALESCE ( expression,value1,value2……)</span><br><span class="line"><span class="comment">-- 函数的第一个参数expression为待检测的表达式，而其后的参数个数不定。</span></span><br><span class="line"><span class="comment">-- expression 不为空返回 expression 否则 判断value1不为空返回value1 </span></span><br><span class="line"><span class="comment">-- 否则判断value2不为空返回value2 以此类推</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -510,7 +509,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -565,7 +564,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jdbc连接的方式"><span class="nav-number">1.</span> <span class="nav-text">Jdbc连接的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询表结构"><span class="nav-number">2.</span> <span class="nav-text">查询表结构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jdbc连接的方式"><span class="nav-number">1.</span> <span class="nav-text">Jdbc连接的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询表结构"><span class="nav-number">2.</span> <span class="nav-text">查询表结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">3.</span> <span class="nav-text">函数</span></a></li></ol></div>
             
 
           </div>
@@ -592,7 +591,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

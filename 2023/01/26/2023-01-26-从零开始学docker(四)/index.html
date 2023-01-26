@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Docker,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="镜像  镜像构建  NOTE   注释信息 以# 开头 语句顺序执行 对大小写不敏感 约定俗称 关键字使用大写 第一个非注释行必须为FROM 命令 通过一个已有镜像制作 由于docker采用分层结构所以 每条语句都会产生新的层 ，所以尽量将语句放在一起写 主要 COPY ADD 本地文件时可以使用任何指的文件夹下的内容docker build path|url|- eg:  docker buil">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始学docker(四)">
+<meta property="og:url" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(四)/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="镜像  镜像构建  NOTE   注释信息 以# 开头 语句顺序执行 对大小写不敏感 约定俗称 关键字使用大写 第一个非注释行必须为FROM 命令 通过一个已有镜像制作 由于docker采用分层结构所以 每条语句都会产生新的层 ，所以尽量将语句放在一起写 主要 COPY ADD 本地文件时可以使用任何指的文件夹下的内容docker build path|url|- eg:  docker buil">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2023-01-26T03:02:21.457Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零开始学docker(四)">
+<meta name="twitter:description" content="镜像  镜像构建  NOTE   注释信息 以# 开头 语句顺序执行 对大小写不敏感 约定俗称 关键字使用大写 第一个非注释行必须为FROM 命令 通过一个已有镜像制作 由于docker采用分层结构所以 每条语句都会产生新的层 ，所以尽量将语句放在一起写 主要 COPY ADD 本地文件时可以使用任何指的文件夹下的内容docker build path|url|- eg:  docker buil">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(四)/">
+
+
+
+
+
+  <title>从零开始学docker(四) | </title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title"></span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(四)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MR.zhang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从零开始学docker(四)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-01-26T10:59:32+08:00">
+                2023-01-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-01-26T11:02:21+08:00">
+                2023-01-26
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a><strong>镜像</strong></h2><br>
+
+<h3 id="镜像构建"><a href="#镜像构建" class="headerlink" title="镜像构建"></a><strong>镜像构建</strong></h3><br>
+
+<p><font color="#008000"><strong>NOTE</strong></font></p>
+<blockquote>
+<ul>
+<li>注释信息 以# 开头</li>
+<li>语句顺序执行</li>
+<li>对大小写不敏感 约定俗称 关键字使用大写</li>
+<li>第一个非注释行必须为FROM 命令 通过一个已有镜像制作</li>
+<li>由于docker采用分层结构所以 每条语句都会产生新的层 ，所以尽量将语句放在一起写</li>
+<li>主要 COPY ADD 本地文件时可以使用任何指的文件夹下的内容<br>docker build path|url|-<br> eg:  docker build . 指的是当前目录 所以只能使用当前目录下的文件</li>
+<li>可在dockerfile同目录下添加.dockerignore忽略文件 类似于git的.ignore</li>
+<li>环境变量参数使用$param 或者${param}<br>${param+word}变量不为空使用word<br>${param-word} 变量为空使用默认值word</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FROM</td>
+<td>镜像来源</td>
+</tr>
+<tr>
+<td>MAINTANIER</td>
+<td>【使用：MAINTANIER “<a href="mailto:zztzzt@email.com" target="_blank" rel="noopener">zztzzt@email.com</a>“】镜像作者</td>
+</tr>
+<tr>
+<td>LABEL</td>
+<td>使用:单行多个/多行 <br>LABEL key=val key1=val1 ….. <br> LABEL key=val <br>LABEL  key1=val1</td>
+</tr>
+<tr>
+<td>COPY</td>
+<td>复制文件到容器 COPY src target  src可以是多个为目录时则必须以/结尾<br>COPY [–chown=<user>:<group>] src… target<br>COPY [–chown=<user>:<group>] [“src”,… “target”]</group></user></group></user></td>
+</tr>
+<tr>
+<td>ADD</td>
+<td>添加文件到容器 使用：<br> ADD src … target  <br> ADD [“src”,”src”….”target”]</td>
+</tr>
+<tr>
+<td>VOLUME</td>
+<td>指的用于挂载的目录挂载点 保证在容器启动时如果忘记指的会默认创建一个匿名存储卷来存储挂载点是不,这样容器消失后数据可以被保存下来.  使用:<br> VOLUME /date <br> VOLUME /date /date1 <br>VOLUME[“/date”,”/date1”….. ]</td>
+</tr>
+<tr>
+<td>EXPOSE</td>
+<td>用于为容器打开指定要监听的端口实现与外部通信【EXPOSE 8080 8080/tcp 8080/udp】 tcp 和udp二选一 默认为tcp 该端口为可以暴露的接口 启动时并不会直接暴露</td>
+</tr>
+<tr>
+<td>ENV</td>
+<td>用于为镜像定义所需环境变量 可被dockerfile文件之后的指令所使用  和docker run –env 不同 此处是用在build过程中设置好的环境变量 【使用：ENV key=val key1=val1 ….. 】\反斜杠在此处还可用于转义空格<br> eg: COPY XXXXX  $key1</td>
+</tr>
+<tr>
+<td>ARG</td>
+<td>参数 可通过–build-arg key=val 传入 也可被ENV使用<br>eg:<br> ARG author=zzt<br> ENV AUTHOR=${author+default}</td>
+</tr>
+<tr>
+<td>RUN</td>
+<td>运行sh命令在build过程【使用 ：RUN 命令1 &amp;&amp; 命令2 】 仅可运行基础镜像中存在的命令</td>
+</tr>
+<tr>
+<td>CMD</td>
+<td>运行命令在启动过程 <br>仅可运行基础镜像中存在的命令 <br>多个命令仅最后一个生效 <br>命令可以被docker run 启动时的命令替换掉<br>数组写法不可使用环境变量参数<br></td>
+</tr>
+<tr>
+<td>ENTRYPOINT</td>
+<td>和CMD相比 默认情况命令不会类替换掉 如要替换 <br>使用Docker container run –entrypoints “” container<br>定义多个ENTRYPOINT 最后一个生效<br>和CMD同时存在情况下 CMD会被当做参数交给ENTRYPOINT 执行<br>可通过添加entrypoint.sh 来让ENTRYPOINT 执行该文件 带入参数</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>指定再容器中用哪个用户运行 USER user[:group] 或者USER UID[:GID]</td>
+</tr>
+<tr>
+<td>ONBUILD</td>
+<td>添加触发器 触发命令可以是dockerfile支持的任何命令 构建命令不会在自身文件构建是触发，在另一个镜像基于该镜像构建时会先触发该指令在处理后面的指令</td>
+</tr>
+<tr>
+<td>HEALTHCHECK</td>
+<td>健康检查<br>–interval=30s(default) 每隔30检查一次<br>–timeout= 30s (default) 超时时间<br>–start-period= 0s  (default) 启动时健康检查延迟时间（等待程序启动完成）<br>–retries=3 (default) 允许的失败次数</td>
+</tr>
+<tr>
+<td>SHELL</td>
+<td>指定程序默认要使用的shell程序<br> SHELL [“执行工具”,”参数”,”参数”, ….]</td>
+</tr>
+<tr>
+<td>STOPSIGNAL</td>
+<td>指定推出时的信号值 可以是SIG&lt; name &gt; 也可以是与内核syscall表中的位置匹配的无符号数字，例如9。默认值为SIGTERM</td>
+</tr>
+</tbody></table>
+<p><br><br></p>
+<ul>
+<li>示例</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#注释</span></span><br><span class="line"><span class="keyword">FROM</span> image:tag</span><br><span class="line">MAINTANIER 镜像作者</span><br><span class="line"><span class="keyword">LABEL</span> key1=val1 key2=val2</span><br><span class="line"><span class="keyword">WORKDIR</span> /home/docker</span><br><span class="line"><span class="keyword">COPY</span> ./testfile /home/</span><br><span class="line"><span class="keyword">ADD</span>  ./testfile1 /home/</span><br><span class="line"><span class="keyword">VOLUME</span> /date0</span><br><span class="line"><span class="keyword">VOLUME</span> /date1 /date2</span><br><span class="line"><span class="keyword">VOLUME</span> ["/date3","/date4"]</span><br><span class="line"><span class="keyword">USER</span> zzt:zztgroup</span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8080</span>/tcp <span class="number">9090</span>/udp</span><br><span class="line"><span class="keyword">SHELL</span> ["/bin/bash", "-c"]</span><br><span class="line"><span class="keyword">RUN</span> touch file</span><br><span class="line"><span class="keyword">STOPSIGNAL</span> SIGSTOP</span><br><span class="line"><span class="keyword">CMD</span> ["java","-server" ,"-jar","xxxx.jar"]</span><br><span class="line"><span class="comment"># CMD ["&lt;command&gt;","param1","param2"....]</span></span><br><span class="line"><span class="keyword">HEALTHCHECK</span> --interval=30s --timeout= 30s --start-period= 0s --retries=3 CMD curl -f http://localhost:8080/ ||exit 1</span><br></pre></td></tr></table></figure>
+
+<h4 id="BuildKit工具镜像构建"><a href="#BuildKit工具镜像构建" class="headerlink" title="BuildKit工具镜像构建"></a><strong><a href="https://docs.docker.com/build/buildkit/" target="_blank" rel="noopener">BuildKit</a>工具镜像构建</strong></h4><blockquote>
+<ul>
+<li>docker版本大于18.06</li>
+<li>通过docker daemon.json添加  {“features”: { “buildkit” : true }} 或者命令行输入$DOCKER_BUILDKIT=1 docker build .</li>
+<li>支持 # syntax=docker/dockerfile:1.2 文件开始添加 指的使用dockerfile的版本语法</li>
+</ul>
+</blockquote>
+<h2 id="dockerConpose"><a href="#dockerConpose" class="headerlink" title="dockerConpose"></a><strong>dockerConpose</strong></h2><blockquote>
+<p>&emsp;一个可以一次多个容器的工具使用yml作为配置。 <a href="https://docs.docker.com/compose/compose-file/compose-versioning/" target="_blank" rel="noopener">compose-version</a>兼容版本映射关系</p>
+</blockquote>
+<h3 id="dockerConpose构建-运行镜像"><a href="#dockerConpose构建-运行镜像" class="headerlink" title="dockerConpose构建|运行镜像"></a><strong>dockerConpose构建|运行镜像</strong></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>构建镜像</span><br><span class="line">docker compose -f MyDockerCompose.yml --profile dev  build</span><br><span class="line"><span class="meta">#</span>启动镜像</span><br><span class="line">docker compose -f MyDockerCompose.yml --profile dev  up</span><br><span class="line"><span class="meta">#</span>启动镜像 后台运行</span><br><span class="line">docker compose -f MyDockerCompose.yml --profile dev  up -d</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>示例</p>
+</blockquote>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.9"</span> <span class="comment">#指定兼容的版本信息</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  myweb:</span> <span class="comment">#你的服务名</span></span><br><span class="line">    <span class="comment"># container_name: myweb-compose #容器名称 如果指定则副本数量只能是1个</span></span><br><span class="line"><span class="attr">    profiles:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">dev</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">pro</span></span><br><span class="line"><span class="comment">#构建信息定义</span></span><br><span class="line"><span class="attr">    build:</span> <span class="comment">#指定服务是构建还是镜像 build image 2者不可同时出现</span></span><br><span class="line"><span class="attr">      context:</span> <span class="string">.</span> <span class="comment">#指定上下文 docker build path的path   . 当前目录</span></span><br><span class="line"><span class="attr">      dockerfile:</span> <span class="string">./Dockerfile</span> <span class="comment">#dockerfile文件</span></span><br><span class="line"><span class="attr">      args:</span> <span class="comment">#参数 相当于 docker build --build-arg</span></span><br><span class="line"><span class="attr">        stoptime:</span> <span class="number">10</span></span><br><span class="line"><span class="attr">        stoptime1:</span> <span class="number">10</span></span><br><span class="line"><span class="attr">      labels:</span> <span class="comment">#标签 可以写入到镜像中</span></span><br><span class="line"><span class="attr">        version:</span> <span class="string">"v1"</span></span><br><span class="line"><span class="attr">        redisversion:</span> <span class="string">"7.0.7"</span></span><br><span class="line"><span class="attr">      tags:</span> <span class="comment">#镜像标签 可多个</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">"myweb:v1"</span></span><br><span class="line"><span class="attr">      platforms:</span> <span class="comment">#镜像平台 linux/arm64/v8  windows/amd64 osx</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">"linux/amd64"</span></span><br><span class="line"><span class="comment">#部署信息定义</span></span><br><span class="line"><span class="attr">    deploy:</span></span><br><span class="line"><span class="attr">      mode:</span> <span class="string">replicated</span> <span class="comment"># 部署模式 replicated（指定个数副本） 和 global （每个物理节点一个）</span></span><br><span class="line"><span class="attr">      replicas:</span> <span class="number">2</span> <span class="comment"># replicated副本模式时候指定副本个数</span></span><br><span class="line"><span class="attr">      restart_policy:</span> <span class="comment">#重启策略 </span></span><br><span class="line"><span class="attr">        condition:</span> <span class="string">on-failure</span> <span class="comment">#重启条件 none,on-failure,any</span></span><br><span class="line"><span class="attr">        delay:</span> <span class="number">0</span><span class="string">s</span> <span class="comment">#等待重启时间间隔</span></span><br><span class="line"><span class="attr">        max_attempts:</span> <span class="number">3</span> <span class="comment">#重启允许失败次数 condition =any 是不允许指定</span></span><br><span class="line"><span class="attr">        window:</span> <span class="number">1</span><span class="string">m</span> <span class="comment">#等待重启成功的空窗期</span></span><br><span class="line"><span class="attr">      rollback_config:</span> <span class="comment">#回滚配置</span></span><br><span class="line"><span class="attr">        parallelism:</span> <span class="number">1</span> <span class="comment">#每次回滚的容器数.0全部容器同时回滚</span></span><br><span class="line"><span class="attr">        delay:</span> <span class="number">0</span><span class="string">s</span> <span class="comment">#每组容器回滚的等待时间 默认0s</span></span><br><span class="line"><span class="attr">        failure_action:</span> <span class="string">pause</span> <span class="comment">#失败后要做的操作 continue or pause</span></span><br><span class="line"><span class="attr">        monitor:</span> <span class="number">1</span><span class="string">m</span> <span class="comment"># 失败后每次更新任务到监控的时间 默认0S  允许单位(ns|us|ms|s|m|h)</span></span><br><span class="line"><span class="attr">        max_failure_ratio:</span> <span class="number">0</span> <span class="comment"># 回滚失败率 默认0</span></span><br><span class="line"><span class="attr">        order:</span> <span class="string">stop-first</span> <span class="comment">#回滚期间的操作顺序 stop-first(先停止再启动) start-first(先启动再停止)</span></span><br><span class="line"><span class="attr">      update_config:</span> <span class="comment">#更新配置</span></span><br><span class="line"><span class="attr">        parallelism:</span> <span class="number">1</span> <span class="comment">#每次更新的容器数.0全部容器同时回滚</span></span><br><span class="line"><span class="attr">        delay:</span> <span class="number">0</span><span class="string">s</span> <span class="comment">#每组容器更新的等待时间 默认0s</span></span><br><span class="line"><span class="attr">        failure_action:</span> <span class="string">pause</span> <span class="comment">#失败后要做的操作 continue or pause</span></span><br><span class="line"><span class="attr">        monitor:</span> <span class="number">1</span><span class="string">m</span> <span class="comment"># 失败后每次更新任务到监控的时间 默认0S  允许单位(ns|us|ms|s|m|h)</span></span><br><span class="line"><span class="attr">        max_failure_ratio:</span> <span class="number">0</span> <span class="comment"># 更新失败率 默认0</span></span><br><span class="line"><span class="attr">        order:</span> <span class="string">stop-first</span> <span class="comment">#更新期间的操作顺序 stop-first(先停止再启动) start-first(先启动再停止)</span></span><br><span class="line"><span class="attr">      endpoint_mode:</span> <span class="string">vip</span> <span class="comment">#访问集群服务的方式 vip(虚拟ip) dnsrr(轮询)2种</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        mylable:</span> <span class="string">"lable"</span></span><br><span class="line"><span class="comment">#存储卷信息定义   </span></span><br><span class="line"><span class="attr">    volumes:</span> </span><br><span class="line"><span class="attr">      - type:</span> <span class="string">volume</span> <span class="comment">#type包括 volume, bind, tmpfs </span></span><br><span class="line"><span class="attr">        source:</span> <span class="string">mydata</span> <span class="comment">#存储卷或者地址 tmpfs类型时无效</span></span><br><span class="line"><span class="attr">        target:</span> <span class="string">//home/docker/data0001</span> <span class="comment">#挂载到容器内地址</span></span><br><span class="line"><span class="attr">        read_only:</span> <span class="literal">false</span> <span class="comment">#存储卷是只读的</span></span><br><span class="line"><span class="attr">        volume:</span></span><br><span class="line"><span class="attr">          nocopy:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      - type:</span> <span class="string">bind</span> <span class="comment">#type包括 volume, bind, tmpfs </span></span><br><span class="line"><span class="attr">        source:</span> <span class="string">/home/docker/data0002</span> <span class="comment">#tmpfs类型时无效</span></span><br><span class="line"><span class="attr">        target:</span> <span class="string">/data</span> <span class="comment">#挂载到容器内地址</span></span><br><span class="line"><span class="attr">        read_only:</span> <span class="literal">true</span> <span class="comment">#存储卷是只读的</span></span><br><span class="line"><span class="attr">        bind:</span></span><br><span class="line"><span class="attr">          propagation:</span> <span class="string">private</span> <span class="comment">#绑定类型传播机制 rprivate, private, rshared, shared, rslave, slave</span></span><br><span class="line"><span class="attr">          create_host_path:</span> <span class="literal">true</span> <span class="comment"># 自动创建本地路径</span></span><br><span class="line"><span class="attr">          selinux:</span> <span class="string">Z</span> <span class="comment">#z (shared) or Z (private)</span></span><br><span class="line">    <span class="comment"># volumes_from: # 从某个容器或服务名复制来相同的挂载信息</span></span><br><span class="line">    <span class="comment">#   - service_name</span></span><br><span class="line">    <span class="comment">#   - service_name:ro</span></span><br><span class="line">    <span class="comment">#   - container:container_name</span></span><br><span class="line">    <span class="comment">#   - container:container_name:rw</span></span><br><span class="line"><span class="comment">#网络信息定义</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line">      <span class="comment"># - "3000"</span></span><br><span class="line">      <span class="comment"># - "3000-3005"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"8080-8090:8080"</span></span><br><span class="line">      <span class="comment"># - "9090-9091:8080-8081"</span></span><br><span class="line">      <span class="comment"># - "49100:22"</span></span><br><span class="line">      <span class="comment"># - "127.0.0.1:8001:8001"</span></span><br><span class="line">      <span class="comment"># - "127.0.0.1:5000-5010:5000-5010"</span></span><br><span class="line">      <span class="comment"># - "6060:6060/udp"</span></span><br><span class="line"><span class="attr">    expose:</span> <span class="comment">#容器可暴露端口</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"8080"</span></span><br><span class="line"><span class="attr">    networks:</span> <span class="comment">#网络配置 可指定多个顶层networks的key</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">myweb-network1</span></span><br><span class="line">      <span class="comment"># - myweb-network2</span></span><br><span class="line"><span class="attr">    command:</span> <span class="string">["java","-jar","demo.jar"]</span> <span class="comment">#命令 相当于docker run xxxcontainer command</span></span><br><span class="line">    <span class="comment"># entrypoint: xxxx.sh</span></span><br><span class="line">    <span class="comment"># entrypoint:  # 会覆盖镜像中的entrypoint指令</span></span><br><span class="line">    <span class="comment">#   - java</span></span><br><span class="line">    <span class="comment">#   - -jar</span></span><br><span class="line">    <span class="comment">#   - demo.jar</span></span><br><span class="line">    <span class="comment"># env_file: #添加环境变量通过文件 文件格式 key=val #用于注释</span></span><br><span class="line">    <span class="comment">#    - .env  </span></span><br><span class="line"><span class="attr">    environment:</span> <span class="comment">#添加环境变量  environment和env_file同时出现优先取environment</span></span><br><span class="line"><span class="bullet">       -</span> <span class="string">aaa=bbb</span></span><br><span class="line">    <span class="comment"># extends: #从另一个compose文件扩展</span></span><br><span class="line">    <span class="comment">#   file: xxxx.yml</span></span><br><span class="line">    <span class="comment">#   service: xxxx</span></span><br><span class="line"><span class="attr">    healthcheck:</span> <span class="comment">#健康检查</span></span><br><span class="line"><span class="attr">      disable:</span> <span class="literal">true</span> <span class="comment">#禁用健康检查</span></span><br><span class="line"><span class="attr">      test:</span> <span class="string">["CMD",</span> <span class="string">"curl"</span><span class="string">,</span> <span class="string">"-f"</span><span class="string">,</span> <span class="string">"http://localhost:8080"</span><span class="string">]</span>  <span class="comment"># test如果使用list则第一个必须是NONE, CMD or CMD-SHELL中的一个</span></span><br><span class="line">      <span class="comment"># test: ["CMD-SHELL", "curl -f http://localhost:8080||exit 1"]</span></span><br><span class="line">      <span class="comment"># test: curl -f http://localhost:8080||exit 1 </span></span><br><span class="line"><span class="attr">      interval:</span> <span class="number">1</span><span class="string">m30s</span></span><br><span class="line"><span class="attr">      timeout:</span> <span class="number">10</span><span class="string">s</span></span><br><span class="line"><span class="attr">      retries:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">      start_period:</span> <span class="number">40</span><span class="string">s</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  mywebmvntemplate:</span></span><br><span class="line"><span class="attr">    profiles:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">dev</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">pro</span></span><br><span class="line"><span class="attr">    build:</span></span><br><span class="line"><span class="attr">      context:</span> <span class="string">.</span></span><br><span class="line"><span class="attr">      dockerfile:</span> <span class="string">./Dockerfile_v1</span></span><br><span class="line"><span class="attr">      tags:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">"myweb_mvn_template:v1"</span></span><br><span class="line"><span class="attr">  mywebbytemp:</span></span><br><span class="line"><span class="attr">    profiles:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">dev</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">pro</span></span><br><span class="line"><span class="attr">    depends_on:</span> <span class="comment"># 指定相互之间的依赖 简单写法|添加条件写法</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">mywebmvntemplate</span></span><br><span class="line"><span class="comment">#     depends_on:</span></span><br><span class="line"><span class="comment">#       mywebmvntemplate:</span></span><br><span class="line"><span class="comment"># # 依赖条件 service_started service_healthy service_completed_successfully</span></span><br><span class="line"><span class="comment">#         condition: service_healthy</span></span><br><span class="line"><span class="attr">    build:</span></span><br><span class="line"><span class="attr">      context:</span> <span class="string">.</span></span><br><span class="line"><span class="attr">      dockerfile:</span> <span class="string">./Dockerfile_v2</span></span><br><span class="line"><span class="attr">      tags:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">"mywebbytemp:v1"</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"9090:8080"</span></span><br><span class="line"><span class="attr">  myimageapp:</span></span><br><span class="line"><span class="attr">    profiles:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">dev</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">pro</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">mywebbytemp:v1</span></span><br><span class="line"><span class="attr">    depends_on:</span></span><br><span class="line">      <span class="comment"># - mywebmvntemplate</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">mywebbytemp</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"9091:8080"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span> <span class="comment">#顶层位置可以存储卷被多个服务使用 mydata值为空 会根据默认配置创建存储卷</span></span><br><span class="line"><span class="attr">  mydata:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">"my-data"</span> <span class="comment">#自定义卷名称</span></span><br><span class="line"><span class="attr">    labels:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"key=val"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"key2=val2"</span></span><br><span class="line">    <span class="comment">#external: true #external为true则不会自动创建mydata没有时会报错</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span> <span class="comment">#顶层网络配置</span></span><br><span class="line"><span class="attr">  myweb-network1:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">myweb-network1</span></span><br><span class="line"><span class="attr">    external:</span> <span class="literal">false</span> <span class="comment">#为true时不创建该网络找不到该网络报错</span></span><br><span class="line"><span class="attr">    driver:</span> <span class="string">overlay</span> <span class="comment">#网络驱动汇总</span></span><br><span class="line"><span class="attr">    attachable:</span> <span class="literal">true</span> <span class="comment"># 是否连接到该网络</span></span><br><span class="line"><span class="attr">    labels:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"key1=val1"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"key2=val2"</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
++ <div style="text-align:center;color: #ccc;font-size:14px;">---------------- The End ----------------</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" <i class="fa fa-tag"> Docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/01/26/2023-01-26-从零开始学docker(三)/" rel="next" title="从零开始学docker(三)">
+                <i class="fa fa-chevron-left"></i> 从零开始学docker(三)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">MR.zhang</p>
+              <p class="site-description motion-element" itemprop="description">坚持是一种态度,每一分都值得</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#镜像"><span class="nav-number">1.</span> <span class="nav-text">镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像构建"><span class="nav-number">1.1.</span> <span class="nav-text">镜像构建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BuildKit工具镜像构建"><span class="nav-number">1.1.1.</span> <span class="nav-text">BuildKit工具镜像构建</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dockerConpose"><span class="nav-number">2.</span> <span class="nav-text">dockerConpose</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dockerConpose构建-运行镜像"><span class="nav-number">2.1.</span> <span class="nav-text">dockerConpose构建|运行镜像</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MR.zhang</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
