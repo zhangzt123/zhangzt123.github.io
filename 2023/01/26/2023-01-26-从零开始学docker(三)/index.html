@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(三)/container.png">
 <meta property="og:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(三)/host.png">
 <meta property="og:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(三)/bridge.png">
-<meta property="og:updated_time" content="2023-01-26T03:14:28.772Z">
+<meta property="og:updated_time" content="2023-01-30T13:09:02.713Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零开始学docker(三)">
 <meta name="twitter:description" content="网络   网络驱动汇总 描述    none 无网络   bridge 桥接 多个容器之间通过桥接网络交互   Host 主机网络 容器应用使用主机的网络   overlay 叠加网络 应用在多台机器之间通过叠加网络交互   ipvlan 虚拟ip   macvlan Mac的虚拟ip网络   Third-party network plugins 三方网络插件     容器网络 2个容器之间共享">
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-01-26T11:14:28+08:00">
-                2023-01-26
+              <time title="更新于" itemprop="dateModified" datetime="2023-01-30T21:09:02+08:00">
+                2023-01-30
               </time>
             
           </span>
@@ -431,7 +431,10 @@
 <h3 id="容器网络"><a href="#容器网络" class="headerlink" title="容器网络"></a><strong>容器网络</strong></h3><blockquote>
 <p>2个容器之间共享同一个网络 ip 端口等,除去网络外其他的2个容器之间是相互隔离的 比如文件系统 主机名等</p>
 </blockquote>
-<p><img src="/2023/01/26/2023-01-26-从零开始学docker(三)/container.png" alt="container.png">e0dc2026-28b6-4418-a097-0a1460eb0610.jpeg</p>
+<p><img src="/2023/01/26/2023-01-26-从零开始学docker(三)/container.png" alt="container.png"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">docker container run -d  --name mynginx1 -P nginx</span><br><span class="line">95132de6a078</span><br><span class="line">docker container run -d --network container:95132de6a078  --name myredis -P  redis</span><br><span class="line"></span><br><span class="line">CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                     NAMES</span><br><span class="line">5eff2b7c0866   redis     "docker-entrypoint.s…"   14 seconds ago   Up 13 seconds                                             myredis</span><br><span class="line">95132de6a078   nginx     "/docker-entrypoint.…"   22 minutes ago   Up 22 minutes   0.0.0.0:32768-&gt;80/tcp, :::32768-&gt;80/tcp   mynginx</span><br><span class="line"></span><br><span class="line">docker inspect 5eff2b7c0866</span><br><span class="line"></span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        "Id": "5eff2b7c0866749c28eeba80453fe163fdc9de6b3702084cd5b561346fdf606d",</span><br><span class="line">        ...</span><br><span class="line">        "HostConfig": &#123;</span><br><span class="line">             ...</span><br><span class="line">            "NetworkMode": "container:95132de6a0783684dd208328247f96194609d7ebec58465271f7b36906f786d0",</span><br><span class="line">            ...</span><br><span class="line">        &#125;,</span><br><span class="line">        ...</span><br><span class="line">        "NetworkSettings": &#123;</span><br><span class="line">            "Bridge": "",</span><br><span class="line">            "SandboxID": "",</span><br><span class="line">            "HairpinMode": false,</span><br><span class="line">            "LinkLocalIPv6Address": "",</span><br><span class="line">            "LinkLocalIPv6PrefixLen": 0,</span><br><span class="line">            "Ports": &#123;&#125;,</span><br><span class="line">            "SandboxKey": "",</span><br><span class="line">            "SecondaryIPAddresses": null,</span><br><span class="line">            "SecondaryIPv6Addresses": null,</span><br><span class="line">            "EndpointID": "",</span><br><span class="line">            "Gateway": "",</span><br><span class="line">            "GlobalIPv6Address": "",</span><br><span class="line">            "GlobalIPv6PrefixLen": 0,</span><br><span class="line">            "IPAddress": "",</span><br><span class="line">            "IPPrefixLen": 0,</span><br><span class="line">            "IPv6Gateway": "",</span><br><span class="line">            "MacAddress": "",</span><br><span class="line">            "Networks": &#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>*Note 容器模式下不允许指定端口等信息 这些全部由绑定的那个容器的网络决定,否则会错误 docker: Error response from daemon: conflicting options: port publishing and the container type network mode.</p>
 <br>
 
 <h4 id="Host主机"><a href="#Host主机" class="headerlink" title="Host主机"></a><strong>Host主机</strong></h4><br>

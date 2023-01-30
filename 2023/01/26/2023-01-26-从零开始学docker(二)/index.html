@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(二)/sharing-layers.png">
 <meta property="og:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(二)/copy-on-write.png">
 <meta property="og:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(二)/types-of-mounts-volume.png">
-<meta property="og:updated_time" content="2023-01-26T03:14:27.354Z">
+<meta property="og:updated_time" content="2023-01-30T13:07:29.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零开始学docker(二)">
 <meta name="twitter:description" content="存储 docker存储使用分层架构，如图所示，容器由最上面的可写层和容器层构成，每个容器启动后会产生不同的文件，这些文件全部在可写层上，各个容器之间各不相干，当容器被删除,文件也会被删除。启动的多个容器之间会使用相同的镜像，并各自产生不同的数据存在各自的可写层。所以镜像层可以共享打包进镜像的数据。   copy-on-write 写复制也是docker文件系统中重要的组成部分, 比如当容器需要访问">
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-01-26T11:14:27+08:00">
-                2023-01-26
+              <time title="更新于" itemprop="dateModified" datetime="2023-01-30T21:07:29+08:00">
+                2023-01-30
               </time>
             
           </span>
@@ -404,7 +404,7 @@
 <p><img src="/2023/01/26/2023-01-26-从零开始学docker(二)/types-of-mounts-volume.png" alt="types-of-mounts-volume.png"></p>
 <h3 id="存储卷Volumes"><a href="#存储卷Volumes" class="headerlink" title="存储卷Volumes"></a><strong>存储卷Volumes</strong></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> -v参数</span><br><span class="line"><span class="meta">#</span> optional 可以多个逗号分割 例如 ro,rw</span><br><span class="line">-v [本地地址/存储卷]:[容器地址]:[optional]</span><br><span class="line">eg:</span><br><span class="line">docker container run -v myvo2:/home:rw nginx:latest</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> --mount参数</span><br><span class="line"><span class="meta">#</span> type                      volume</span><br><span class="line"><span class="meta">#</span> source/src                指定本地目录/网络位置/存储卷名</span><br><span class="line"><span class="meta">#</span> destination/dst/target    指定容器内目标位置</span><br><span class="line"><span class="meta">#</span> readonly/ro               指定容器对该文件只读</span><br><span class="line"><span class="meta">#</span> volume-opt                指定更多设置</span><br><span class="line">eg:</span><br><span class="line">docker container run --mount 'type=volume,src=myvo2,target=/home,readonly' nginx:latest </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 创建一个存储卷</span><br><span class="line"> docker volume create --label author=zzt myvo2</span><br><span class="line"><span class="meta">#</span> 查看</span><br><span class="line"> docker volume inspect myvo2</span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        "CreatedAt": "2023-01-10T10:31:50+08:00",</span><br><span class="line">        "Driver": "local",</span><br><span class="line">        "Labels": &#123;</span><br><span class="line">            "author": "zzt"</span><br><span class="line">        &#125;,</span><br><span class="line">        "Mountpoint": "/var/lib/docker/volumes/myvo2/_data",</span><br><span class="line">        "Name": "myvo2",</span><br><span class="line">        "Options": &#123;&#125;,</span><br><span class="line">        "Scope": "local"</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"> docker volume rm myvo1</span><br><span class="line"><span class="meta">#</span> 可指定具体的标签 </span><br><span class="line"><span class="meta">#</span>干掉 标签有 author</span><br><span class="line"> docker volume prune --filter "label=author"</span><br><span class="line"><span class="meta">#</span>干掉 标签有 author 且等于zzt的</span><br><span class="line"> docker volume prune --filter "label=author=zzt"</span><br></pre></td></tr></table></figure>
 
-<h3 id="bind绑定"><a href="#bind绑定" class="headerlink" title="bind绑定"></a><strong>bind绑定</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># -v参数</span><br><span class="line"># optional 可以多个逗号分割 例如 ro,rw</span><br><span class="line">-v [本地地址/存储卷]:[容器地址]:[optional]</span><br><span class="line">eg:</span><br><span class="line">docker container run -v /home/docker:/home:rw nginx:latest</span><br><span class="line"></span><br><span class="line"># --mount参数</span><br><span class="line"># type                      bind</span><br><span class="line"># source/src                指定本地目录/网络位置/存储卷名</span><br><span class="line"># destination/dst/target    指定容器内目标位置</span><br><span class="line"># readonly/ro               指定容器对该文件只读</span><br><span class="line"># volume-opt                指定更多设置</span><br><span class="line"># bind-propagation          rprivate, private, rshared, shared, rslave, slave</span><br><span class="line">eg:</span><br><span class="line">docker container run --mount &apos;type=bind,src=/home/docker,target=/home,readonly&apos; nginx:latest</span><br></pre></td></tr></table></figure>
+<h3 id="bind绑定"><a href="#bind绑定" class="headerlink" title="bind绑定"></a><strong>bind绑定</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># -v参数</span><br><span class="line"># optional 可以多个逗号分割 例如 ro,rw</span><br><span class="line">-v [本地地址/存储卷]:[容器地址]:[optional]</span><br><span class="line">eg:</span><br><span class="line">docker container run -v /home/docker:/home:rw nginx:latest</span><br><span class="line"></span><br><span class="line"># --mount参数</span><br><span class="line"># type                      bind</span><br><span class="line"># source/src                指定本地目录/网络位置/存储卷名</span><br><span class="line"># destination/dst/target    指定容器内目标位置</span><br><span class="line"># readonly/ro               指定容器对该文件只读</span><br><span class="line"># bind-propagation          rprivate, private, rshared, shared, rslave, slave</span><br><span class="line">eg:</span><br><span class="line">docker container run --mount &apos;type=bind,src=/home/docker,target=/home,readonly&apos; nginx:latest</span><br></pre></td></tr></table></figure>
 
 <h4 id="bind-propagation-绑定传递"><a href="#bind-propagation-绑定传递" class="headerlink" title="bind propagation 绑定传递"></a><strong>bind propagation 绑定传递</strong></h4><table>
 <thead>
@@ -415,35 +415,35 @@
 </thead>
 <tbody><tr>
 <td>rprivate</td>
-<td>默认值</td>
+<td>默认值 和 private 相同</td>
 </tr>
 <tr>
 <td>shared</td>
-<td></td>
+<td>原挂载点上的所有子挂载点对于副本挂载点可见 副本挂载点中的所有子挂载点对于原挂载点也可见</td>
 </tr>
 <tr>
 <td>slave</td>
-<td></td>
+<td>原挂载点中的所有子挂载点对于副本挂载点可见 反之不行。</td>
 </tr>
 <tr>
 <td>private</td>
-<td></td>
+<td>原挂载点和副本挂载点的子挂载点只对自己可见</td>
 </tr>
 <tr>
 <td>rshared</td>
-<td></td>
+<td>在shared的基础上也支持嵌套的挂载点</td>
 </tr>
 <tr>
 <td>rslave</td>
-<td></td>
+<td>在slave基础上也支持嵌套的挂载点</td>
 </tr>
 </tbody></table>
-<h3 id="tmpfs"><a href="#tmpfs" class="headerlink" title="tmpfs"></a>tmpfs</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># --tmpfs参数</span><br><span class="line">eg:</span><br><span class="line">docker container run --tmpfs /tmp1 nginx:latest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># --mount参数</span><br><span class="line"># type                      tmpfs</span><br><span class="line"># source/src                指定本地目录/网络位置/存储卷名</span><br><span class="line"># destination/dst/target    指定容器内目标位置</span><br><span class="line"># readonly/ro               指定容器对该文件只读</span><br><span class="line"># volume-opt                指定更多设置</span><br><span class="line">eg:</span><br><span class="line">docker container run --mount &apos;type=volume,src=myvo2,target=/home,readonly&apos; nginx:latest</span><br></pre></td></tr></table></figure>
+<h3 id="tmpfs"><a href="#tmpfs" class="headerlink" title="tmpfs"></a>tmpfs</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># --tmpfs参数</span><br><span class="line">eg:</span><br><span class="line">docker container run --tmpfs /tmp1 nginx:latest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># --mount参数</span><br><span class="line"># type                      tmpfs</span><br><span class="line"># destination/dst/target    指定容器内目标位置</span><br><span class="line"># tmpfs-size                临时文件大小限制,默认无限制</span><br><span class="line"># tmpfs-mode                临时文件模式  700 可读写运行 or 0770. Defaults 1777可写</span><br><span class="line">eg:  </span><br><span class="line">docker container run --mount &apos;type=tmpfs,target=/target&apos; nginx:latest</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p><strong>区别</strong>:-v指定的宿主机地址总是会自动创建<br>&emsp;&emsp;&nbsp;–mount指定的宿主机地址如果不存在则会发生错误<br>eg:<br>docker container run –rm –mount ‘type=bind,src=/home/docker1,target=/home,readonly’ nginx:latest<br>docker: Error response from daemon: invalid mount config for type “bind”: bind source path does not exist: /home/docker1.</p>
 </blockquote>
-
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3>
       
     </div>
     
@@ -617,7 +617,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储"><span class="nav-number">1.</span> <span class="nav-text">存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#copy-on-write"><span class="nav-number">1.1.</span> <span class="nav-text">copy-on-write</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储卷Volumes"><span class="nav-number">1.2.</span> <span class="nav-text">存储卷Volumes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind绑定"><span class="nav-number">1.3.</span> <span class="nav-text">bind绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bind-propagation-绑定传递"><span class="nav-number">1.3.1.</span> <span class="nav-text">bind propagation 绑定传递</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tmpfs"><span class="nav-number">1.4.</span> <span class="nav-text">tmpfs</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储"><span class="nav-number">1.</span> <span class="nav-text">存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#copy-on-write"><span class="nav-number">1.1.</span> <span class="nav-text">copy-on-write</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储卷Volumes"><span class="nav-number">1.2.</span> <span class="nav-text">存储卷Volumes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind绑定"><span class="nav-number">1.3.</span> <span class="nav-text">bind绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bind-propagation-绑定传递"><span class="nav-number">1.3.1.</span> <span class="nav-text">bind propagation 绑定传递</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tmpfs"><span class="nav-number">1.4.</span> <span class="nav-text">tmpfs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">1.5.</span> <span class="nav-text">常用命令</span></a></li></ol></li></ol></div>
             
 
           </div>
