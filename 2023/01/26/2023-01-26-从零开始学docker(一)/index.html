@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(一)/architecture.png">
 <meta property="og:image" content="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(一)/docker_install.jpg">
-<meta property="og:updated_time" content="2023-01-30T12:48:06.567Z">
+<meta property="og:updated_time" content="2024-09-12T12:14:23.437Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零开始学docker(一)">
 <meta name="twitter:description" content="docker架构docker架构 , api    namespace 底层通过6大命名空间进行隔离     namespae 系统参数 隔离内容    UTS CLONE_NEWUTS 主机名域名   IPC CLONE_NEWIPC 进程间通信 信号量 消息队列 共享内存   PID CLONE_NEWPID 进程编号   NETWORK CLONE_NEWNET 网络   MOUNT CLO">
@@ -153,7 +153,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta custom-logo">
     
 
     <div class="custom-logo-site-title">
@@ -291,7 +291,7 @@
     <link itemprop="mainEntityOfPage" href="https://zhangzt123.github.io/2023/01/26/2023-01-26-从零开始学docker(一)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MR.zhang">
+      <meta itemprop="name" content="哎呦不错哟">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -317,7 +317,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-01-26T10:49:41+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-01-26T10:49:01+08:00">
                 2023-01-26
               </time>
             
@@ -333,8 +333,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-01-30T20:48:06+08:00">
-                2023-01-30
+              <time title="更新于" itemprop="dateModified" datetime="2024-09-12T20:14:23+08:00">
+                2024-09-12
               </time>
             
           </span>
@@ -449,7 +449,7 @@
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a><strong>安装</strong></h2><blockquote>
 <p>手动安装许按照以下依赖进行  </p>
 </blockquote>
-<h2 id><a href="#" class="headerlink" title></a><img src="/2023/01/26/2023-01-26-从零开始学docker(一)/docker_install.jpg" alt="docker_install.jpg" title="docker_install.jpg"></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>删除本地的docker</span><br><span class="line">yum remove docker \</span><br><span class="line">           docker-client \</span><br><span class="line">           docker-client-latest \</span><br><span class="line">           docker-common \</span><br><span class="line">           docker-latest \</span><br><span class="line">           docker-latest-logrotate \</span><br><span class="line">           docker-logrotate \</span><br><span class="line">           docker-engine \</span><br><span class="line">           docker-engine-selinux \</span><br><span class="line">           docker-selinux </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>安装yum-utils</span><br><span class="line">yum install -y yum-utils</span><br><span class="line"><span class="meta">#</span>添加下载源</span><br><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"></span><br><span class="line">yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>安装指定docker版本</span><br><span class="line"></span><br><span class="line">yum list docker-ce --showduplicates | sort -r</span><br><span class="line"></span><br><span class="line">yum install docker-ce-19.03.9-3.el7  docker-ce-cli-19.03.9-3.el7  containerd.io docker-compose-plugin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 开机自启/关闭自启</span><br><span class="line">systemctl enable/disable docker</span><br><span class="line"><span class="meta">#</span>启动/停止docker服务</span><br><span class="line">systemctl start/stop docker</span><br><span class="line"><span class="meta">#</span>如果daemon.json有改动记得重新加载dockerdaemon</span><br><span class="line">systemctl daemon-reload</span><br><span class="line"><span class="meta">#</span>查看docker服务状态</span><br><span class="line">systemctl status docker</span><br></pre></td></tr></table></figure>
+<h2 id><a href="#" class="headerlink" title></a><img src="/2023/01/26/2023-01-26-从零开始学docker(一)/docker_install.jpg" alt="docker_install.jpg" title="docker_install.jpg"></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>删除本地的docker</span><br><span class="line">yum remove docker \</span><br><span class="line">           docker-client \</span><br><span class="line">           docker-client-latest \</span><br><span class="line">           docker-common \</span><br><span class="line">           docker-latest \</span><br><span class="line">           docker-latest-logrotate \</span><br><span class="line">           docker-logrotate \</span><br><span class="line">           docker-engine \</span><br><span class="line">           docker-engine-selinux \</span><br><span class="line">           docker-selinux </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>安装yum-utils</span><br><span class="line">yum install -y yum-utils</span><br><span class="line"><span class="meta">#</span>添加下载源</span><br><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"></span><br><span class="line">yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>安装指定docker版本</span><br><span class="line"></span><br><span class="line">yum list docker-ce --showduplicates | sort -r</span><br><span class="line"></span><br><span class="line">yum install docker-ce-19.03.9-3.el7  docker-ce-cli-19.03.9-3.el7  containerd.io docker-compose-plugin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 开机自启/关闭自启</span><br><span class="line">systemctl enable/disable docker</span><br><span class="line"><span class="meta">#</span>启动/停止docker服务</span><br><span class="line">systemctl start/stop docker</span><br><span class="line"><span class="meta">#</span>如果daemon.json有改动记得重新加载dockerdaemon</span><br><span class="line">systemctl daemon-reload</span><br><span class="line"><span class="meta">#</span>查看docker服务状态</span><br><span class="line">systemctl status docker</span><br><span class="line"><span class="meta">#</span>添加用户到docker组</span><br><span class="line">usermod -aG docker username</span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -460,6 +460,11 @@
 <li>daemon.json示例</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ......</span><br><span class="line">  //配置镜像源</span><br><span class="line">  //http</span><br><span class="line">  "insecure-registries":["ip:port","p:port","......"],</span><br><span class="line">    //https  </span><br><span class="line">  "registry-mirrors": ["http://harbor.test.com","......"],</span><br><span class="line">  //非SSL源管理镜像，这里加上</span><br><span class="line">  "max-concurrent-downloads": 10,</span><br><span class="line">  //数据存储位置</span><br><span class="line">  "data-root": "/home/data",</span><br><span class="line">  //网络配置</span><br><span class="line">  "bip" : "192.168.2.1/24",</span><br><span class="line">  "fixed-cidr" : "10.20.0.0/16",</span><br><span class="line">  "fixed-cidr-v6" : "2001:db8::/64",</span><br><span class="line">  "mtu" : "1500",</span><br><span class="line">  "default-getway" : "192.168.2.1",</span><br><span class="line">  "default-getway-v6" : "2001:db8:abcd::89",</span><br><span class="line">  "dns" : ["8.8.8.8","1.1.1.1"]</span><br><span class="line">  ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>指定docker连接的服务器 默认本机”unix:///var/run/docker.sock”<br>Unix Socket 这是类unix系统进程间通讯的一种方式<br>指定tcp连接后可通过 docker -H xxx.xxx.xx.xxx:2375  连接到指定的docker服务端</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"hosts"</span>:[</span><br><span class="line">              //tcp默认端口<span class="number">2375</span></span><br><span class="line">              <span class="string">"tcp:00.00.00.00:2375"</span>,</span><br><span class="line">              //tcp_tls 默认端口 <span class="number">2376</span></span><br><span class="line">              <span class="string">"tcp_tls:00.00.00.00:2376"</span>,</span><br><span class="line">              <span class="string">"unix:///var/run/docker.sock"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>&emsp;详细配置查看<a href="https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file" target="_blank" rel="noopener">Daemon_Doc</a> 可通过dockerd指令进行操作</p>
 <h2 id="GC回收"><a href="#GC回收" class="headerlink" title="GC回收"></a>GC回收</h2><blockquote>
@@ -600,8 +605,8 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">MR.zhang</p>
-              <p class="site-description motion-element" itemprop="description">坚持是一种态度,每一分都值得</p>
+              <p class="site-author-name" itemprop="name">哎呦不错哟</p>
+              <p class="site-description motion-element" itemprop="description">千里之行 始于足下</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -611,7 +616,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -622,7 +627,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -633,7 +638,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -693,11 +698,11 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">MR.zhang</span>
+  <span class="author" itemprop="copyrightHolder">哎呦不错哟</span>
 
   
 </div>
