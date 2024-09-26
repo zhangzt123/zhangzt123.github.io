@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="ElatsicSearch,es,">
 
 
 
@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="搭建 单机 集群 使用 ES 常见问题汇总及解决方案">
+<meta name="description" content="搭建 单机 123docker run -d --name es-single -e ES_JAVA_OPTS=&quot;-Xms512m -Xmx2048m&quot; -v /home/docker/es/config/single:/usr/share/elasticsearch/config -v /home/docker/es/data/single:/usr/share/elasticsearch/da">
+<meta name="keywords" content="ElatsicSearch,es">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ElatsicSearch使用及相关问题">
 <meta property="og:url" content="https://zhangzt123.github.io/2024/09/06/2024-09-06-ElatsicSearch使用及相关问题/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="搭建 单机 集群 使用 ES 常见问题汇总及解决方案">
+<meta property="og:description" content="搭建 单机 123docker run -d --name es-single -e ES_JAVA_OPTS=&quot;-Xms512m -Xmx2048m&quot; -v /home/docker/es/config/single:/usr/share/elasticsearch/config -v /home/docker/es/data/single:/usr/share/elasticsearch/da">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2024-09-13T12:57:56.971Z">
+<meta property="og:image" content="https://zhangzt123.github.io/2024/09/06/2024-09-06-ElatsicSearch使用及相关问题/es_cluster.png">
+<meta property="og:updated_time" content="2024-09-26T12:49:41.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ElatsicSearch使用及相关问题">
-<meta name="twitter:description" content="搭建 单机 集群 使用 ES 常见问题汇总及解决方案">
+<meta name="twitter:description" content="搭建 单机 123docker run -d --name es-single -e ES_JAVA_OPTS=&quot;-Xms512m -Xmx2048m&quot; -v /home/docker/es/config/single:/usr/share/elasticsearch/config -v /home/docker/es/data/single:/usr/share/elasticsearch/da">
+<meta name="twitter:image" content="https://zhangzt123.github.io/2024/09/06/2024-09-06-ElatsicSearch使用及相关问题/es_cluster.png">
 
 
 
@@ -329,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-09-13T20:57:56+08:00">
-                2024-09-13
+              <time title="更新于" itemprop="dateModified" datetime="2024-09-26T20:49:41+08:00">
+                2024-09-26
               </time>
             
           </span>
@@ -365,9 +368,99 @@
       
         <h2 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a><em>搭建</em></h2><hr>
 <h3 id="单机"><a href="#单机" class="headerlink" title="单机"></a>单机</h3><hr>
-<h3 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h3><hr>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><hr>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name es-single -e ES_JAVA_OPTS="-Xms512m -Xmx2048m" -v /home/docker/es/config/single:/usr/share/elasticsearch/config -v /home/docker/es/data/single:/usr/share/elasticsearch/data -v /home/docker/es/logs/single:/usr/share/elasticsearch/logs -p 9200:9200 -p 9300:9300 --network inet  elasticsearch:8.1.0</span><br><span class="line"></span><br><span class="line">docker run -d --name kibana-single -p 5601:5601 -e ELASTICSEARCH_HOSTS=http://es-single:9200 -e I18N_LOCALE=zh-CN -v /home/docker/kibana/config/kibana-single.yml:/usr/share/kibana/config/kibana.yml --network inet  kibana:8.1.0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#es-single</span><br><span class="line">cluster.name: &quot;docker-single&quot;</span><br><span class="line">network.host: 0.0.0.0</span><br><span class="line">discovery.type: single-node  #单节点模式</span><br><span class="line"></span><br><span class="line"># Enable security features</span><br><span class="line">xpack.security.enabled: false</span><br><span class="line">xpack.security.enrollment.enabled: false</span><br><span class="line">xpack.security.http.ssl:</span><br><span class="line">  enabled: true</span><br><span class="line">  keystore.path: certs/http.p12</span><br><span class="line">xpack.security.transport.ssl:</span><br><span class="line">  enabled: true</span><br><span class="line">  verification_mode: certificate</span><br><span class="line">  keystore.path: certs/transport.p12</span><br><span class="line">  truststore.path: certs/transport.p12</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#Kibana-single</span><br><span class="line"># Default Kibana configuration for docker target</span><br><span class="line">server.host: &quot;0.0.0.0&quot;</span><br><span class="line">server.shutdownTimeout: &quot;5s&quot;</span><br><span class="line">elasticsearch.hosts: [ &quot;http://172.17.0.1:9200&quot; ]</span><br><span class="line">monitoring.ui.container.elasticsearch.enabled: true</span><br><span class="line">i18n.locale: &quot;zh-CN&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="集群CLUSTER"><a href="#集群CLUSTER" class="headerlink" title="集群CLUSTER"></a>集群CLUSTER</h3><hr>
+<p><img src="/2024/09/06/2024-09-06-ElatsicSearch使用及相关问题/es_cluster.png" alt title="master和data分开集群"></p>
+<blockquote>
+<p>&emsp;</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>## 启动三master 三data</span><br><span class="line">docker run -d  --name master-a -e ES_JAVA_OPTS="-Xms1024m -Xmx1024m" -v /home/docker/es/config/master1:/usr/share/elasticsearch/config -v /home/docker/es/data/master1:/usr/share/elasticsearch/data -v /home/docker/es/logs/master1:/usr/share/elasticsearch/logs -p ::9200 -p ::9300 --network inet  elasticsearch:8.1.0\</span><br><span class="line">&amp;&amp;\</span><br><span class="line">docker run -d  --name master-b -e ES_JAVA_OPTS="-Xms1024m -Xmx1024m" -v /home/docker/es/config/master2:/usr/share/elasticsearch/config -v /home/docker/es/data/master2:/usr/share/elasticsearch/data -v /home/docker/es/logs/master2:/usr/share/elasticsearch/logs -p ::9200 -p ::9300 --network inet  elasticsearch:8.1.0\</span><br><span class="line">&amp;&amp;\</span><br><span class="line">docker run -d  --name master-c -e ES_JAVA_OPTS="-Xms1024m -Xmx1024m" -v /home/docker/es/config/master3:/usr/share/elasticsearch/config -v /home/docker/es/data/master3:/usr/share/elasticsearch/data -v /home/docker/es/logs/master3:/usr/share/elasticsearch/logs -p ::9200 -p ::9300 --network inet  elasticsearch:8.1.0\</span><br><span class="line">&amp;&amp;\</span><br><span class="line">docker run -d  --name es-data1 -e ES_JAVA_OPTS="-Xms1024m -Xmx1024m" -v /home/docker/es/config/data1:/usr/share/elasticsearch/config -v /home/docker/es/data/data1:/usr/share/elasticsearch/data -v /home/docker/es/logs/data1:/usr/share/elasticsearch/logs -p ::9200 -p ::9300 --network inet  elasticsearch:8.1.0\</span><br><span class="line">&amp;&amp;\</span><br><span class="line">docker run -d  --name es-data2 -e ES_JAVA_OPTS="-Xms1024m -Xmx1024m" -v /home/docker/es/config/data2:/usr/share/elasticsearch/config -v /home/docker/es/data/data2:/usr/share/elasticsearch/data -v /home/docker/es/logs/data2:/usr/share/elasticsearch/logs -p ::9200 -p ::9300 --network inet  elasticsearch:8.1.0\</span><br><span class="line">&amp;&amp;\</span><br><span class="line">docker run -d  --name es-data3 -e ES_JAVA_OPTS="-Xms1024m -Xmx1024m" -v /home/docker/es/config/data3:/usr/share/elasticsearch/config -v /home/docker/es/data/data3:/usr/share/elasticsearch/data -v /home/docker/es/logs/data3:/usr/share/elasticsearch/logs -p ::9200 -p ::9300 --network inet  elasticsearch:8.1.0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#master 配置三台</span></span><br><span class="line"><span class="comment">#集群名称 如果改变名称则需要整个集群重启</span></span><br><span class="line"><span class="string">cluster.name:</span> <span class="string">my-es-cluster</span></span><br><span class="line"><span class="comment">#节点名称 默认为主机名</span></span><br><span class="line"><span class="string">node.name:</span> <span class="string">master-node-a</span></span><br><span class="line"><span class="comment">#node.name: master-node-b</span></span><br><span class="line"><span class="comment">#node.name: master-node-c</span></span><br><span class="line"><span class="comment">#指定节点角色为主节点</span></span><br><span class="line"><span class="string">node.roles:</span> <span class="string">[</span> <span class="string">master</span> <span class="string">]</span></span><br><span class="line"><span class="string">path.data:</span> <span class="string">/usr/share/elasticsearch/data</span></span><br><span class="line"><span class="comment">#绑定ip,开启远程访问,可以配置0.0.0.0</span></span><br><span class="line"><span class="string">network.host:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line"><span class="comment">#单节点(single-node)还是多节点 默认为多节点</span></span><br><span class="line"><span class="string">discovery.type:</span> <span class="string">multi-node</span></span><br><span class="line"><span class="comment">#主节点选举投票最小节点数 （候选节点数/2+1 eg 3/2+1 ） 从7开始最新版本已无该配置</span></span><br><span class="line"><span class="comment">#discovery.zen.minimum_master_nodes: 2</span></span><br><span class="line"><span class="comment">#用于集群发现</span></span><br><span class="line"><span class="string">discovery.seed_hosts:</span></span><br><span class="line"><span class="attr">   - master-a:</span><span class="number">9300</span></span><br><span class="line"><span class="attr">   - master-b:</span><span class="number">9300</span></span><br><span class="line"><span class="attr">   - master-c:</span><span class="number">9300</span></span><br><span class="line"><span class="comment">#指定哪些节点被初始化为主节点</span></span><br><span class="line"><span class="string">cluster.initial_master_nodes:</span> </span><br><span class="line"><span class="bullet">   -</span> <span class="string">master-node-a</span></span><br><span class="line"><span class="bullet">   -</span> <span class="string">master-node-b</span></span><br><span class="line"><span class="bullet">   -</span> <span class="string">master-node-c</span></span><br><span class="line"><span class="comment">#----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------</span></span><br><span class="line"><span class="string">xpack.security.enabled:</span> <span class="literal">false</span></span><br><span class="line"><span class="string">xpack.security.enrollment.enabled:</span> <span class="literal">false</span></span><br><span class="line"><span class="string">xpack.security.http.ssl:</span></span><br><span class="line"><span class="attr">  enabled:</span> <span class="literal">true</span></span><br><span class="line">  <span class="string">keystore.path:</span> <span class="string">certs/http.p12</span></span><br><span class="line"><span class="string">xpack.security.transport.ssl:</span></span><br><span class="line"><span class="attr">  enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  verification_mode:</span> <span class="string">certificate</span></span><br><span class="line">  <span class="string">keystore.path:</span> <span class="string">certs/transport.p12</span></span><br><span class="line">  <span class="string">truststore.path:</span> <span class="string">certs/transport.p12</span></span><br><span class="line"><span class="comment">#----------------------- END SECURITY AUTO CONFIGURATION -------------------------</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#data节点 配置三台</span></span><br><span class="line"><span class="comment">#集群名称 如果改变名称则需要整个集群重启</span></span><br><span class="line"><span class="string">cluster.name:</span> <span class="string">my-es-cluster</span></span><br><span class="line"><span class="comment">#节点名称 默认为主机名</span></span><br><span class="line"><span class="string">node.name:</span> <span class="string">data-node-a</span></span><br><span class="line"><span class="comment">#node.name: data-node-b</span></span><br><span class="line"><span class="comment">#node.name: data-node-c</span></span><br><span class="line"><span class="comment">#指定节点角色为主节点</span></span><br><span class="line"><span class="string">node.roles:</span> <span class="string">[</span> <span class="string">data</span> <span class="string">]</span></span><br><span class="line"><span class="string">path.data:</span> <span class="string">/usr/share/elasticsearch/data</span></span><br><span class="line"><span class="comment">#绑定ip,开启远程访问,可以配置0.0.0.0</span></span><br><span class="line"><span class="string">network.host:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line"><span class="comment">#单节点(single-node)还是多节点 默认为多节点</span></span><br><span class="line"><span class="string">discovery.type:</span> <span class="string">multi-node</span></span><br><span class="line"><span class="comment">#用于集群发现</span></span><br><span class="line"><span class="string">discovery.seed_hosts:</span></span><br><span class="line"><span class="attr">   - master-a:</span><span class="number">9300</span></span><br><span class="line"><span class="attr">   - master-b:</span><span class="number">9300</span></span><br><span class="line"><span class="attr">   - master-c:</span><span class="number">9300</span></span><br><span class="line"><span class="comment">#指定哪些节点被初始化为主节点</span></span><br><span class="line"><span class="string">cluster.initial_master_nodes:</span> </span><br><span class="line"><span class="bullet">   -</span> <span class="string">master-node-a</span></span><br><span class="line"><span class="bullet">   -</span> <span class="string">master-node-b</span></span><br><span class="line"><span class="bullet">   -</span> <span class="string">master-node-c</span></span><br><span class="line"><span class="comment">#----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------</span></span><br><span class="line"><span class="string">xpack.security.enabled:</span> <span class="literal">false</span></span><br><span class="line"><span class="string">xpack.security.enrollment.enabled:</span> <span class="literal">false</span></span><br><span class="line"><span class="string">xpack.security.http.ssl:</span></span><br><span class="line"><span class="attr">  enabled:</span> <span class="literal">true</span></span><br><span class="line">  <span class="string">keystore.path:</span> <span class="string">certs/http.p12</span></span><br><span class="line"><span class="string">xpack.security.transport.ssl:</span></span><br><span class="line"><span class="attr">  enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  verification_mode:</span> <span class="string">certificate</span></span><br><span class="line">  <span class="string">keystore.path:</span> <span class="string">certs/transport.p12</span></span><br><span class="line">  <span class="string">truststore.path:</span> <span class="string">certs/transport.p12</span></span><br><span class="line"><span class="comment">#----------------------- END SECURITY AUTO CONFIGURATION -------------------------</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#Kibana-single</span><br><span class="line"># Default Kibana configuration for docker target</span><br><span class="line">server.host: &quot;0.0.0.0&quot;</span><br><span class="line">server.shutdownTimeout: &quot;5s&quot;</span><br><span class="line">elasticsearch.hosts: [ &quot;http://master-a:9200&quot; ,&quot;http://master-b:9200&quot;,&quot;http://master-c:9200&quot;]</span><br><span class="line">monitoring.ui.container.elasticsearch.enabled: true</span><br><span class="line">i18n.locale: &quot;zh-CN&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>&emsp;查看集群节点 集群状态</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>查看集群节点</span><br><span class="line">curl http://localhost:9200/_cat/nodes?v</span><br><span class="line">ip         heap.percent ram.percent cpu load_1m load_5m load_15m node.role master name</span><br><span class="line">172.18.0.5           12          98   8    1.39    1.47     0.98 d         -      data-node-a</span><br><span class="line">172.18.0.2           22          98   8    1.39    1.47     0.98 m         *      master-node-a</span><br><span class="line">172.18.0.3           35          98   8    1.39    1.47     0.98 m         -      master-node-b</span><br><span class="line">172.18.0.4           40          98   8    1.39    1.47     0.98 m         -      master-node-c</span><br><span class="line"><span class="meta">#</span>集群健康</span><br><span class="line">curl http://localhost:9200/_cluster/health?pretty</span><br><span class="line">&#123;</span><br><span class="line">  "cluster_name" : "my-es-cluster",</span><br><span class="line">  "status" : "green",</span><br><span class="line">  "timed_out" : false,</span><br><span class="line">  "number_of_nodes" : 4,</span><br><span class="line">  "number_of_data_nodes" : 1,</span><br><span class="line">  "active_primary_shards" : 7,</span><br><span class="line">  "active_shards" : 7,</span><br><span class="line">  "relocating_shards" : 0,</span><br><span class="line">  "initializing_shards" : 0,</span><br><span class="line">  "unassigned_shards" : 0,</span><br><span class="line">  "delayed_unassigned_shards" : 0,</span><br><span class="line">  "number_of_pending_tasks" : 0,</span><br><span class="line">  "number_of_in_flight_fetch" : 0,</span><br><span class="line">  "task_max_waiting_in_queue_millis" : 0,</span><br><span class="line">  "active_shards_percent_as_number" : 100.0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="节点-Node"><a href="#节点-Node" class="headerlink" title="节点 Node"></a>节点 Node</h4><hr>
+<blockquote>
+<p><strong>节点数据路径设置</strong> 配置文件中配置 path.data:  /var/elasticsearch/data 也可以使用命令方式 elasticsearch -Epath.data=/var/elasticsearch/data</p>
+</blockquote>
+<h5 id="Coordinating-Node"><a href="#Coordinating-Node" class="headerlink" title="Coordinating Node"></a>Coordinating Node</h5><blockquote>
+<p><strong>Coordinating Node</strong>：协调节点(我理解为读节点) 负责接受Client的请求， 将请求分发到合适的节点，最终把结果汇集到一起 每个节点启动后默认都是 coordinating 节点。设置其他类型全部为 false</p>
+</blockquote>
+<blockquote>
+<p><strong>Coordinating only node</strong>：单协调节点  该节点设置为负责协调 处理路由请求、处理搜索缩减阶段和分发批量索引等 ,不负责主数据和数据的存储，但过多的单协调节点会增加集群负担 配置方式 node.roles: [ ] </p>
+</blockquote>
+<h5 id="Ingest-Node"><a href="#Ingest-Node" class="headerlink" title="Ingest Node"></a>Ingest Node</h5><blockquote>
+<p><strong>Ingest Node</strong>：摄取节点可以执行由一个或多个摄取处理器组成的预处理管道。根据摄取处理器执行的操作类型和所需资源 默认节点启动都是 通过node.roles: [ ingest ] 配置</p>
+</blockquote>
+<h5 id="Master-eligible-nodes"><a href="#Master-eligible-nodes" class="headerlink" title="Master eligible nodes"></a>Master eligible nodes</h5><blockquote>
+<p><strong>Master eligible nodes</strong>：候选主节点,专注于管理集群。有资格成为主节点的节点也会充当协调节点,但不应将专用主节点用于此目的 每个节点启动后，默认就是一个Master eligible节点，即都可以参与集群选举，成为Master节点。通过node.roles: [ master ]设置</p>
+</blockquote>
+<blockquote>
+<p><strong>Voting-only master-eligible node</strong>:投票专用的有主节点资格的节点是一种参与主节点选举但不会作为集群中被选出的主节点的节点, 仅用于投票 通过 node.roles: [  master, voting_only ]设置 同时也可以担任其他角色。例如数据节点  node.roles: [ data, master, voting_only ]</p>
+</blockquote>
+<h5 id="Data-Node"><a href="#Data-Node" class="headerlink" title="Data Node"></a>Data Node</h5><blockquote>
+<p><strong>Generic data node</strong>：通用数据节点 包括所有数据节点，负责保存分片数据 节点启动后，默认就是数据节点。数据节点包含索引content 通过node.roles: [ data ]设置</p>
+</blockquote>
+<blockquote>
+<p><strong>Content data node</strong>: 内容数据节点是内容层的一部分。存储在内容层中的数据通常是一系列项目的集合，例如产品目录或文章档案。与时间序列数据不同，内容的值在一段时间内相对保持恒定，所以随着时间推移将其移动到具有不同性能特征的层是没有意义的。内容数据通常有很长的数据保留要求，并且无论数据有多旧，都希望能够快速检索到项目<br>内容层是必需的。系统索引和其他不属于数据流的索引会自动分配到内容层。</p>
+</blockquote>
+<blockquote>
+<p><strong>Hot data node</strong>:  热数据节点是热层的一部分。热层是时间序列数据进入 Elasticsearch 的入口，保存着你最近、最常搜索的时间序列数据。热层中的节点在读取和写入方面都需要快速，这需要更多的硬件资源和更快的存储（固态硬盘）。为了实现弹性，热层中的索引应配置为使用一个或多个副本。 通过node.roles: [ data_hot ]设置</p>
+</blockquote>
+<blockquote>
+<p><strong>Warm data node</strong>：温数据节点是温层的一部分。时间序列数据在被查询的频率低于热层中最近索引的数据时，可以移动到温层。温层通常保存最近几周的数据。仍然允许更新，但可能不频繁。温层中的节点通常不需要像热层中的节点那样快速。为了提高弹性，温层中的索引应配置为使用一个或多个副本。 通过node.roles: [ data_warm ]设置</p>
+</blockquote>
+<blockquote>
+<p><strong>Cold data node</strong>:冷数据节点是冷层的一部分。当你不再需要定期搜索时间序列数据时，它可以从温层移动到冷层。虽然仍然可搜索，但这个层通常针对较低的存储成本而非搜索速度进行优化 通过node.roles: [ data_cold ]设置</p>
+</blockquote>
+<blockquote>
+<p><strong>Frozen data node</strong>:冻结数据节点 一旦数据不再被查询，或者很少被查询，它可能会从冷层移动到冻结层，通过node.roles: [ data_frozen ]设置</p>
+</blockquote>
+<h5 id="Remote-eligible-node"><a href="#Remote-eligible-node" class="headerlink" title="Remote-eligible node"></a>Remote-eligible node</h5><blockquote>
+<p><strong>Remote-eligible node</strong>: 远程节点 可以连接到远程集群 可以跨集群搜索和同步数据</p>
+</blockquote>
+<h5 id="Machine-Learning-Node"><a href="#Machine-Learning-Node" class="headerlink" title="Machine Learning Node"></a>Machine Learning Node</h5><blockquote>
+<p><strong>Machine Learning Node</strong>：负责跑机器学习的节点 node.roles: [ ml, remote_cluster_client]</p>
+</blockquote>
+<h5 id="Transform-node"><a href="#Transform-node" class="headerlink" title="Transform node"></a>Transform node</h5><blockquote>
+<p><strong>Transform node</strong>：转换节点运行转换并处理转换 API 请求 node.roles: [ transform, remote_cluster_client ]</p>
+</blockquote>
+<h4 id="分片-Shard"><a href="#分片-Shard" class="headerlink" title="分片 Shard"></a>分片 Shard</h4><blockquote>
+<p>主分片 ：Primary Shard，主要是用于解决数据水平扩展的问题，通过主分片，可以将数据分发到集群的所有结点上面，每一个分片是一个Lucene的一个实例，分片在创建之后，不允许被修改，因为获取数据需要通过hash取模运算，改了数量就会直接影响结果<br>副本分片 ： Replica Shard，用于解决数据高可用的问题，就是主分片的一个拷贝，主分片数在创建之后不允许被修改，副本分片数是允许被修改的，并且在一定程度上，可以通过增加副本数来提高服务读取数据的性能。但是副本分片最好是设置成0或者1，如果是日志数据，可以直接设置为0，如果是商品信息这种检索数据，那么可以直接设置成为1。</p>
+</blockquote>
+<h4 id="分段-Segments"><a href="#分段-Segments" class="headerlink" title="分段 Segments"></a>分段 Segments</h4><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><hr>
+<h4 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h4><ul>
+<li>ES支持的字段类型<blockquote>
+<p>text<br>keyword<br>date<br>float</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>创建索引</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">PUT /test_index</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"settings"</span>: &#123;</span><br><span class="line">    //更多参考https://www.cainiaojc.com/elasticsearch/elasticsearch-index-modules.html</span><br><span class="line">    "index":&#123;</span><br><span class="line">        //索引具有的分片的数量</span><br><span class="line">        "number_of_shards": 6,</span><br><span class="line">        //每个主分片具有的副本数。</span><br><span class="line">        "number_of_replicas": 1 </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  //字段类型定义</span><br><span class="line">  "mappings": &#123;</span><br><span class="line">    "properties": &#123;</span><br><span class="line">      "filed1": &#123;</span><br><span class="line">        "type": "text"</span><br><span class="line">      &#125;,</span><br><span class="line">      "filed2": &#123;</span><br><span class="line">        "type": "keyword"</span><br><span class="line">      &#125;,</span><br><span class="line">      "filed3": &#123;</span><br><span class="line">        "type": "date"</span><br><span class="line">      &#125;,</span><br><span class="line">      "filed4": &#123;</span><br><span class="line">        "type": "float"</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改索引setting</p>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PUT /test_index/_settings</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"index"</span>:&#123;</span><br><span class="line">  //每个主分片具有的副本数。</span><br><span class="line">  "number_of_replicas": 0 </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="ES-常见问题汇总及解决方案"><a href="#ES-常见问题汇总及解决方案" class="headerlink" title="ES 常见问题汇总及解决方案"></a><em>ES 常见问题汇总及解决方案</em></h2><hr>
+<h3 id="启动异常"><a href="#启动异常" class="headerlink" title="启动异常"></a>启动异常</h3><h4 id="max-virtual-memory-areas-vm-max-map-count-65530-is-too-low-increase-to-at-least-262144"><a href="#max-virtual-memory-areas-vm-max-map-count-65530-is-too-low-increase-to-at-least-262144" class="headerlink" title="max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]"></a>max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</h4><blockquote>
+<p>系统中的 vm.max_map_count 参数设置的值太低  编辑 /etc/sysctl.conf  添加 vm.max_map_count=262144  通过sudo sysctl -p 使之生效</p>
+</blockquote>
 
       
     </div>
@@ -383,6 +476,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/ElatsicSearch/" <i class="fa fa-tag"> ElatsicSearch</a>
+          
+            <a href="/tags/es/" <i class="fa fa-tag"> es</a>
+          
+        </div>
+      
 
       
       
@@ -392,8 +493,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2024/08/29/2024-08-29-Redis使用及相关问题/" rel="next" title="Redis使用及相关问题">
-                <i class="fa fa-chevron-left"></i> Redis使用及相关问题
+              <a href="/2024/08/29/2024-08-29-从零开始学docker(五)/" rel="next" title="从零开始学docker(五)">
+                <i class="fa fa-chevron-left"></i> 从零开始学docker(五)
               </a>
             
           </div>
@@ -401,10 +502,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2024/09/13/2024-09-13-布隆过滤器/" rel="prev" title="布隆过滤器">
-                布隆过滤器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -481,7 +578,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -503,7 +600,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -536,7 +633,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建"><span class="nav-number">1.</span> <span class="nav-text">搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单机"><span class="nav-number">1.1.</span> <span class="nav-text">单机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集群"><span class="nav-number">1.2.</span> <span class="nav-text">集群</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES-常见问题汇总及解决方案"><span class="nav-number">3.</span> <span class="nav-text">ES 常见问题汇总及解决方案</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建"><span class="nav-number">1.</span> <span class="nav-text">搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单机"><span class="nav-number">1.1.</span> <span class="nav-text">单机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集群CLUSTER"><span class="nav-number">1.2.</span> <span class="nav-text">集群CLUSTER</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#节点-Node"><span class="nav-number">1.2.1.</span> <span class="nav-text">节点 Node</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Coordinating-Node"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Coordinating Node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Ingest-Node"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Ingest Node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Master-eligible-nodes"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">Master eligible nodes</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Data-Node"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">Data Node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Remote-eligible-node"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">Remote-eligible node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Machine-Learning-Node"><span class="nav-number">1.2.1.6.</span> <span class="nav-text">Machine Learning Node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Transform-node"><span class="nav-number">1.2.1.7.</span> <span class="nav-text">Transform node</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分片-Shard"><span class="nav-number">1.2.2.</span> <span class="nav-text">分片 Shard</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分段-Segments"><span class="nav-number">1.2.3.</span> <span class="nav-text">分段 Segments</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">1.3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#增删改查"><span class="nav-number">1.3.1.</span> <span class="nav-text">增删改查</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES-常见问题汇总及解决方案"><span class="nav-number">2.</span> <span class="nav-text">ES 常见问题汇总及解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动异常"><span class="nav-number">2.1.</span> <span class="nav-text">启动异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#max-virtual-memory-areas-vm-max-map-count-65530-is-too-low-increase-to-at-least-262144"><span class="nav-number">2.1.1.</span> <span class="nav-text">max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
