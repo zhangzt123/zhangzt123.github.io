@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://zhangzt123.github.io/2019/11/11/2020-02-29-zookeeper集群的安装配置及使用/zookeeper1.png">
 <meta property="og:image" content="https://zhangzt123.github.io/2019/11/11/2020-02-29-zookeeper集群的安装配置及使用/zookeeper2.png">
 <meta property="og:image" content="https://zhangzt123.github.io/2019/11/11/2020-02-29-zookeeper集群的安装配置及使用/zookeeper3.png">
-<meta property="og:updated_time" content="2020-02-29T11:12:42.000Z">
+<meta property="og:updated_time" content="2024-10-23T09:00:49.126Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zookeeper集群的安装配置及使用">
 <meta name="twitter:description" content="zookeeper集群安装与配置 1.下载稳定版本的zookeeper( 下载地址:https://github.com/apache/zookeeper/releases)。2.将下载好的zookeeper传到linux上（这里使用centos7）。tar zxfv zookeeper-3.4.14.tar.gz -C /usr/local/ 解压到指定位置 （这里使用/usr/local/）。">
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-29T19:12:42+08:00">
-                2020-02-29
+              <time title="更新于" itemprop="dateModified" datetime="2024-10-23T17:00:49+08:00">
+                2024-10-23
               </time>
             
           </span>
@@ -392,6 +392,15 @@
 <p>7.连接zk zkCli.sh -h 我们看到 我们通过ZooKeeper -server host:port cmd args 方式可以连接到zk中。我们可以 ls命令 看到部分dubbo的数据。</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#zkCli.sh -server 192.168.118.131:2181 </span><br><span class="line">[zk: 192.168.118.131:2181(CONNECTED) 17] ls /dubbo</span><br><span class="line">[metadata, org.mydubbo.api.DubboApi, org.ztzhang.uumsapi.TokenService, org.dubboapi.DubboApi]</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker-集群部署"><a href="#docker-集群部署" class="headerlink" title="docker 集群部署"></a>docker 集群部署</h2><blockquote>
+<p>首先创建挂载数据目录 日志目录 并在数据目录下创建myid文件并写入对应的id 然后编写配置文件如下 server.{myid的编号}=ip/主机名:通信端口(2888):选举端口(3888) 并挂载docker目录 然后分别启动多个容器</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">dataDir=/data</span><br><span class="line">dataLogDir=/datalog</span><br><span class="line">#服务器之间或客户端与服务器之间维持心跳的时间间隔 毫秒</span><br><span class="line">tickTime=2000</span><br><span class="line">#初始化时Leader 和 Follower 心跳间隔数 5*2000</span><br><span class="line">initLimit=10</span><br><span class="line">#Leader 和 Follower 之间同步通信的超时时间 2*2000</span><br><span class="line">syncLimit=5</span><br><span class="line">clientPort=2181</span><br><span class="line">autopurge.snapRetainCount=3</span><br><span class="line">autopurge.purgeInterval=0</span><br><span class="line">#最大客户端连接数</span><br><span class="line">maxClientCnxns=60</span><br><span class="line">standaloneEnabled=false</span><br><span class="line">admin.enableServer=true</span><br><span class="line">server.1=zk1:2888:3888</span><br><span class="line">server.2=zk2:2888:3888</span><br><span class="line">server.3=zk3:2888:3888</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --rm --name zk1 --hostname="zk1" -v /home/docker/zk/config/:/conf/ -v /home/docker/zk/data1:/data -v /home/docker/zk/log1:/datalog -p ::2181 -p ::2888 -p ::3888 --network inet  zookeeper:3.9.2\</span><br><span class="line">&amp;&amp;\</span><br><span class="line">docker run -d --rm --name zk2 --hostname="zk2" -v /home/docker/zk/config/:/conf/ -v /home/docker/zk/data2:/data -v /home/docker/zk/log2:/datalog -p ::2181 -p ::2888 -p ::3888 --network inet  zookeeper:3.9.2\</span><br><span class="line">&amp;&amp;\</span><br><span class="line">docker run -d --rm --name zk3 --hostname="zk3" -v /home/docker/zk/config/:/conf/ -v /home/docker/zk/data3:/data -v /home/docker/zk/log3:/datalog -p ::2181 -p ::2888 -p ::3888 --network inet  zookeeper:3.9.2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">zhangzhitong@zhangzhitong-virtual-machine:/home/docker$ docker ps </span><br><span class="line">CONTAINER ID   IMAGE             COMMAND                   CREATED          STATUS          PORTS                                                                                                                                             NAMES</span><br><span class="line">5aa9904ee9cb   zookeeper:3.9.2   "/docker-entrypoint.…"   10 seconds ago   Up 8 seconds    8080/tcp, 0.0.0.0:32849-&gt;2181/tcp, :::32849-&gt;2181/tcp, 0.0.0.0:32850-&gt;2888/tcp, :::32850-&gt;2888/tcp, 0.0.0.0:32851-&gt;3888/tcp, :::32851-&gt;3888/tcp   zk3</span><br><span class="line">e97146b48c51   zookeeper:3.9.2   "/docker-entrypoint.…"   10 seconds ago   Up 9 seconds    8080/tcp, 0.0.0.0:32846-&gt;2181/tcp, :::32846-&gt;2181/tcp, 0.0.0.0:32847-&gt;2888/tcp, :::32847-&gt;2888/tcp, 0.0.0.0:32848-&gt;3888/tcp, :::32848-&gt;3888/tcp   zk2</span><br><span class="line">f04fd5f8a96b   zookeeper:3.9.2   "/docker-entrypoint.…"   11 seconds ago   Up 10 seconds   8080/tcp, 0.0.0.0:32843-&gt;2181/tcp, :::32843-&gt;2181/tcp, 0.0.0.0:32844-&gt;2888/tcp, :::32844-&gt;2888/tcp, 0.0.0.0:32845-&gt;3888/tcp, :::32845-&gt;3888/tcp   zk1</span><br><span class="line">zhangzhitong@zhangzhitong-virtual-machine:/home/docker$ docker exec f04fd5f8a96b /apache-zookeeper-3.9.2-bin/bin/zkServer.sh status</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: /conf/zoo.cfg</span><br><span class="line">Client port found: 2181. Client address: localhost. Client SSL: false.</span><br><span class="line">Mode: follower</span><br><span class="line">zhangzhitong@zhangzhitong-virtual-machine:/home/docker$ docker exec 5aa9904ee9cb /apache-zookeeper-3.9.2-bin/bin/zkServer.sh status</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: /conf/zoo.cfg</span><br><span class="line">Client port found: 2181. Client address: localhost. Client SSL: false.</span><br><span class="line">Mode: follower</span><br><span class="line">zhangzhitong@zhangzhitong-virtual-machine:/home/docker$ docker exec e97146b48c51 /apache-zookeeper-3.9.2-bin/bin/zkServer.sh status</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: /conf/zoo.cfg</span><br><span class="line">Client port found: 2181. Client address: localhost. Client SSL: false.</span><br><span class="line">Mode: leader</span><br></pre></td></tr></table></figure>
 
 <h2 id="zookeeper数据结构"><a href="#zookeeper数据结构" class="headerlink" title="zookeeper数据结构"></a><strong>zookeeper数据结构</strong></h2><blockquote>
 <p>zk的数据结构类似于文件系统，其节点被称为Znode，其类似于/A/S/D/F 这样的路径。zk的每一个znode中都包括节点的数据信息（data），节点的访问权限（ACL），节点的事务版本号等等信息（stat），以及子节点的引用（child），其只适用于少量信息的存储，每个znode数据最大不会超过1Mb， zk的连接为长连接 ，而临时节点则是在连接断开后就会被删除。</p>
@@ -516,7 +525,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -527,7 +536,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -538,7 +547,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -571,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#zookeeper集群安装与配置"><span class="nav-number">1.</span> <span class="nav-text">zookeeper集群安装与配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zookeeper数据结构"><span class="nav-number">2.</span> <span class="nav-text">zookeeper数据结构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#zookeeper集群安装与配置"><span class="nav-number">1.</span> <span class="nav-text">zookeeper集群安装与配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-集群部署"><span class="nav-number">2.</span> <span class="nav-text">docker 集群部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zookeeper数据结构"><span class="nav-number">3.</span> <span class="nav-text">zookeeper数据结构</span></a></li></ol></div>
             
 
           </div>

@@ -88,7 +88,7 @@
 <meta property="og:description" content="搭建 单机 123docker run -d --name es-single -e ES_JAVA_OPTS=&quot;-Xms512m -Xmx2048m&quot; -v /home/docker/es/config/single:/usr/share/elasticsearch/config -v /home/docker/es/data/single:/usr/share/elasticsearch/da">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://zhangzt123.github.io/2024/09/06/2024-09-06-ElatsicSearch使用及相关问题/es_cluster.png">
-<meta property="og:updated_time" content="2024-09-26T12:49:41.790Z">
+<meta property="og:updated_time" content="2024-10-10T12:25:39.006Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ElatsicSearch使用及相关问题">
 <meta name="twitter:description" content="搭建 单机 123docker run -d --name es-single -e ES_JAVA_OPTS=&quot;-Xms512m -Xmx2048m&quot; -v /home/docker/es/config/single:/usr/share/elasticsearch/config -v /home/docker/es/data/single:/usr/share/elasticsearch/da">
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-09-26T20:49:41+08:00">
-                2024-09-26
+              <time title="更新于" itemprop="dateModified" datetime="2024-10-10T20:25:39+08:00">
+                2024-10-10
               </time>
             
           </span>
@@ -441,7 +441,16 @@
 <h4 id="分片-Shard"><a href="#分片-Shard" class="headerlink" title="分片 Shard"></a>分片 Shard</h4><blockquote>
 <p>主分片 ：Primary Shard，主要是用于解决数据水平扩展的问题，通过主分片，可以将数据分发到集群的所有结点上面，每一个分片是一个Lucene的一个实例，分片在创建之后，不允许被修改，因为获取数据需要通过hash取模运算，改了数量就会直接影响结果<br>副本分片 ： Replica Shard，用于解决数据高可用的问题，就是主分片的一个拷贝，主分片数在创建之后不允许被修改，副本分片数是允许被修改的，并且在一定程度上，可以通过增加副本数来提高服务读取数据的性能。但是副本分片最好是设置成0或者1，如果是日志数据，可以直接设置为0，如果是商品信息这种检索数据，那么可以直接设置成为1。</p>
 </blockquote>
-<h4 id="分段-Segments"><a href="#分段-Segments" class="headerlink" title="分段 Segments"></a>分段 Segments</h4><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><hr>
+<h4 id="分段存储-Segments"><a href="#分段存储-Segments" class="headerlink" title="分段存储 Segments"></a>分段存储 Segments</h4><blockquote>
+<p>索引文档以段的形式存储在磁盘上，索引文件被拆分为多个子文件，则每个子文件叫作段，每一个段本身都是一个倒排索引，并且段具有不变性，一旦索引的数据被写入硬盘，就不可再修改。<br>在底层采用了分段存储模式，使它在读写时几乎完全避免了锁的出现，大大提升了读写性能。<br>段被写入到磁盘后会生成一个提交点，提交点是一个用来记录所有提交后段信息的文件。<br>一个段一旦拥有了提交点，就说明这个段只有读的权限，失去了写的权限 。相反， 当段在内存中时，就只有写的权限，而不具备读数据的权限，意味着不能被检索。<br>段的概念提出主要是因为：在早期全文检索中为整个文档集合建立了一个很大的倒排索引，并将其写入磁盘中。如果索引有更新，就需要重新全量创建一个索引来替换原来的索引。这种方式在数据量很大时效率很低，并且由于创建一次索引的成本很高，所以对数据的更新不能过于频繁，也就不能保证时效性。</p>
+</blockquote>
+<blockquote>
+<p>段的不变性的优点：<br>不需要锁，如果从来不更新索引，那就不需要担心多进程同时修改数据的问题。一旦索引被读入内核的文件系统缓存，便会留在哪里，由于其不变性。只要文件系统缓存中还有足够的空间，那么大部分读请求会直接请求内存，而不会命中磁盘。这提供了很大的性能提升。其它缓存(像Filter缓存)，在索引的生命周期内始终有效。它们不需要在每次数据改变时被重建，因为数据不会变化。写入单个大的倒排索引允许数据被压缩，减少磁盘I/O和需要被缓存到内存的索引的使用量。</p>
+</blockquote>
+<blockquote>
+<p>段的不变性的缺点：<br>当对旧数据进行删除时，旧数据不会马上被删除，而是在.del文件中被标记为删除。而旧数据只能等到段更新时才能被移除，这样会造成大量的空间浪费。若有一条数据频繁的更新，每次更新都是新增新的标记旧的，则会有大量的空间浪费。每次新增数据时都需要新增一个段来存储数据。当段的数量太多时，对服务器的资源例如文件句柄的消耗会非常大。在查询的结果中包含所有的结果集，需要排除被标记删除的旧数据，这增加了查询的负担。</p>
+</blockquote>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><hr>
 <h4 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h4><ul>
 <li>ES支持的字段类型<blockquote>
 <p>text<br>keyword<br>date<br>float</p>
@@ -493,8 +502,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2024/08/29/2024-08-29-从零开始学docker(五)/" rel="next" title="从零开始学docker(五)">
-                <i class="fa fa-chevron-left"></i> 从零开始学docker(五)
+              <a href="/2024/08/29/2024-08-29-Redis使用及相关问题/" rel="next" title="Redis使用及相关问题">
+                <i class="fa fa-chevron-left"></i> Redis使用及相关问题
               </a>
             
           </div>
@@ -502,6 +511,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2024/10/05/2024-10-05-Pytorch/" rel="prev" title="Pytorch">
+                Pytorch <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -578,7 +591,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -589,7 +602,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -600,7 +613,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -633,7 +646,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建"><span class="nav-number">1.</span> <span class="nav-text">搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单机"><span class="nav-number">1.1.</span> <span class="nav-text">单机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集群CLUSTER"><span class="nav-number">1.2.</span> <span class="nav-text">集群CLUSTER</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#节点-Node"><span class="nav-number">1.2.1.</span> <span class="nav-text">节点 Node</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Coordinating-Node"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Coordinating Node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Ingest-Node"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Ingest Node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Master-eligible-nodes"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">Master eligible nodes</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Data-Node"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">Data Node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Remote-eligible-node"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">Remote-eligible node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Machine-Learning-Node"><span class="nav-number">1.2.1.6.</span> <span class="nav-text">Machine Learning Node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Transform-node"><span class="nav-number">1.2.1.7.</span> <span class="nav-text">Transform node</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分片-Shard"><span class="nav-number">1.2.2.</span> <span class="nav-text">分片 Shard</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分段-Segments"><span class="nav-number">1.2.3.</span> <span class="nav-text">分段 Segments</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">1.3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#增删改查"><span class="nav-number">1.3.1.</span> <span class="nav-text">增删改查</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES-常见问题汇总及解决方案"><span class="nav-number">2.</span> <span class="nav-text">ES 常见问题汇总及解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动异常"><span class="nav-number">2.1.</span> <span class="nav-text">启动异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#max-virtual-memory-areas-vm-max-map-count-65530-is-too-low-increase-to-at-least-262144"><span class="nav-number">2.1.1.</span> <span class="nav-text">max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建"><span class="nav-number">1.</span> <span class="nav-text">搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单机"><span class="nav-number">1.1.</span> <span class="nav-text">单机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集群CLUSTER"><span class="nav-number">1.2.</span> <span class="nav-text">集群CLUSTER</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#节点-Node"><span class="nav-number">1.2.1.</span> <span class="nav-text">节点 Node</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Coordinating-Node"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Coordinating Node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Ingest-Node"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Ingest Node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Master-eligible-nodes"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">Master eligible nodes</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Data-Node"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">Data Node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Remote-eligible-node"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">Remote-eligible node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Machine-Learning-Node"><span class="nav-number">1.2.1.6.</span> <span class="nav-text">Machine Learning Node</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Transform-node"><span class="nav-number">1.2.1.7.</span> <span class="nav-text">Transform node</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分片-Shard"><span class="nav-number">1.2.2.</span> <span class="nav-text">分片 Shard</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分段存储-Segments"><span class="nav-number">1.2.3.</span> <span class="nav-text">分段存储 Segments</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">1.3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#增删改查"><span class="nav-number">1.3.1.</span> <span class="nav-text">增删改查</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES-常见问题汇总及解决方案"><span class="nav-number">2.</span> <span class="nav-text">ES 常见问题汇总及解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动异常"><span class="nav-number">2.1.</span> <span class="nav-text">启动异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#max-virtual-memory-areas-vm-max-map-count-65530-is-too-low-increase-to-at-least-262144"><span class="nav-number">2.1.1.</span> <span class="nav-text">max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

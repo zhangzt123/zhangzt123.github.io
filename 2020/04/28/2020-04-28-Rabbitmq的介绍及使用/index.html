@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Rabbitmq,">
 
 
 
@@ -79,18 +79,19 @@
 
 
 
-<meta name="description" content="AMQP协议 &amp;emsp;&amp;emsp;AMQP，即Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端/中间件不同产品，不同的开发语言等条件的限制。Erlang中的实现有RabbitMQ等。 —-别问 问就baidu的  Rab">
+<meta name="description" content="AMQP协议 &amp;emsp;&amp;emsp;AMQP，即Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端/中间件不同产品，不同的开发语言等条件的限制。Erlang中的实现有RabbitMQ等。  RabbitMQ &amp;emsp;&amp;e">
+<meta name="keywords" content="Rabbitmq">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rabbitmq的介绍及使用">
 <meta property="og:url" content="https://zhangzt123.github.io/2020/04/28/2020-04-28-Rabbitmq的介绍及使用/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="AMQP协议 &amp;emsp;&amp;emsp;AMQP，即Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端/中间件不同产品，不同的开发语言等条件的限制。Erlang中的实现有RabbitMQ等。 —-别问 问就baidu的  Rab">
+<meta property="og:description" content="AMQP协议 &amp;emsp;&amp;emsp;AMQP，即Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端/中间件不同产品，不同的开发语言等条件的限制。Erlang中的实现有RabbitMQ等。  RabbitMQ &amp;emsp;&amp;e">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://zhangzt123.github.io/2020/04/28/2020-04-28-Rabbitmq的介绍及使用/2020-04-28151754.png">
-<meta property="og:updated_time" content="2020-05-17T08:33:31.000Z">
+<meta property="og:updated_time" content="2024-10-23T06:36:08.911Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rabbitmq的介绍及使用">
-<meta name="twitter:description" content="AMQP协议 &amp;emsp;&amp;emsp;AMQP，即Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端/中间件不同产品，不同的开发语言等条件的限制。Erlang中的实现有RabbitMQ等。 —-别问 问就baidu的  Rab">
+<meta name="twitter:description" content="AMQP协议 &amp;emsp;&amp;emsp;AMQP，即Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端/中间件不同产品，不同的开发语言等条件的限制。Erlang中的实现有RabbitMQ等。  RabbitMQ &amp;emsp;&amp;e">
 <meta name="twitter:image" content="https://zhangzt123.github.io/2020/04/28/2020-04-28-Rabbitmq的介绍及使用/2020-04-28151754.png">
 
 
@@ -331,12 +332,45 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-05-17T16:33:31+08:00">
-                2020-05-17
+              <time title="更新于" itemprop="dateModified" datetime="2024-10-23T14:36:08+08:00">
+                2024-10-23
               </time>
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MQ/" itemprop="url" rel="index">
+                    <span itemprop="name">MQ</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MQ/消息中间件/" itemprop="url" rel="index">
+                    <span itemprop="name">消息中间件</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -366,10 +400,10 @@
 
       
         <h2 id="AMQP协议"><a href="#AMQP协议" class="headerlink" title="AMQP协议"></a>AMQP协议</h2><blockquote>
-<p>&emsp;&emsp;AMQP，即Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端/中间件不同产品，不同的开发语言等条件的限制。Erlang中的实现有RabbitMQ等。 —-别问 问就baidu的</p>
+<p>&emsp;&emsp;AMQP，即Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端/中间件不同产品，不同的开发语言等条件的限制。Erlang中的实现有RabbitMQ等。</p>
 </blockquote>
 <h2 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h2><blockquote>
-<p>&emsp;&emsp;rabbitmq就是一个支持amqp协议的消息中间件 ,个人感觉主要以 交换机（Exchange）、队列（queue）、 消息（Messages）、路由（routing key） 组成. 交换机呢又分为directExchange、 fanoutExchange 、headersExchange、 topicExchange 这几种 </p>
+<p>&emsp;&emsp;rabbitmq就是一个支持amqp协议的消息中间件 ,主要以 交换机（Exchange）、队列（queue）、 消息（Messages）、路由（routing key） 组成. 交换机呢又分为directExchange、 fanoutExchange 、headersExchange、 topicExchange 这几种 </p>
 </blockquote>
 <blockquote>
 <ul>
@@ -433,6 +467,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Rabbitmq/" <i class="fa fa-tag"> Rabbitmq</a>
+          
+        </div>
       
 
       
@@ -532,7 +572,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -543,7 +583,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -554,7 +594,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
