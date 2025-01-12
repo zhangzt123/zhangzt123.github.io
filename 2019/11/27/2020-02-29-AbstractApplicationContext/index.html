@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AbstractApplicationContext | Hexo</title>
+  <meta name="keywords" content=" Spring ">
+  <meta name="description" content="AbstractApplicationContext | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="千里之行 始于足下">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://zhangzt123.github.io/archives/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="千里之行 始于足下">
+<meta property="og:locale">
+<meta property="article:author" content="哎呦不错哟">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>哎呦不错哟</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(50)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="-服务器">
+            
+            -服务器
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-前端">
+            
+            -前端
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-数据库">
+            
+            -数据库
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-JAVA -Junit -单元测试">
+            
+            -JAVA -Junit -单元测试
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-spring">
+            
+            -spring
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="计算机组成">
+            
+            计算机组成
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据结构">
+            
+            数据结构
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Docker">
+            
+            Docker
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Go语言">
+            
+            Go语言
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="JAVA">
+            
+            JAVA
+            <small>(14)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MQ">
+            <i class="fold iconfont icon-right"></i>
+            MQ
+            <small>(2)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="MQ&lt;---&gt;消息中间件">
+            
+            消息中间件
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Redis">
+            
+            Redis
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="50">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="search shortcut key i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="switch to outline view shortcut key w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="return"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="case sensitive"></i>
+            <i class="iconfont icon-tag" data-title="label"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">outline</div>
+            <i class="iconfont icon-list" data-title="switch to article list"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-定时任务 -Quartz</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-工作流 -Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-异常处理 -异常</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-HTML</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-Junit</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-mock -junit</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-MYSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-Oracle</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-weblogic -oracle</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>高并发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>缓存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>集合</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ElatsicSearch</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>es</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>gitlib</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Go语言</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java基础</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>JVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Kafka</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MessageDigest</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PostgreSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Rabbitmq</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Redis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sonar</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Spring</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>zookeeper</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/01/01/2025-01-01-Minio/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Minio">Minio</span>
+            <span class="post-date" title="2025-01-01 17:20:03">2025/01/01</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/12/26/2024-12-26-KingBaseEs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="KingBaseEs">KingBaseEs</span>
+            <span class="post-date" title="2024-12-26 08:48:16">2024/12/26</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/12/02/2024-12-02-Artifactory/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2024-12-02-Artifactory">2024-12-02-Artifactory</span>
+            <span class="post-date" title="2024-12-02 13:45:20">2024/12/02</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/27/2024-11-27-PostgreSQL/"
+           data-tag="PostgreSQL"
+           data-author="" >
+            <span class="post-title" title="2024-11-27-PostgreSQL">2024-11-27-PostgreSQL</span>
+            <span class="post-date" title="2024-11-27 15:49:01">2024/11/27</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/27/2024-11-27-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/"
+           data-tag="gitlib,sonar"
+           data-author="" >
+            <span class="post-title" title="自动化质量分析">自动化质量分析</span>
+            <span class="post-date" title="2024-11-27 13:47:59">2024/11/27</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/04/2024-11-04-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式事务">分布式事务</span>
+            <span class="post-date" title="2024-11-04 10:18:00">2024/11/04</span>
+        </a>
+        
+        
+        <a  class="All MQ 消息中间件 "
+           href="/2024/10/23/2024-10-23-kafka%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="Kafka"
+           data-author="" >
+            <span class="post-title" title="kafka的介绍及使用">kafka的介绍及使用</span>
+            <span class="post-date" title="2024-10-23 14:31:43">2024/10/23</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/10/05/2024-10-05-Pytorch/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Pytorch">Pytorch</span>
+            <span class="post-date" title="2024-10-05 15:03:44">2024/10/05</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/09/06/2024-09-06-ElatsicSearch%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"
+           data-tag="ElatsicSearch,es"
+           data-author="" >
+            <span class="post-title" title="ElatsicSearch使用及相关问题">ElatsicSearch使用及相关问题</span>
+            <span class="post-date" title="2024-09-06 10:00:26">2024/09/06</span>
+        </a>
+        
+        
+        <a  class="All Redis "
+           href="/2024/08/29/2024-08-29-Redis%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"
+           data-tag="Redis,缓存"
+           data-author="" >
+            <span class="post-title" title="Redis使用及相关问题">Redis使用及相关问题</span>
+            <span class="post-date" title="2024-08-29 14:44:32">2024/08/29</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2024/08/29/2024-08-29-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%BA%94)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(五)">从零开始学docker(五)</span>
+            <span class="post-date" title="2024-08-29 14:44:32">2024/08/29</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E5%9B%9B)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(四)">从零开始学docker(四)</span>
+            <span class="post-date" title="2023-01-26 10:59:32">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%89)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(三)">从零开始学docker(三)</span>
+            <span class="post-date" title="2023-01-26 10:52:49">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%BA%8C)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(二)">从零开始学docker(二)</span>
+            <span class="post-date" title="2023-01-26 10:50:21">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%80)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(一)">从零开始学docker(一)</span>
+            <span class="post-date" title="2023-01-26 10:49:01">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2021/08/25/2021-08-25-HTTP/"
+           data-tag="-MYSQL"
+           data-author="" >
+            <span class="post-title" title="HTTP">HTTP</span>
+            <span class="post-date" title="2021-08-25 14:33:27">2021/08/25</span>
+        </a>
+        
+        
+        <a  class="All -JAVA -Junit -单元测试 "
+           href="/2021/08/25/2021-08-27-Mockito/"
+           data-tag="-Junit"
+           data-author="" >
+            <span class="post-title" title="Mockito&amp;&amp;PowerMockito">Mockito&amp;&amp;PowerMockito</span>
+            <span class="post-date" title="2021-08-25 14:33:27">2021/08/25</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2021/06/19/2021-07-20-Mysql%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag="-MYSQL"
+           data-author="" >
+            <span class="post-title" title="Mysql安装以及常用命令">Mysql安装以及常用命令</span>
+            <span class="post-date" title="2021-06-19 14:33:27">2021/06/19</span>
+        </a>
+        
+        
+        <a  class="All -前端 "
+           href="/2020/12/26/2020-12-26-%E5%89%8D%E7%AB%AF%E9%81%87%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"
+           data-tag="-HTML"
+           data-author="" >
+            <span class="post-title" title="前端遇见问题总结">前端遇见问题总结</span>
+            <span class="post-date" title="2020-12-26 13:44:59">2020/12/26</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2020/11/29/2020-11-29-%E6%95%B0%E6%8D%AE%E5%BA%93%E9%81%87%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"
+           data-tag="-Oracle"
+           data-author="" >
+            <span class="post-title" title="数据库遇见问题总结">数据库遇见问题总结</span>
+            <span class="post-date" title="2020-11-29 15:55:10">2020/11/29</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/10/14/2020-10-14-Activiti%E5%B7%A5%E4%BD%9C%E6%B5%81/"
+           data-tag="-工作流 -Activiti"
+           data-author="" >
+            <span class="post-title" title="Activiti工作流">Activiti工作流</span>
+            <span class="post-date" title="2020-10-14 15:34:05">2020/10/14</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/09/01/2020-09-01-Quartz%E9%9B%86%E7%BE%A4/"
+           data-tag="-定时任务 -Quartz"
+           data-author="" >
+            <span class="post-title" title="Quartz集群">Quartz集群</span>
+            <span class="post-date" title="2020-09-01 11:49:29">2020/09/01</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/18/2020-08-18-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"
+           data-tag="-异常处理 -异常"
+           data-author="" >
+            <span class="post-title" title="spring统一异常处理">spring统一异常处理</span>
+            <span class="post-date" title="2020-08-18 09:10:11">2020/08/18</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/07/2020-08-07-spring%E4%BA%8B%E5%8A%A1/"
+           data-tag="-事务"
+           data-author="" >
+            <span class="post-title" title="spring事务">spring事务</span>
+            <span class="post-date" title="2020-08-07 10:50:40">2020/08/07</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/05/2020-08-05-springMock%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag="-mock -junit"
+           data-author="" >
+            <span class="post-title" title="springMock的使用">springMock的使用</span>
+            <span class="post-date" title="2020-08-05 09:10:50">2020/08/05</span>
+        </a>
+        
+        
+        <a  class="All -服务器 "
+           href="/2020/07/13/2020-07-13-%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86weblogic/"
+           data-tag="-weblogic -oracle"
+           data-author="" >
+            <span class="post-title" title="重新认识weblogic">重新认识weblogic</span>
+            <span class="post-date" title="2020-07-13 14:59:34">2020/07/13</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2020/06/19/2020-06-19-Oracle%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag="-Oracle"
+           data-author="" >
+            <span class="post-title" title="Oracle常用命令">Oracle常用命令</span>
+            <span class="post-date" title="2020-06-19 14:33:27">2020/06/19</span>
+        </a>
+        
+        
+        <a  class="All MQ 消息中间件 "
+           href="/2020/04/28/2020-04-28-Rabbitmq%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="Rabbitmq"
+           data-author="" >
+            <span class="post-title" title="Rabbitmq的介绍及使用">Rabbitmq的介绍及使用</span>
+            <span class="post-date" title="2020-04-28 14:29:48">2020/04/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/04/28/2020-04-28-Spring%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring初始化的几种方式">Spring初始化的几种方式</span>
+            <span class="post-date" title="2020-04-28 11:17:17">2020/04/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/04/20/2020-04-20-springboot%E4%B8%8Bredis%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="springboot下redis的使用">springboot下redis的使用</span>
+            <span class="post-date" title="2020-04-20 11:40:41">2020/04/20</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2020/03/08/2020-03-08-MessageDigest%E7%B1%BB/"
+           data-tag="MessageDigest"
+           data-author="" >
+            <span class="post-title" title="MessageDigest类">MessageDigest类</span>
+            <span class="post-date" title="2020-03-08 21:32:22">2020/03/08</span>
+        </a>
+        
+        
+        <a  class="All Go语言 "
+           href="/2020/03/01/2020-03-01-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"
+           data-tag="Go语言"
+           data-author="" >
+            <span class="post-title" title="Go语言基础语法">Go语言基础语法</span>
+            <span class="post-date" title="2020-03-01 16:27:17">2020/03/01</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/27/2020-02-29-AbstractApplicationContext/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="AbstractApplicationContext">AbstractApplicationContext</span>
+            <span class="post-date" title="2019-11-27 16:28:09">2019/11/27</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/21/2020-02-29-SpringDispatcherServlet/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="SpringDispatcherServlet">SpringDispatcherServlet</span>
+            <span class="post-date" title="2019-11-21 18:48:06">2019/11/21</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2019/11/11/2020-02-29-zookeeper%E9%9B%86%E7%BE%A4%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="zookeeper"
+           data-author="" >
+            <span class="post-title" title="zookeeper集群的安装配置及使用">zookeeper集群的安装配置及使用</span>
+            <span class="post-date" title="2019-11-11 18:48:06">2019/11/11</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2019/11/08/2020-02-29-Docker%E4%B8%8B%E7%9A%84gitlib%E5%AE%89%E8%A3%85%E5%8F%8Agit%E4%BD%BF%E7%94%A8/"
+           data-tag="Docker,gitlib"
+           data-author="" >
+            <span class="post-title" title="Docker下的gitlib安装及git使用">Docker下的gitlib安装及git使用</span>
+            <span class="post-date" title="2019-11-08 18:21:03">2019/11/08</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-ClassPathXmlApplicationContext/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="ClassPathXmlApplicationContext">ClassPathXmlApplicationContext</span>
+            <span class="post-date" title="2019-11-04 22:43:03">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-java%E7%9A%84%E8%89%BA%E6%9C%AF-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="java的艺术-设计模式">java的艺术-设计模式</span>
+            <span class="post-date" title="2019-11-04 18:05:18">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%B8%89)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(三)">从零开始的高并发之路(三)</span>
+            <span class="post-date" title="2019-11-04 16:28:09">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/16/2019-10-16-java%E5%9F%BA%E7%A1%80%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"
+           data-tag="java基础"
+           data-author="" >
+            <span class="post-title" title="java基础查漏补缺">java基础查漏补缺</span>
+            <span class="post-date" title="2019-10-16 23:47:29">2019/10/16</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/16/2019-10-16-set%E9%9B%86%E5%90%88%E4%B9%8Bhashset/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="2019-10-16-set集合之hashset">2019-10-16-set集合之hashset</span>
+            <span class="post-date" title="2019-10-16 22:43:03">2019/10/16</span>
+        </a>
+        
+        
+        <a  class="All Go语言 "
+           href="/2019/10/15/2019-10-15-%E5%88%9D%E8%AF%86Go%E8%AF%AD%E8%A8%80/"
+           data-tag="Go语言"
+           data-author="" >
+            <span class="post-title" title="初识Go语言-环境配置">初识Go语言-环境配置</span>
+            <span class="post-date" title="2019-10-15 15:38:01">2019/10/15</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/14/2019-10-14-HashMap/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="浅析HashMap">浅析HashMap</span>
+            <span class="post-date" title="2019-10-14 15:06:50">2019/10/14</span>
+        </a>
+        
+        
+        <a  class="All 数据结构 "
+           href="/2019/10/10/2019-10-10-%E7%BA%A2%E9%BB%91%E6%A0%91%E7%AE%97%E6%B3%95/"
+           data-tag="算法"
+           data-author="" >
+            <span class="post-title" title="红黑树算法">红黑树算法</span>
+            <span class="post-date" title="2019-10-10 20:53:57">2019/10/10</span>
+        </a>
+        
+        
+        <a  class="All 计算机组成 "
+           href="/2019/10/03/2019-10-03-java%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="java二进制基础知识">java二进制基础知识</span>
+            <span class="post-date" title="2019-10-03 13:37:43">2019/10/03</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/02/2019-10-01-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%B8%80)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(一)">从零开始的高并发之路(一)</span>
+            <span class="post-date" title="2019-10-02 16:28:09">2019/10/02</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/01/2019-10-16-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%BA%8C)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(二)">从零开始的高并发之路(二)</span>
+            <span class="post-date" title="2019-10-01 16:28:09">2019/10/01</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/30/2019-09-30-JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AF%A6%E8%A7%A3/"
+           data-tag="JVM"
+           data-author="" >
+            <span class="post-title" title="JVM 虚拟机详解(一)">JVM 虚拟机详解(一)</span>
+            <span class="post-date" title="2019-09-30 10:28:30">2019/09/30</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/29/2019-09-29-ArrayList%E4%B8%8ELinkedList%E4%B8%8EVector/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="2019-09-29-ArrayList与LinkedList与Vector">2019-09-29-ArrayList与LinkedList与Vector</span>
+            <span class="post-date" title="2019-09-29 12:12:54">2019/09/29</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/29/2019-09-29-%E6%B5%85%E6%9E%90java%E9%9B%86%E5%90%88/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="浅析java集合">浅析java集合</span>
+            <span class="post-date" title="2019-09-29 12:12:54">2019/09/29</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="Toggle full screen shortcut key s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-2020-02-29-AbstractApplicationContext" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">AbstractApplicationContext</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="JAVA">JAVA</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">Spring</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2020-02-29 19:11:53'>2019-11-27 16:28</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AbstractApplicationContext%E7%9A%84refresh%EF%BC%88%EF%BC%89%E6%96%B9%E6%B3%95"><span class="toc-text">AbstractApplicationContext的refresh（）方法</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="AbstractApplicationContext的refresh（）方法"><a href="#AbstractApplicationContext的refresh（）方法" class="headerlink" title="AbstractApplicationContext的refresh（）方法"></a><strong>AbstractApplicationContext的refresh（）方法</strong></h2><blockquote>
+<p>AbstractApplicationContext 继承DefaultResourceLoader ， 实现了ConfigurableApplicationContext， ConfigurableApplicationContext继承了ApplicationContext, Lifecycle, Closeable 接口。</p>
+</blockquote>
+<img src="/.io//11/27/2020-02-29-AbstractApplicationContext/AbstractApplicationContext_uml.png" class title="AbstractApplicationContext_uml.png AbstractApplicationContext_uml.png">
+
+
+<pre><code class="language-java">@Override
+	public void refresh() throws BeansException, IllegalStateException &#123;
+		synchronized (this.startupShutdownMonitor) &#123;
+			// Prepare this context for refreshing.
+            //初始化PropertySources 验证配置 validateRequiredProperties
+			prepareRefresh();
+
+			// Tell the subclass to refresh the internal bean factory.
+			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
+
+			// Prepare the bean factory for use in this context.
+			prepareBeanFactory(beanFactory);
+
+			try &#123;
+				// Allows post-processing of the bean factory in context subclasses.
+				postProcessBeanFactory(beanFactory);
+
+				// Invoke factory processors registered as beans in the context.
+				invokeBeanFactoryPostProcessors(beanFactory);
+
+				// Register bean processors that intercept bean creation.
+				registerBeanPostProcessors(beanFactory);
+
+				// Initialize message source for this context.
+				initMessageSource();
+
+				// Initialize event multicaster for this context.
+				initApplicationEventMulticaster();
+
+				// Initialize other special beans in specific context subclasses.
+				onRefresh();
+
+				// Check for listener beans and register them.
+				registerListeners();
+
+				// Instantiate all remaining (non-lazy-init) singletons.
+				finishBeanFactoryInitialization(beanFactory);
+
+				// Last step: publish corresponding event.
+				finishRefresh();
+			&#125;
+
+			catch (BeansException ex) &#123;
+				if (logger.isWarnEnabled()) &#123;
+					logger.warn(&quot;Exception encountered during context initialization - &quot; +
+							&quot;cancelling refresh attempt: &quot; + ex);
+				&#125;
+
+				// Destroy already created singletons to avoid dangling resources.
+				destroyBeans();
+
+				// Reset &#39;active&#39; flag.
+				cancelRefresh(ex);
+
+				// Propagate exception to caller.
+				throw ex;
+			&#125;
+
+			finally &#123;
+				// Reset common introspection caches in Spring&#39;s core, since we
+				// might not ever need metadata for singleton beans anymore...
+				resetCommonCaches();
+			&#125;
+		&#125;
+	&#125;
+
+protected ConfigurableListableBeanFactory obtainFreshBeanFactory() &#123;
+		//bean工厂的创建 bean的加载 以及 一些bean处理器的注册
+		refreshBeanFactory();
+        //getBeanFactory 由子类实现 例如 xmlwebapplicationcontext 的createBeanFactory方法 会创建默认DefaultListableBeanFactory使用
+		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
+		if (logger.isDebugEnabled()) &#123;
+			logger.debug(&quot;Bean factory for &quot; + getDisplayName() + &quot;: &quot; + beanFactory);
+		&#125;
+		return beanFactory;
+	&#125;
+</code></pre>
+<blockquote>
+<p>此处以xmlwebapplicationcontext为例 刷新bean工厂方法如下</p>
+</blockquote>
+<pre><code class="language-java">protected final void refreshBeanFactory() throws BeansException &#123;
+		if (hasBeanFactory()) &#123;
+			destroyBeans();
+			closeBeanFactory();
+		&#125;
+		try &#123;
+			DefaultListableBeanFactory beanFactory = createBeanFactory();
+			beanFactory.setSerializationId(getId());
+			customizeBeanFactory(beanFactory);
+			//关键调用  所有的bean工厂都会调用对应的applicationcontext的loadBeanDefinitions方法 加载BeanDefinition （不实例化只加载） 注册bean工厂处理器
+			loadBeanDefinitions(beanFactory);
+			synchronized (this.beanFactoryMonitor) &#123;
+				this.beanFactory = beanFactory;
+			&#125;
+		&#125;
+		catch (IOException ex) &#123;
+			throw new ApplicationContextException(&quot;I/O error parsing bean definition source for &quot; + getDisplayName(), ex);
+		&#125;
+	&#125;
+
+protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) &#123;
+		// Tell the internal bean factory to use the context&#39;s class loader etc.
+        //设置类加载器 为当前applacationcontext的类加载器 如果没有则使用当前线程的类加载器
+		beanFactory.setBeanClassLoader(getClassLoader());
+        //bean工厂中注册Spring EL 解析模块 
+        /*
+        *&lt;bean name =&quot;test&quot;  ... &gt;
+        *&lt;property name=&quot;test&quot; value=&quot;#&#123;test&#125;&quot;&gt;&lt;/property&gt;
+        *&lt;bean/&gt;
+        */
+		beanFactory.setBeanExpressionResolver(new StandardBeanExpressionResolver(beanFactory.getBeanClassLoader()));
+        //注册一个资源管理的注册器 applicationcontext 本身实现了ResourceLoader 
+		beanFactory.addPropertyEditorRegistrar(new ResourceEditorRegistrar(this, getEnvironment()));
+
+		// Configure the bean factory with context callbacks.
+		beanFactory.addBeanPostProcessor(new ApplicationContextAwareProcessor(this));
+        //忽略依赖注入的接口
+		beanFactory.ignoreDependencyInterface(EnvironmentAware.class);
+		beanFactory.ignoreDependencyInterface(EmbeddedValueResolverAware.class);
+		beanFactory.ignoreDependencyInterface(ResourceLoaderAware.class);
+		beanFactory.ignoreDependencyInterface(ApplicationEventPublisherAware.class);
+		beanFactory.ignoreDependencyInterface(MessageSourceAware.class);
+		beanFactory.ignoreDependencyInterface(ApplicationContextAware.class);
+
+		// BeanFactory interface not registered as resolvable type in a plain factory.
+		// MessageSource registered (and found for autowiring) as a bean.
+        //注册依赖
+		beanFactory.registerResolvableDependency(BeanFactory.class, beanFactory);
+		beanFactory.registerResolvableDependency(ResourceLoader.class, this);
+		beanFactory.registerResolvableDependency(ApplicationEventPublisher.class, this);
+		beanFactory.registerResolvableDependency(ApplicationContext.class, this);
+
+		// Register early post-processor for detecting inner beans as ApplicationListeners.
+        //注册一个bean处理的监听器的检查器
+		beanFactory.addBeanPostProcessor(new ApplicationListenerDetector(this));
+
+		// Detect a LoadTimeWeaver and prepare for weaving, if found.
+        //LOAD_TIME_WEAVER_BEAN_NAME=loadTimeWeaver
+		if (beanFactory.containsBean(LOAD_TIME_WEAVER_BEAN_NAME)) &#123;
+			beanFactory.addBeanPostProcessor(new LoadTimeWeaverAwareProcessor(beanFactory));
+			// Set a temporary ClassLoader for type matching.
+			beanFactory.setTempClassLoader(new ContextTypeMatchClassLoader(beanFactory.getBeanClassLoader()));
+		&#125;
+
+		// Register default environment beans. ENVIRONMENT_BEAN_NAME=environment
+		if (!beanFactory.containsLocalBean(ENVIRONMENT_BEAN_NAME)) &#123;
+			beanFactory.registerSingleton(ENVIRONMENT_BEAN_NAME, getEnvironment());
+		&#125;
+        //SYSTEM_PROPERTIES_BEAN_NAME=systemProperties
+		if (!beanFactory.containsLocalBean(SYSTEM_PROPERTIES_BEAN_NAME)) &#123;
+			beanFactory.registerSingleton(SYSTEM_PROPERTIES_BEAN_NAME, getEnvironment().getSystemProperties());
+		&#125;
+        //SYSTEM_ENVIRONMENT_BEAN_NAME =systemEnvironment
+		if (!beanFactory.containsLocalBean(SYSTEM_ENVIRONMENT_BEAN_NAME)) &#123;
+			beanFactory.registerSingleton(SYSTEM_ENVIRONMENT_BEAN_NAME, getEnvironment().getSystemEnvironment());
+		&#125;
+	&#125;
+</code></pre>
+<blockquote>
+<p>这里注册了这么多到底是干啥用呢? 别急，继续往下看。</p>
+</blockquote>
+<pre><code class="language-java">protected void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory beanFactory) &#123;
+		PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(beanFactory, getBeanFactoryPostProcessors());
+
+		// Detect a LoadTimeWeaver and prepare for weaving, if found in the meantime
+		// (e.g. through an @Bean method registered by ConfigurationClassPostProcessor)
+		if (beanFactory.getTempClassLoader() == null &amp;&amp; beanFactory.containsBean(LOAD_TIME_WEAVER_BEAN_NAME)) &#123;
+			beanFactory.addBeanPostProcessor(new LoadTimeWeaverAwareProcessor(beanFactory));
+			beanFactory.setTempClassLoader(new ContextTypeMatchClassLoader(beanFactory.getBeanClassLoader()));
+		&#125;
+	&#125;
+</code></pre>
+<blockquote>
+<p>调用invokeBeanFactoryPostProcessors方法， 这段代码中的重点在于sortPostProcessors，invokeBeanDefinitionRegistryPostProcessors，invokeBeanFactoryPostProcessors 这三个方法，sortPostProcessors 对要执行的解析器根据依赖进行排序，invokeBeanDefinitionRegistryPostProcessors则是会调用解析器的postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry)方法，invokeBeanFactoryPostProcessors 会调用postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory)方法。</p>
+</blockquote>
+<pre><code class="language-java">public static void invokeBeanFactoryPostProcessors(
+			ConfigurableListableBeanFactory beanFactory, List&lt;BeanFactoryPostProcessor&gt; beanFactoryPostProcessors) &#123;
+
+		// Invoke BeanDefinitionRegistryPostProcessors first, if any.
+		Set&lt;String&gt; processedBeans = new HashSet&lt;&gt;();
+		if (beanFactory instanceof BeanDefinitionRegistry) &#123;
+			BeanDefinitionRegistry registry = (BeanDefinitionRegistry) beanFactory;
+			List&lt;BeanFactoryPostProcessor&gt; regularPostProcessors = new ArrayList&lt;&gt;();
+			List&lt;BeanDefinitionRegistryPostProcessor&gt; registryProcessors = new ArrayList&lt;&gt;();
+
+			for (BeanFactoryPostProcessor postProcessor : beanFactoryPostProcessors) &#123;
+				if (postProcessor instanceof BeanDefinitionRegistryPostProcessor) &#123;
+					BeanDefinitionRegistryPostProcessor registryProcessor =
+							(BeanDefinitionRegistryPostProcessor) postProcessor;
+					registryProcessor.postProcessBeanDefinitionRegistry(registry);
+					registryProcessors.add(registryProcessor);
+				&#125;
+				else &#123;
+					regularPostProcessors.add(postProcessor);
+				&#125;
+			&#125;
+
+			// Do not initialize FactoryBeans here: We need to leave all regular beans
+			// uninitialized to let the bean factory post-processors apply to them!
+			// Separate between BeanDefinitionRegistryPostProcessors that implement
+			// PriorityOrdered, Ordered, and the rest.
+			List&lt;BeanDefinitionRegistryPostProcessor&gt; currentRegistryProcessors = new ArrayList&lt;&gt;();
+
+			// First, invoke the BeanDefinitionRegistryPostProcessors that implement PriorityOrdered.
+			String[] postProcessorNames =
+					beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, true, false);
+			for (String ppName : postProcessorNames) &#123;
+				if (beanFactory.isTypeMatch(ppName, PriorityOrdered.class)) &#123;
+					currentRegistryProcessors.add(beanFactory.getBean(ppName, BeanDefinitionRegistryPostProcessor.class));
+					processedBeans.add(ppName);
+				&#125;
+			&#125;
+			sortPostProcessors(currentRegistryProcessors, beanFactory);
+			registryProcessors.addAll(currentRegistryProcessors);
+			invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry);
+			currentRegistryProcessors.clear();
+
+			// Next, invoke the BeanDefinitionRegistryPostProcessors that implement Ordered.
+			postProcessorNames = beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, true, false);
+			for (String ppName : postProcessorNames) &#123;
+				if (!processedBeans.contains(ppName) &amp;&amp; beanFactory.isTypeMatch(ppName, Ordered.class)) &#123;
+					currentRegistryProcessors.add(beanFactory.getBean(ppName, BeanDefinitionRegistryPostProcessor.class));
+					processedBeans.add(ppName);
+				&#125;
+			&#125;
+			sortPostProcessors(currentRegistryProcessors, beanFactory);
+			registryProcessors.addAll(currentRegistryProcessors);
+			invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry);
+			currentRegistryProcessors.clear();
+
+			// Finally, invoke all other BeanDefinitionRegistryPostProcessors until no further ones appear.
+			boolean reiterate = true;
+			while (reiterate) &#123;
+				reiterate = false;
+				postProcessorNames = beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, true, false);
+				for (String ppName : postProcessorNames) &#123;
+					if (!processedBeans.contains(ppName)) &#123;
+						currentRegistryProcessors.add(beanFactory.getBean(ppName, BeanDefinitionRegistryPostProcessor.class));
+						processedBeans.add(ppName);
+						reiterate = true;
+					&#125;
+				&#125;
+				sortPostProcessors(currentRegistryProcessors, beanFactory);
+				registryProcessors.addAll(currentRegistryProcessors);
+				invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry);
+				currentRegistryProcessors.clear();
+			&#125;
+
+			// Now, invoke the postProcessBeanFactory callback of all processors handled so far.
+			invokeBeanFactoryPostProcessors(registryProcessors, beanFactory);
+			invokeBeanFactoryPostProcessors(regularPostProcessors, beanFactory);
+		&#125;
+
+		else &#123;
+			// Invoke factory processors registered with the context instance.
+			invokeBeanFactoryPostProcessors(beanFactoryPostProcessors, beanFactory);
+		&#125;
+
+		// Do not initialize FactoryBeans here: We need to leave all regular beans
+		// uninitialized to let the bean factory post-processors apply to them!
+		String[] postProcessorNames =
+				beanFactory.getBeanNamesForType(BeanFactoryPostProcessor.class, true, false);
+
+		// Separate between BeanFactoryPostProcessors that implement PriorityOrdered,
+		// Ordered, and the rest.
+		List&lt;BeanFactoryPostProcessor&gt; priorityOrderedPostProcessors = new ArrayList&lt;&gt;();
+		List&lt;String&gt; orderedPostProcessorNames = new ArrayList&lt;&gt;();
+		List&lt;String&gt; nonOrderedPostProcessorNames = new ArrayList&lt;&gt;();
+		for (String ppName : postProcessorNames) &#123;
+			if (processedBeans.contains(ppName)) &#123;
+				// skip - already processed in first phase above
+			&#125;
+			else if (beanFactory.isTypeMatch(ppName, PriorityOrdered.class)) &#123;
+				priorityOrderedPostProcessors.add(beanFactory.getBean(ppName, BeanFactoryPostProcessor.class));
+			&#125;
+			else if (beanFactory.isTypeMatch(ppName, Ordered.class)) &#123;
+				orderedPostProcessorNames.add(ppName);
+			&#125;
+			else &#123;
+				nonOrderedPostProcessorNames.add(ppName);
+			&#125;
+		&#125;
+
+		// First, invoke the BeanFactoryPostProcessors that implement PriorityOrdered.
+		sortPostProcessors(priorityOrderedPostProcessors, beanFactory);
+		invokeBeanFactoryPostProcessors(priorityOrderedPostProcessors, beanFactory);
+
+		// Next, invoke the BeanFactoryPostProcessors that implement Ordered.
+		List&lt;BeanFactoryPostProcessor&gt; orderedPostProcessors = new ArrayList&lt;&gt;();
+		for (String postProcessorName : orderedPostProcessorNames) &#123;
+			orderedPostProcessors.add(beanFactory.getBean(postProcessorName, BeanFactoryPostProcessor.class));
+		&#125;
+		sortPostProcessors(orderedPostProcessors, beanFactory);
+		invokeBeanFactoryPostProcessors(orderedPostProcessors, beanFactory);
+
+		// Finally, invoke all other BeanFactoryPostProcessors.
+		List&lt;BeanFactoryPostProcessor&gt; nonOrderedPostProcessors = new ArrayList&lt;&gt;();
+		for (String postProcessorName : nonOrderedPostProcessorNames) &#123;
+			nonOrderedPostProcessors.add(beanFactory.getBean(postProcessorName, BeanFactoryPostProcessor.class));
+		&#125;
+		invokeBeanFactoryPostProcessors(nonOrderedPostProcessors, beanFactory);
+
+		// Clear cached merged bean definitions since the post-processors might have
+		// modified the original metadata, e.g. replacing placeholders in values...
+		beanFactory.clearMetadataCache();
+	&#125;
+protected void initMessageSource() &#123;
+	//	获取bean工厂 例如DefaultListableBeanFactory
+		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
+		//如果包含messageSource bean 则设置他的符消息源为当前父上下文的消息源
+		if (beanFactory.containsLocalBean(MESSAGE_SOURCE_BEAN_NAME)) &#123;
+			this.messageSource = beanFactory.getBean(MESSAGE_SOURCE_BEAN_NAME, MessageSource.class);
+			// Make MessageSource aware of parent MessageSource.
+			if (this.parent != null &amp;&amp; this.messageSource instanceof HierarchicalMessageSource) &#123;
+				HierarchicalMessageSource hms = (HierarchicalMessageSource) this.messageSource;
+				if (hms.getParentMessageSource() == null) &#123;
+					// Only set parent context as parent MessageSource if no parent MessageSource
+					// registered already.
+					hms.setParentMessageSource(getInternalParentMessageSource());
+				&#125;
+			&#125;
+			if (logger.isDebugEnabled()) &#123;
+				logger.debug(&quot;Using MessageSource [&quot; + this.messageSource + &quot;]&quot;);
+			&#125;
+		&#125;
+		else &#123;
+			// Use empty MessageSource to be able to accept getMessage calls.
+			//创建一个代理消息源 注册他父消息源 并注册messageSource bean
+			DelegatingMessageSource dms = new DelegatingMessageSource();
+			dms.setParentMessageSource(getInternalParentMessageSource());
+			this.messageSource = dms;
+			beanFactory.registerSingleton(MESSAGE_SOURCE_BEAN_NAME, this.messageSource);
+			if (logger.isDebugEnabled()) &#123;
+				logger.debug(&quot;Unable to locate MessageSource with name &#39;&quot; + MESSAGE_SOURCE_BEAN_NAME +
+						&quot;&#39;: using default [&quot; + this.messageSource + &quot;]&quot;);
+			&#125;
+		&#125;
+	&#125;
+protected void initApplicationEventMulticaster() &#123;
+		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
+		//初始化applicationEventMulticaster 事件发布相关 默认是SimpleApplicationEventMulticaster
+		if (beanFactory.containsLocalBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME)) &#123;
+			this.applicationEventMulticaster =
+					beanFactory.getBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, ApplicationEventMulticaster.class);
+			if (logger.isDebugEnabled()) &#123;
+				logger.debug(&quot;Using ApplicationEventMulticaster [&quot; + this.applicationEventMulticaster + &quot;]&quot;);
+			&#125;
+		&#125;
+		else &#123;
+			this.applicationEventMulticaster = new SimpleApplicationEventMulticaster(beanFactory);
+			beanFactory.registerSingleton(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, this.applicationEventMulticaster);
+			if (logger.isDebugEnabled()) &#123;
+				logger.debug(&quot;Unable to locate ApplicationEventMulticaster with name &#39;&quot; +
+						APPLICATION_EVENT_MULTICASTER_BEAN_NAME +
+						&quot;&#39;: using default [&quot; + this.applicationEventMulticaster + &quot;]&quot;);
+			&#125;
+		&#125;
+	&#125;
+</code></pre>
+<blockquote>
+<p>onRefresh() 方法由子类实现 此处以xmlwebapplicationcontext为例。此方法在他的父类AbstractRefreshableWebApplicationContext中实现，AbstractRefreshableWebApplicationContext继承自abstractapplicationcontext. 他所做的是初始化主题资源，你问主题是啥， 想想你使用的手机，上面不是有主题切换么 ，意思是一个意思 ，道理是一个道理 ，但他们可不是一个东西。主题的话包括themeSource，themeResolver，themeChangeInterceptor三种。此处不做过多概述。</p>
+</blockquote>
+<pre><code class="language-java">
+@Override
+	protected void onRefresh() &#123;
+		this.themeSource = UiApplicationContextUtils.initThemeSource(this);
+	&#125;
+注册监听器
+
+protected void registerListeners() &#123;
+		// Register statically specified listeners first.
+		//getApplicationEventMulticaster 就是上面初始化是事件发布相关的类 比如SimpleApplicationEventMulticaster
+		for (ApplicationListener&lt;?&gt; listener : getApplicationListeners()) &#123;
+			getApplicationEventMulticaster().addApplicationListener(listener);
+		&#125;
+
+		// Do not initialize FactoryBeans here: We need to leave all regular beans
+		// uninitialized to let post-processors apply to them!
+		// 遍历所有监听器类型的bean名字 注册给事件发布相关的类
+		String[] listenerBeanNames = getBeanNamesForType(ApplicationListener.class, true, false);
+		for (String listenerBeanName : listenerBeanNames) &#123;
+			getApplicationEventMulticaster().addApplicationListenerBean(listenerBeanName);
+		&#125;
+
+		// Publish early application events now that we finally have a multicaster...
+		Set&lt;ApplicationEvent&gt; earlyEventsToProcess = this.earlyApplicationEvents;
+		this.earlyApplicationEvents = null;
+		if (earlyEventsToProcess != null) &#123;
+			for (ApplicationEvent earlyEvent : earlyEventsToProcess) &#123;
+				getApplicationEventMulticaster().multicastEvent(earlyEvent);
+			&#125;
+		&#125;
+	&#125;
+protected void finishBeanFactoryInitialization(ConfigurableListableBeanFactory beanFactory) &#123;
+		// Initialize conversion service for this context.
+		// 如果有conversionService这个bean 并且是一个ConversionService.class类型的则设置bean工厂的conversionService
+		if (beanFactory.containsBean(CONVERSION_SERVICE_BEAN_NAME) &amp;&amp;
+				beanFactory.isTypeMatch(CONVERSION_SERVICE_BEAN_NAME, ConversionService.class)) &#123;
+			beanFactory.setConversionService(
+					beanFactory.getBean(CONVERSION_SERVICE_BEAN_NAME, ConversionService.class));
+		&#125;
+
+		// Register a default embedded value resolver if no bean post-processor
+		// (such as a PropertyPlaceholderConfigurer bean) registered any before:
+		// at this point, primarily for resolution in annotation attribute values.
+		//添加一个解析表达式值得解析器
+		if (!beanFactory.hasEmbeddedValueResolver()) &#123;
+			beanFactory.addEmbeddedValueResolver(strVal -&gt; getEnvironment().resolvePlaceholders(strVal));
+		&#125;
+
+		// Initialize LoadTimeWeaverAware beans early to allow for registering their transformers early.
+		//LoadTimeWeaver被Spring用来在将类加载到Java虚拟机(JVM)中时动态地转换类
+		String[] weaverAwareNames = beanFactory.getBeanNamesForType(LoadTimeWeaverAware.class, false, false);
+		for (String weaverAwareName : weaverAwareNames) &#123;
+			getBean(weaverAwareName);
+		&#125;
+
+		// Stop using the temporary ClassLoader for type matching.
+		beanFactory.setTempClassLoader(null);
+
+		// Allow for caching all bean definition metadata, not expecting further changes.
+		//bean名字转换为数组？为啥 比较快？
+		beanFactory.freezeConfiguration();
+
+		// Instantiate all remaining (non-lazy-init) singletons.//实例化剩下的bean
+		beanFactory.preInstantiateSingletons();
+	&#125;
+protected void finishRefresh() &#123;
+		// Clear context-level resource caches (such as ASM metadata from scanning).
+		clearResourceCaches();
+
+		// Initialize lifecycle processor for this context.
+		initLifecycleProcessor();
+
+		// Propagate refresh to lifecycle processor first.
+		//调用默认DefaultLifecycleProcessor解析器的onRefresh
+		//DefaultLifecycleProcessor 实现 LifecycleProcessor  关键方法是onRefresh ，onClose
+		getLifecycleProcessor().onRefresh();
+
+		// Publish the final event 将自己包装进成事件对象.添加到事件的集合中（这个操作就是发布事件 有监听器触发事件）
+		publishEvent(new ContextRefreshedEvent(this));
+
+		// Participate in LiveBeansView MBean, if active. JMX相关Mbean的注册（我也不知道这啥啊）
+		LiveBeansView.registerApplicationContext(this);
+	&#125;
+//初始化生命周期的bean
+protected void initLifecycleProcessor() &#123;
+		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
+		if (beanFactory.containsLocalBean(LIFECYCLE_PROCESSOR_BEAN_NAME)) &#123;
+			this.lifecycleProcessor =
+					beanFactory.getBean(LIFECYCLE_PROCESSOR_BEAN_NAME, LifecycleProcessor.class);
+			if (logger.isDebugEnabled()) &#123;
+				logger.debug(&quot;Using LifecycleProcessor [&quot; + this.lifecycleProcessor + &quot;]&quot;);
+			&#125;
+		&#125;
+		else &#123;
+			DefaultLifecycleProcessor defaultProcessor = new DefaultLifecycleProcessor();
+			defaultProcessor.setBeanFactory(beanFactory);
+			this.lifecycleProcessor = defaultProcessor;
+			beanFactory.registerSingleton(LIFECYCLE_PROCESSOR_BEAN_NAME, this.lifecycleProcessor);
+			if (logger.isDebugEnabled()) &#123;
+				logger.debug(&quot;Unable to locate LifecycleProcessor with name &#39;&quot; +
+						LIFECYCLE_PROCESSOR_BEAN_NAME +
+						&quot;&#39;: using default [&quot; + this.lifecycleProcessor + &quot;]&quot;);
+			&#125;
+		&#125;
+	&#125;
+
+protected void publishEvent(Object event, @Nullable ResolvableType eventType) &#123;
+		Assert.notNull(event, &quot;Event must not be null&quot;);
+		if (logger.isTraceEnabled()) &#123;
+			logger.trace(&quot;Publishing event in &quot; + getDisplayName() + &quot;: &quot; + event);
+		&#125;
+
+		// Decorate event as an ApplicationEvent if necessary
+		ApplicationEvent applicationEvent;
+		if (event instanceof ApplicationEvent) &#123;
+			applicationEvent = (ApplicationEvent) event;
+		&#125;
+		else &#123;
+			applicationEvent = new PayloadApplicationEvent&lt;&gt;(this, event);
+			if (eventType == null) &#123;
+				eventType = ((PayloadApplicationEvent) applicationEvent).getResolvableType();
+			&#125;
+		&#125;
+
+		// Multicast right now if possible - or lazily once the multicaster is initialized
+		if (this.earlyApplicationEvents != null) &#123;
+			this.earlyApplicationEvents.add(applicationEvent);
+		&#125;
+		else &#123;
+			getApplicationEventMulticaster().multicastEvent(applicationEvent, eventType);
+		&#125;
+
+		// Publish event via parent context as well...
+		if (this.parent != null) &#123;
+			if (this.parent instanceof AbstractApplicationContext) &#123;
+				((AbstractApplicationContext) this.parent).publishEvent(event, eventType);
+			&#125;
+			else &#123;
+				this.parent.publishEvent(event);
+			&#125;
+		&#125;
+	&#125;
+</code></pre>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2025 zzt
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="Toggle full screen shortcut key s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

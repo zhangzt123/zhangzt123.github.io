@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>从零开始的高并发之路(一) | Hexo</title>
+  <meta name="keywords" content=" 多线程 , 高并发 ">
+  <meta name="description" content="从零开始的高并发之路(一) | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="千里之行 始于足下">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://zhangzt123.github.io/archives/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="千里之行 始于足下">
+<meta property="og:locale">
+<meta property="article:author" content="哎呦不错哟">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>哎呦不错哟</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(50)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="-服务器">
+            
+            -服务器
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-前端">
+            
+            -前端
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-数据库">
+            
+            -数据库
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-JAVA -Junit -单元测试">
+            
+            -JAVA -Junit -单元测试
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-spring">
+            
+            -spring
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="计算机组成">
+            
+            计算机组成
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据结构">
+            
+            数据结构
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Docker">
+            
+            Docker
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Go语言">
+            
+            Go语言
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="JAVA">
+            
+            JAVA
+            <small>(14)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MQ">
+            <i class="fold iconfont icon-right"></i>
+            MQ
+            <small>(2)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="MQ&lt;---&gt;消息中间件">
+            
+            消息中间件
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Redis">
+            
+            Redis
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="50">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="search shortcut key i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="switch to outline view shortcut key w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="return"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="case sensitive"></i>
+            <i class="iconfont icon-tag" data-title="label"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">outline</div>
+            <i class="iconfont icon-list" data-title="switch to article list"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-定时任务 -Quartz</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-工作流 -Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-异常处理 -异常</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-HTML</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-Junit</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-mock -junit</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-MYSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-Oracle</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-weblogic -oracle</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>高并发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>缓存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>集合</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ElatsicSearch</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>es</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>gitlib</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Go语言</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java基础</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>JVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Kafka</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MessageDigest</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PostgreSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Rabbitmq</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Redis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sonar</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Spring</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>zookeeper</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/01/01/2025-01-01-Minio/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Minio">Minio</span>
+            <span class="post-date" title="2025-01-01 17:20:03">2025/01/01</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/12/26/2024-12-26-KingBaseEs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="KingBaseEs">KingBaseEs</span>
+            <span class="post-date" title="2024-12-26 08:48:16">2024/12/26</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/12/02/2024-12-02-Artifactory/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2024-12-02-Artifactory">2024-12-02-Artifactory</span>
+            <span class="post-date" title="2024-12-02 13:45:20">2024/12/02</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/27/2024-11-27-PostgreSQL/"
+           data-tag="PostgreSQL"
+           data-author="" >
+            <span class="post-title" title="2024-11-27-PostgreSQL">2024-11-27-PostgreSQL</span>
+            <span class="post-date" title="2024-11-27 15:49:01">2024/11/27</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/27/2024-11-27-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/"
+           data-tag="gitlib,sonar"
+           data-author="" >
+            <span class="post-title" title="自动化质量分析">自动化质量分析</span>
+            <span class="post-date" title="2024-11-27 13:47:59">2024/11/27</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/04/2024-11-04-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式事务">分布式事务</span>
+            <span class="post-date" title="2024-11-04 10:18:00">2024/11/04</span>
+        </a>
+        
+        
+        <a  class="All MQ 消息中间件 "
+           href="/2024/10/23/2024-10-23-kafka%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="Kafka"
+           data-author="" >
+            <span class="post-title" title="kafka的介绍及使用">kafka的介绍及使用</span>
+            <span class="post-date" title="2024-10-23 14:31:43">2024/10/23</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/10/05/2024-10-05-Pytorch/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Pytorch">Pytorch</span>
+            <span class="post-date" title="2024-10-05 15:03:44">2024/10/05</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/09/06/2024-09-06-ElatsicSearch%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"
+           data-tag="ElatsicSearch,es"
+           data-author="" >
+            <span class="post-title" title="ElatsicSearch使用及相关问题">ElatsicSearch使用及相关问题</span>
+            <span class="post-date" title="2024-09-06 10:00:26">2024/09/06</span>
+        </a>
+        
+        
+        <a  class="All Redis "
+           href="/2024/08/29/2024-08-29-Redis%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"
+           data-tag="Redis,缓存"
+           data-author="" >
+            <span class="post-title" title="Redis使用及相关问题">Redis使用及相关问题</span>
+            <span class="post-date" title="2024-08-29 14:44:32">2024/08/29</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2024/08/29/2024-08-29-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%BA%94)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(五)">从零开始学docker(五)</span>
+            <span class="post-date" title="2024-08-29 14:44:32">2024/08/29</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E5%9B%9B)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(四)">从零开始学docker(四)</span>
+            <span class="post-date" title="2023-01-26 10:59:32">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%89)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(三)">从零开始学docker(三)</span>
+            <span class="post-date" title="2023-01-26 10:52:49">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%BA%8C)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(二)">从零开始学docker(二)</span>
+            <span class="post-date" title="2023-01-26 10:50:21">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%80)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(一)">从零开始学docker(一)</span>
+            <span class="post-date" title="2023-01-26 10:49:01">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2021/08/25/2021-08-25-HTTP/"
+           data-tag="-MYSQL"
+           data-author="" >
+            <span class="post-title" title="HTTP">HTTP</span>
+            <span class="post-date" title="2021-08-25 14:33:27">2021/08/25</span>
+        </a>
+        
+        
+        <a  class="All -JAVA -Junit -单元测试 "
+           href="/2021/08/25/2021-08-27-Mockito/"
+           data-tag="-Junit"
+           data-author="" >
+            <span class="post-title" title="Mockito&amp;&amp;PowerMockito">Mockito&amp;&amp;PowerMockito</span>
+            <span class="post-date" title="2021-08-25 14:33:27">2021/08/25</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2021/06/19/2021-07-20-Mysql%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag="-MYSQL"
+           data-author="" >
+            <span class="post-title" title="Mysql安装以及常用命令">Mysql安装以及常用命令</span>
+            <span class="post-date" title="2021-06-19 14:33:27">2021/06/19</span>
+        </a>
+        
+        
+        <a  class="All -前端 "
+           href="/2020/12/26/2020-12-26-%E5%89%8D%E7%AB%AF%E9%81%87%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"
+           data-tag="-HTML"
+           data-author="" >
+            <span class="post-title" title="前端遇见问题总结">前端遇见问题总结</span>
+            <span class="post-date" title="2020-12-26 13:44:59">2020/12/26</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2020/11/29/2020-11-29-%E6%95%B0%E6%8D%AE%E5%BA%93%E9%81%87%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"
+           data-tag="-Oracle"
+           data-author="" >
+            <span class="post-title" title="数据库遇见问题总结">数据库遇见问题总结</span>
+            <span class="post-date" title="2020-11-29 15:55:10">2020/11/29</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/10/14/2020-10-14-Activiti%E5%B7%A5%E4%BD%9C%E6%B5%81/"
+           data-tag="-工作流 -Activiti"
+           data-author="" >
+            <span class="post-title" title="Activiti工作流">Activiti工作流</span>
+            <span class="post-date" title="2020-10-14 15:34:05">2020/10/14</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/09/01/2020-09-01-Quartz%E9%9B%86%E7%BE%A4/"
+           data-tag="-定时任务 -Quartz"
+           data-author="" >
+            <span class="post-title" title="Quartz集群">Quartz集群</span>
+            <span class="post-date" title="2020-09-01 11:49:29">2020/09/01</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/18/2020-08-18-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"
+           data-tag="-异常处理 -异常"
+           data-author="" >
+            <span class="post-title" title="spring统一异常处理">spring统一异常处理</span>
+            <span class="post-date" title="2020-08-18 09:10:11">2020/08/18</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/07/2020-08-07-spring%E4%BA%8B%E5%8A%A1/"
+           data-tag="-事务"
+           data-author="" >
+            <span class="post-title" title="spring事务">spring事务</span>
+            <span class="post-date" title="2020-08-07 10:50:40">2020/08/07</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/05/2020-08-05-springMock%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag="-mock -junit"
+           data-author="" >
+            <span class="post-title" title="springMock的使用">springMock的使用</span>
+            <span class="post-date" title="2020-08-05 09:10:50">2020/08/05</span>
+        </a>
+        
+        
+        <a  class="All -服务器 "
+           href="/2020/07/13/2020-07-13-%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86weblogic/"
+           data-tag="-weblogic -oracle"
+           data-author="" >
+            <span class="post-title" title="重新认识weblogic">重新认识weblogic</span>
+            <span class="post-date" title="2020-07-13 14:59:34">2020/07/13</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2020/06/19/2020-06-19-Oracle%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag="-Oracle"
+           data-author="" >
+            <span class="post-title" title="Oracle常用命令">Oracle常用命令</span>
+            <span class="post-date" title="2020-06-19 14:33:27">2020/06/19</span>
+        </a>
+        
+        
+        <a  class="All MQ 消息中间件 "
+           href="/2020/04/28/2020-04-28-Rabbitmq%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="Rabbitmq"
+           data-author="" >
+            <span class="post-title" title="Rabbitmq的介绍及使用">Rabbitmq的介绍及使用</span>
+            <span class="post-date" title="2020-04-28 14:29:48">2020/04/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/04/28/2020-04-28-Spring%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring初始化的几种方式">Spring初始化的几种方式</span>
+            <span class="post-date" title="2020-04-28 11:17:17">2020/04/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/04/20/2020-04-20-springboot%E4%B8%8Bredis%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="springboot下redis的使用">springboot下redis的使用</span>
+            <span class="post-date" title="2020-04-20 11:40:41">2020/04/20</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2020/03/08/2020-03-08-MessageDigest%E7%B1%BB/"
+           data-tag="MessageDigest"
+           data-author="" >
+            <span class="post-title" title="MessageDigest类">MessageDigest类</span>
+            <span class="post-date" title="2020-03-08 21:32:22">2020/03/08</span>
+        </a>
+        
+        
+        <a  class="All Go语言 "
+           href="/2020/03/01/2020-03-01-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"
+           data-tag="Go语言"
+           data-author="" >
+            <span class="post-title" title="Go语言基础语法">Go语言基础语法</span>
+            <span class="post-date" title="2020-03-01 16:27:17">2020/03/01</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/27/2020-02-29-AbstractApplicationContext/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="AbstractApplicationContext">AbstractApplicationContext</span>
+            <span class="post-date" title="2019-11-27 16:28:09">2019/11/27</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/21/2020-02-29-SpringDispatcherServlet/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="SpringDispatcherServlet">SpringDispatcherServlet</span>
+            <span class="post-date" title="2019-11-21 18:48:06">2019/11/21</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2019/11/11/2020-02-29-zookeeper%E9%9B%86%E7%BE%A4%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="zookeeper"
+           data-author="" >
+            <span class="post-title" title="zookeeper集群的安装配置及使用">zookeeper集群的安装配置及使用</span>
+            <span class="post-date" title="2019-11-11 18:48:06">2019/11/11</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2019/11/08/2020-02-29-Docker%E4%B8%8B%E7%9A%84gitlib%E5%AE%89%E8%A3%85%E5%8F%8Agit%E4%BD%BF%E7%94%A8/"
+           data-tag="Docker,gitlib"
+           data-author="" >
+            <span class="post-title" title="Docker下的gitlib安装及git使用">Docker下的gitlib安装及git使用</span>
+            <span class="post-date" title="2019-11-08 18:21:03">2019/11/08</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-ClassPathXmlApplicationContext/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="ClassPathXmlApplicationContext">ClassPathXmlApplicationContext</span>
+            <span class="post-date" title="2019-11-04 22:43:03">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-java%E7%9A%84%E8%89%BA%E6%9C%AF-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="java的艺术-设计模式">java的艺术-设计模式</span>
+            <span class="post-date" title="2019-11-04 18:05:18">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%B8%89)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(三)">从零开始的高并发之路(三)</span>
+            <span class="post-date" title="2019-11-04 16:28:09">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/16/2019-10-16-java%E5%9F%BA%E7%A1%80%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"
+           data-tag="java基础"
+           data-author="" >
+            <span class="post-title" title="java基础查漏补缺">java基础查漏补缺</span>
+            <span class="post-date" title="2019-10-16 23:47:29">2019/10/16</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/16/2019-10-16-set%E9%9B%86%E5%90%88%E4%B9%8Bhashset/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="2019-10-16-set集合之hashset">2019-10-16-set集合之hashset</span>
+            <span class="post-date" title="2019-10-16 22:43:03">2019/10/16</span>
+        </a>
+        
+        
+        <a  class="All Go语言 "
+           href="/2019/10/15/2019-10-15-%E5%88%9D%E8%AF%86Go%E8%AF%AD%E8%A8%80/"
+           data-tag="Go语言"
+           data-author="" >
+            <span class="post-title" title="初识Go语言-环境配置">初识Go语言-环境配置</span>
+            <span class="post-date" title="2019-10-15 15:38:01">2019/10/15</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/14/2019-10-14-HashMap/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="浅析HashMap">浅析HashMap</span>
+            <span class="post-date" title="2019-10-14 15:06:50">2019/10/14</span>
+        </a>
+        
+        
+        <a  class="All 数据结构 "
+           href="/2019/10/10/2019-10-10-%E7%BA%A2%E9%BB%91%E6%A0%91%E7%AE%97%E6%B3%95/"
+           data-tag="算法"
+           data-author="" >
+            <span class="post-title" title="红黑树算法">红黑树算法</span>
+            <span class="post-date" title="2019-10-10 20:53:57">2019/10/10</span>
+        </a>
+        
+        
+        <a  class="All 计算机组成 "
+           href="/2019/10/03/2019-10-03-java%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="java二进制基础知识">java二进制基础知识</span>
+            <span class="post-date" title="2019-10-03 13:37:43">2019/10/03</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/02/2019-10-01-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%B8%80)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(一)">从零开始的高并发之路(一)</span>
+            <span class="post-date" title="2019-10-02 16:28:09">2019/10/02</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/01/2019-10-16-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%BA%8C)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(二)">从零开始的高并发之路(二)</span>
+            <span class="post-date" title="2019-10-01 16:28:09">2019/10/01</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/30/2019-09-30-JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AF%A6%E8%A7%A3/"
+           data-tag="JVM"
+           data-author="" >
+            <span class="post-title" title="JVM 虚拟机详解(一)">JVM 虚拟机详解(一)</span>
+            <span class="post-date" title="2019-09-30 10:28:30">2019/09/30</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/29/2019-09-29-ArrayList%E4%B8%8ELinkedList%E4%B8%8EVector/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="2019-09-29-ArrayList与LinkedList与Vector">2019-09-29-ArrayList与LinkedList与Vector</span>
+            <span class="post-date" title="2019-09-29 12:12:54">2019/09/29</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/29/2019-09-29-%E6%B5%85%E6%9E%90java%E9%9B%86%E5%90%88/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="浅析java集合">浅析java集合</span>
+            <span class="post-date" title="2019-09-29 12:12:54">2019/09/29</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="Toggle full screen shortcut key s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-2019-10-01-从零开始的高并发之路(一)" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">从零开始的高并发之路(一)</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="JAVA">JAVA</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">多线程</a>
+            
+            <a class="color4">高并发</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2020-11-29 10:48:19'>2019-10-02 16:28</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text">多线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-text">创建一个多线程的三种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81"><span class="toc-text">线程状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%9C%A8%E7%BA%BF%E7%A8%8B%E7%B1%BB%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">策略模式在线程类中的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B"><span class="toc-text">守护线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">线程优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#thread-join"><span class="toc-text">thread.join()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD"><span class="toc-text">中断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E7%BA%BF%E7%A8%8B"><span class="toc-text">结束线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CountDownLatch"><span class="toc-text">CountDownLatch</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a><strong>多线程</strong></h2><h2 id="创建一个多线程的三种方式"><a href="#创建一个多线程的三种方式" class="headerlink" title="创建一个多线程的三种方式"></a><strong>创建一个多线程的三种方式</strong></h2><pre><code class="language-java">public class Testthread &#123;
+    
+    public static void main(String[] args) &#123;
+        ThreadA threadA = new ThreadA();//第一种 继承thread
+        Thread threadB = new Thread(new ThreadB());//第二种 实现 Runnable
+        threadA.start();
+        threadB.start();
+
+        Thread threadC = new Thread(new Runnable() &#123;
+            @Override
+            public void run() &#123;
+                System.out.println(&quot;这是一个线程&quot;+ Thread.currentThread().getName());
+            &#125;
+        &#125;); //第三种  匿名类
+        threadC.start();
+
+    &#125;
+   static  class ThreadA extends  Thread &#123;
+        @Override
+        public void run() &#123;
+            System.out.println(&quot;这是一个线程&quot;+ Thread.currentThread().getName());
+        &#125;
+    &#125;
+    static  class ThreadB implements   Runnable &#123;
+        @Override
+        public void run() &#123;
+            System.out.println(&quot;这是一个线程&quot;+ Thread.currentThread().getName());
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a><strong>线程状态</strong></h2><blockquote>
+<p>线程状态大致分为新建状态、就绪状态、运行状态、阻塞状态及死亡状态。 他们之间的联系见下图:</p>
+</blockquote>
+<p><img src="/.io//threadstatus.png" alt="threadstatus" title="百度图片"></p>
+<ul>
+<li><strong>新建状态 new</strong><br>&emsp;&emsp;新建状态既创建一个线程的实例，此时还未开始运行。</li>
+<li><strong>就绪状态 runable</strong><br>&emsp;&emsp;线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取cpu 的使用权 </li>
+<li><strong>运行状态 running</strong><br>&emsp;&emsp;可运行状态(runnable)的线程获得了cpu 时间片（timeslice） ，执行程序run（）方法，直白点就是等待cpu调度的状态。</li>
+<li><strong>阻塞状态 blocked</strong><br>&emsp;&emsp;阻塞状态是指线程因为某种原因放弃了cpu 使用权，也即让出了cpu timeslice，暂时停止运行 以下几种方式会导致阻塞:<br>&emsp;&emsp;1.正在运行的线程通过调用sleep()方法进入等待阻塞状态，JVM会把该线程放入等待队列(waitting queue)中。<br>&emsp;&emsp;2.正在运行线程在获取对象的同步锁时，若该同步锁被别的线程占用，进入同步阻塞状态，则JVM会把该线程放入锁池(lock pool)中。<br>&emsp;&emsp;3.正在运行的线程产生了I&#x2F;O请求，JVM会把线程调整为阻塞状态，等待处理完成，再次进入可运行状态。</li>
+<li><strong>死亡状态 termate</strong><br>&emsp;&emsp;线程正常完成退出或发生异常，线程死亡。</li>
+</ul>
+<hr>
+<h2 id="策略模式在线程类中的应用"><a href="#策略模式在线程类中的应用" class="headerlink" title="策略模式在线程类中的应用"></a>策略模式在线程类中的应用</h2><blockquote>
+<p>策略模式 本质：分离算法，选择实现 ,我们提供一个具体的策略角色AbstractClassA，它是对具体方法的抽象 ，可以由接口或抽象类完成 我们称他为<strong>抽象策略角色</strong>。 包含该策略必备的属性和方法。ClassB 和ClassC分别是策略的两种不同的策略执行角色，我们称之为<strong>具体策略角色</strong>，是对策略的实现。ClassD 是用来操作策略的角色，其职责本来是隔离客户端与策略类的耦合，让客户端完全与上下文环境沟通，无需关系具体策略,其被称为<strong>上下文角色</strong>，ClassD 内部一定会有一个策略类的一个成员变量(AbstractClassA),当我们需要实现具体的策略时，可以向ClassD中传入具体的策略的实现类，执行具体的策略。</p>
+</blockquote>
+<pre><code class="language-java">
+public abstract class AbstractClassA &#123;
+    /*
+    * 获取一个名字
+    * */
+    public abstract  String getname(String str);
+&#125;
+
+class ClassB extends  AbstractClassA&#123;
+
+    @Override
+    public String getname(String str) &#123;
+        return str;
+    &#125;
+&#125;
+
+class ClassC extends  AbstractClassA&#123;
+
+    @Override
+    public String getname(String str) &#123;
+        return &quot;hello world&quot;;
+    &#125;
+&#125;
+
+ final  class  ClassD &#123;
+   private AbstractClassA a;
+
+    ClassD()&#123;
+    &#125;
+    ClassD(AbstractClassA a)&#123;
+        this.a=a;
+    &#125;
+
+    String getname(String str)
+    &#123;
+        if(a!=null)
+            return a.getname(str);
+        return null;
+    &#125;
+
+&#125;
+class ClassE&#123;
+
+    public static void main(String[] args) &#123;
+        String name = &quot;xiaoming&quot;;
+        ClassD D = new ClassD();
+        /*此时是未使用任何抽象类的 直接调用的我们ClassD的getname方法 */
+        System.out.println(D.getname(name));
+        ClassC c = new ClassC();
+        /*我们给ClassD中传入一个AbstractClassA 我们就可以自由的对AbstractClassA的getname方法进行实现*/
+        ClassD D1 = new ClassD(c);
+        System.out.println(D1.getname(name));
+        ClassB b = new ClassB();
+        ClassD D2 = new ClassD(b);
+        System.out.println(D2.getname(name));
+    &#125;
+
+&#125;
+
+
+&gt; 回过头我们再看thread类，thread中包含一个Runnable接口的抽象策略角色，而我们具体去实现Runnable的run方法时，我们就自己去实现了一个具体策略角色,thread类被定义为上下文类。其run方法通过构造方法传入具体的策略角色进行实现run方法。
+
+``` java
+@FunctionalInterface
+public interface Runnable &#123;
+    
+    public abstract void run();
+&#125;
+
+public
+class Thread implements Runnable &#123;
+
+     /* What will be run. */
+    private Runnable target;
+
+    public Thread(Runnable target) &#123;
+        init(null, target, &quot;Thread-&quot; + nextThreadNum(), 0);
+    &#125;
+    private void init(ThreadGroup g, Runnable target, String name,
+                      long stackSize) &#123;
+        init(g, target, name, stackSize, null, true);
+    &#125;
+    private void init(ThreadGroup g, Runnable target, String name,
+                      long stackSize, AccessControlContext acc,
+                      boolean inheritThreadLocals) &#123;
+        if (name == null) &#123;
+            throw new NullPointerException(&quot;name cannot be null&quot;);
+        &#125;
+
+        this.name = name;
+
+        Thread parent = currentThread();
+        SecurityManager security = System.getSecurityManager();
+        if (g == null) &#123;
+            /* Determine if it&#39;s an applet or not */
+
+            /* If there is a security manager, ask the security manager
+               what to do. */
+            if (security != null) &#123;
+                g = security.getThreadGroup();
+            &#125;
+
+            /* If the security doesn&#39;t have a strong opinion of the matter
+               use the parent thread group. */
+            if (g == null) &#123;
+                g = parent.getThreadGroup();
+            &#125;
+        &#125;
+
+        /* checkAccess regardless of whether or not threadgroup is
+           explicitly passed in. */
+        g.checkAccess();
+
+        /*
+         * Do we have the required permissions?
+         */
+        if (security != null) &#123;
+            if (isCCLOverridden(getClass())) &#123;
+                security.checkPermission(SUBCLASS_IMPLEMENTATION_PERMISSION);
+            &#125;
+        &#125;
+
+        g.addUnstarted();
+
+        this.group = g;
+        this.daemon = parent.isDaemon();
+        this.priority = parent.getPriority();
+        if (security == null || isCCLOverridden(parent.getClass()))
+            this.contextClassLoader = parent.getContextClassLoader();
+        else
+            this.contextClassLoader = parent.contextClassLoader;
+        this.inheritedAccessControlContext =
+                acc != null ? acc : AccessController.getContext();
+        this.target = target; //将具体策略类传入
+        setPriority(priority);
+        if (inheritThreadLocals &amp;&amp; parent.inheritableThreadLocals != null)
+            this.inheritableThreadLocals =
+                ThreadLocal.createInheritedMap(parent.inheritableThreadLocals);
+        /* Stash the specified stack size in case the VM cares */
+        this.stackSize = stackSize;
+
+        /* Set thread ID */
+        tid = nextThreadID();
+    &#125;
+
+    public synchronized void start() &#123;
+        /**
+         * This method is not invoked for the main method thread or &quot;system&quot;
+         * group threads created/set up by the VM. Any new functionality added
+         * to this method in the future may have to also be added to the VM.
+         *
+         * A zero status value corresponds to state &quot;NEW&quot;.
+         */
+        if (threadStatus != 0)
+            throw new IllegalThreadStateException();
+
+        /* Notify the group that this thread is about to be started
+         * so that it can be added to the group&#39;s list of threads
+         * and the group&#39;s unstarted count can be decremented. */
+        group.add(this);
+
+        boolean started = false;
+        try &#123;
+            start0();//调用c++ 的start0  c++再执行java的run方法
+            started = true;
+        &#125; finally &#123;
+            try &#123;
+                if (!started) &#123;
+                    group.threadStartFailed(this);
+                &#125;
+            &#125; catch (Throwable ignore) &#123;
+                /* do nothing. If start0 threw a Throwable then
+                  it will be passed up the call stack */
+            &#125;
+        &#125;
+    &#125;
+
+    private native void start0();
+
+
+     @Override
+    public void run() &#123;
+        if (target != null) &#123;
+            target.run(); //执行策略类的run方法
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>我们看到当我们实例化一个thread时，无论是那个构造函数最终都会调用private void init(ThreadGroup g, Runnable target, String name,long stackSize, AccessControlContext acc,boolean inheritThreadLocals)  这个方法，其中有个stacksize表示创建线程所使用的栈的大小，如果为传入的话，默认会由jni的c++ 自动初始化，我们通常不会使用这个参数，如果一定要使用，会通过直接设置java 的栈参数指定 -Xss&lt;size&gt; 指定java线程的栈大小。</p>
+</blockquote>
+<h2 id="守护线程"><a href="#守护线程" class="headerlink" title="守护线程"></a><strong>守护线程</strong></h2><blockquote>
+<p>守护线程会随着主线程的消亡而就是当进程不存在或主线程停止，守护线程也会被停止。</p>
+</blockquote>
+<pre><code class="language-java">public class Testthread &#123;
+    public static void main(String[] args) &#123;
+        ThreadA threadA = new ThreadA();//第一种 继承thread
+        threadA.setDaemon(true);//设定为守护线程 必须在start之前调用
+        threadA.start();
+        
+    &#125;
+   static  class ThreadA extends  Thread &#123;
+        @Override
+        public void run() &#123;
+            System.out.println(&quot;这是一个线程&quot;+ Thread.currentThread().getName());
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="线程优先级"><a href="#线程优先级" class="headerlink" title="线程优先级"></a>线程优先级</h2><blockquote>
+<p>线程优先级通过设置一个 thread.setPriority(int newpriority)使该线程具有较高的优先级，cpu会优先分配资源给该线程。<strong>(不代表一定会优先执行)</strong> 范围是0-10 默认是5.</p>
+</blockquote>
+<pre><code class="language-java">
+public class Testthread &#123;
+    public static void main(String[] args) throws Exception &#123;
+        ThreadA threadA = new ThreadA();
+         Thread threadB = new Thread(new ThreadB(),&quot;thread-B&quot;);
+        threadA.setName(&quot;thread-A&quot;);
+        threadA.setPriority(1);
+        threadA.start();
+        
+        //threadA.setDaemon(true);
+        threadB.setPriority(3);
+        threadB.start();
+        
+
+        Thread threadC = new Thread(new Runnable() &#123;
+            @Override
+            public void run() &#123;
+                System.out.println(&quot;这是一个线程&quot;+ Thread.currentThread().getName());
+            &#125;
+        &#125;,&quot;thread-C&quot;);
+        threadC.setPriority(2);
+        threadC.start();
+        //threadB.join();
+        //threadC.join();
+        System.out.println(java.lang.Thread.currentThread().getName());
+
+    &#125;
+   static  class ThreadA extends  Thread &#123;
+        @Override
+        public void run() &#123;
+            System.out.println(&quot;这是一个线程&quot;+ Thread.currentThread().getName());
+        &#125;
+    &#125;
+    static  class ThreadB implements   Runnable &#123;
+        @Override
+        public void run() &#123;
+            System.out.println(&quot;这是一个线程&quot;+ Thread.currentThread().getName());
+        &#125;
+    &#125;
+&#125;
+
+/**
+ *执行结果
+ *main
+ *这是一个线程thread-A
+ *这是一个线程thread-C
+ *这是一个线程thread-B
+ */
+</code></pre>
+<h2 id="thread-join"><a href="#thread-join" class="headerlink" title="thread.join()"></a>thread.join()</h2><blockquote>
+<p>join方法的作用是父线程等待所有join的线程都执行完成后，才能继续用下运行 有join() ,join(long),join(long,int) 三种 。  </p>
+</blockquote>
+<ul>
+<li>join() 等待所加入的线程完全执行完成。</li>
+<li>join(long) 等待所加入的线程一段时间（毫秒） ，如果还未完成，父线程继续执行。</li>
+<li>join(long,int)同上 精度更高 例如join(1000,10) 1000毫米10纳秒</li>
+</ul>
+<pre><code class="language-java">
+public class Testthread &#123;
+    public static void main(String[] args) throws Exception &#123;
+        ThreadA threadA = new ThreadA();
+         Thread threadB = new Thread(new ThreadB(),&quot;thread-B&quot;);
+        threadA.start();
+        //threadA.setDaemon(true);
+        threadB.start();
+
+        Thread threadC = new Thread(new Runnable() &#123;
+            @Override
+            public void run() &#123;
+                System.out.println(&quot;这是一个线程&quot;+ Thread.currentThread().getName());
+            &#125;
+        &#125;);
+        threadC.start();
+        threadB.join(); 
+        threadC.join();//主线程main会等待线程B和线程C执行完成再执行
+        System.out.println(java.lang.Thread.currentThread().getName());
+
+    &#125;
+   static  class ThreadA extends  Thread &#123;
+        @Override
+        public void run() &#123;
+            System.out.println(&quot;这是一个线程&quot;+ Thread.currentThread().getName());
+        &#125;
+    &#125;
+    static  class ThreadB implements   Runnable &#123;
+        @Override
+        public void run() &#123;
+            System.out.println(&quot;这是一个线程&quot;+ Thread.currentThread().getName());
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="language-cmd">--没有join
+main
+这是一个线程Thread-0
+这是一个线程Thread-1
+这是一个线程Thread-2
+
+--有join
+这是一个线程Thread-0
+这是一个线程Thread-1
+这是一个线程Thread-2
+main
+</code></pre>
+<blockquote>
+<p>*<strong>NOTE:</strong> Thread.currentThread().join() 可以用来阻塞自己，线程一直在等自己死亡执行结束。</p>
+</blockquote>
+<hr>
+<h2 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h2><blockquote>
+<p>中断在方法在线程中包含5个方法，interrupt(),isInterrupted(boolean),isInterrupted()，interrupt0()和interrupted()。他在中断 sleep wait join方法时会抛InterruptedException异常。 </p>
+</blockquote>
+<ul>
+<li>interrupt()设置为中断状态，不能真的中断线程。</li>
+<li>interrupted() 当前线程设置中断状态</li>
+<li>isInterrupted(boolean)可以修改中断状态 私有方法</li>
+<li>isInterrupted()  返回中断状态</li>
+</ul>
+<pre><code class="language-java">
+private native void interrupt0(); //私有方法
+
+public void interrupt() &#123;
+        if (this != Thread.currentThread())
+            checkAccess();
+
+        synchronized (blockerLock) &#123;
+            Interruptible b = blocker;
+            if (b != null) &#123;
+                interrupt0();           // Just to set the interrupt flag
+                b.interrupt(this);
+                return;
+            &#125;
+        &#125;
+        interrupt0();
+    &#125; 
+public boolean isInterrupted() &#123;
+        return isInterrupted(false);
+    &#125;
+public static boolean interrupted() &#123;
+        return currentThread().isInterrupted(true);
+    &#125;
+
+private native boolean isInterrupted(boolean ClearInterrupted);//私有方法
+</code></pre>
+<h2 id="结束线程"><a href="#结束线程" class="headerlink" title="结束线程"></a>结束线程</h2><blockquote>
+<p>我们知道在线程中，stop()方法存在安全问题，suspend()会发生死锁， 那么我们应该如何正确的结束一个线程呢，首先， 我们可以想到 ，守护线程会随着父线程的消亡而消亡，那么就可以把要执行的程序设置为某一父线程的守护线程，我们想办法让他的父线程停止，守护线程就随之停止了，然后，当我们中断一个线程时，被中断的线程在调用 wait sleep join 等方法时会抛出InterruptedException异常，终止当前线程，我们可以利用这个原理，中断守护线程的父线程。达到停止我们要执行的任务的目的。</p>
+</blockquote>
+<pre><code class="language-java">
+public class Threadinterrupt &#123;
+
+
+    public static void main(String[] args) &#123;
+        Threadservice threadservice = new Threadservice();
+        threadservice.exec(()-&gt;&#123;
+            while (true)&#123;
+                System.out.println(&quot;正在执行线程&quot;+Thread.currentThread().getName());
+                try &#123;
+                    Thread.sleep(1000);
+                &#125; catch (InterruptedException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;);
+        try &#123;
+            Thread.sleep(5000);
+            threadservice.stop();
+        &#125; catch (InterruptedException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;
+
+class Threadservice&#123;
+
+    private Thread thread;
+
+       void  exec(Runnable runnable)
+       &#123;
+           if(thread==null)
+           thread = new Thread(()-&gt;&#123;
+               Thread threadinner = new Thread(runnable);
+               /*设定为守护线程*/
+               threadinner.setDaemon(true);
+               threadinner.start();
+           &#125;);
+           thread.start();
+           try &#123;
+               thread.join();
+           &#125; catch (InterruptedException e) &#123;
+               e.printStackTrace();
+               return;
+           &#125;
+       &#125;
+
+       void stop()
+       &#123;
+           /*调用*/
+           if(thread!=null&amp;&amp; thread.isAlive())
+           thread.interrupt();
+           System.out.println(&quot;中断守护线程的父线程&quot;);
+       &#125;
+
+&#125;
+</code></pre>
+<h2 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h2><blockquote>
+<p>CountDownLatch是一个同步工具类 可以理解为线程同步计数器</p>
+</blockquote>
+<pre><code class="language-java">public class countdownlatchdemo&#123;
+
+CountDownLatch c = new CountDownLatch(10);
+    for (int i=0; i&lt;9; i++) &#123;
+                new Thread(()-&gt;&#123;
+                c.countDown()
+                 System.out.println(Thread.currentThread().getThreadID);
+                &#125;).start();
+    &#125;
+
+c.await()
+
+&#125;
+</code></pre>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2025 zzt
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="Toggle full screen shortcut key s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

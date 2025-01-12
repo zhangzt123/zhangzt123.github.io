@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ElatsicSearch使用及相关问题 | Hexo</title>
+  <meta name="keywords" content=" ElatsicSearch , es ">
+  <meta name="description" content="ElatsicSearch使用及相关问题 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="千里之行 始于足下">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://zhangzt123.github.io/archives/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="千里之行 始于足下">
+<meta property="og:locale">
+<meta property="article:author" content="哎呦不错哟">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>哎呦不错哟</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(50)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="-服务器">
+            
+            -服务器
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-前端">
+            
+            -前端
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-数据库">
+            
+            -数据库
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-JAVA -Junit -单元测试">
+            
+            -JAVA -Junit -单元测试
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-spring">
+            
+            -spring
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="计算机组成">
+            
+            计算机组成
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据结构">
+            
+            数据结构
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Docker">
+            
+            Docker
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Go语言">
+            
+            Go语言
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="JAVA">
+            
+            JAVA
+            <small>(14)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MQ">
+            <i class="fold iconfont icon-right"></i>
+            MQ
+            <small>(2)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="MQ&lt;---&gt;消息中间件">
+            
+            消息中间件
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Redis">
+            
+            Redis
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="50">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="search shortcut key i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="switch to outline view shortcut key w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="return"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="case sensitive"></i>
+            <i class="iconfont icon-tag" data-title="label"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">outline</div>
+            <i class="iconfont icon-list" data-title="switch to article list"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-定时任务 -Quartz</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-工作流 -Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-异常处理 -异常</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-HTML</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-Junit</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-mock -junit</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-MYSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-Oracle</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-weblogic -oracle</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>高并发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>缓存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>集合</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ElatsicSearch</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>es</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>gitlib</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Go语言</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java基础</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>JVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Kafka</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MessageDigest</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PostgreSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Rabbitmq</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Redis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sonar</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Spring</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>zookeeper</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/01/01/2025-01-01-Minio/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Minio">Minio</span>
+            <span class="post-date" title="2025-01-01 17:20:03">2025/01/01</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/12/26/2024-12-26-KingBaseEs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="KingBaseEs">KingBaseEs</span>
+            <span class="post-date" title="2024-12-26 08:48:16">2024/12/26</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/12/02/2024-12-02-Artifactory/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2024-12-02-Artifactory">2024-12-02-Artifactory</span>
+            <span class="post-date" title="2024-12-02 13:45:20">2024/12/02</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/27/2024-11-27-PostgreSQL/"
+           data-tag="PostgreSQL"
+           data-author="" >
+            <span class="post-title" title="2024-11-27-PostgreSQL">2024-11-27-PostgreSQL</span>
+            <span class="post-date" title="2024-11-27 15:49:01">2024/11/27</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/27/2024-11-27-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/"
+           data-tag="gitlib,sonar"
+           data-author="" >
+            <span class="post-title" title="自动化质量分析">自动化质量分析</span>
+            <span class="post-date" title="2024-11-27 13:47:59">2024/11/27</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/04/2024-11-04-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式事务">分布式事务</span>
+            <span class="post-date" title="2024-11-04 10:18:00">2024/11/04</span>
+        </a>
+        
+        
+        <a  class="All MQ 消息中间件 "
+           href="/2024/10/23/2024-10-23-kafka%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="Kafka"
+           data-author="" >
+            <span class="post-title" title="kafka的介绍及使用">kafka的介绍及使用</span>
+            <span class="post-date" title="2024-10-23 14:31:43">2024/10/23</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/10/05/2024-10-05-Pytorch/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Pytorch">Pytorch</span>
+            <span class="post-date" title="2024-10-05 15:03:44">2024/10/05</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/09/06/2024-09-06-ElatsicSearch%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"
+           data-tag="ElatsicSearch,es"
+           data-author="" >
+            <span class="post-title" title="ElatsicSearch使用及相关问题">ElatsicSearch使用及相关问题</span>
+            <span class="post-date" title="2024-09-06 10:00:26">2024/09/06</span>
+        </a>
+        
+        
+        <a  class="All Redis "
+           href="/2024/08/29/2024-08-29-Redis%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"
+           data-tag="Redis,缓存"
+           data-author="" >
+            <span class="post-title" title="Redis使用及相关问题">Redis使用及相关问题</span>
+            <span class="post-date" title="2024-08-29 14:44:32">2024/08/29</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2024/08/29/2024-08-29-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%BA%94)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(五)">从零开始学docker(五)</span>
+            <span class="post-date" title="2024-08-29 14:44:32">2024/08/29</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E5%9B%9B)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(四)">从零开始学docker(四)</span>
+            <span class="post-date" title="2023-01-26 10:59:32">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%89)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(三)">从零开始学docker(三)</span>
+            <span class="post-date" title="2023-01-26 10:52:49">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%BA%8C)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(二)">从零开始学docker(二)</span>
+            <span class="post-date" title="2023-01-26 10:50:21">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%80)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(一)">从零开始学docker(一)</span>
+            <span class="post-date" title="2023-01-26 10:49:01">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2021/08/25/2021-08-25-HTTP/"
+           data-tag="-MYSQL"
+           data-author="" >
+            <span class="post-title" title="HTTP">HTTP</span>
+            <span class="post-date" title="2021-08-25 14:33:27">2021/08/25</span>
+        </a>
+        
+        
+        <a  class="All -JAVA -Junit -单元测试 "
+           href="/2021/08/25/2021-08-27-Mockito/"
+           data-tag="-Junit"
+           data-author="" >
+            <span class="post-title" title="Mockito&amp;&amp;PowerMockito">Mockito&amp;&amp;PowerMockito</span>
+            <span class="post-date" title="2021-08-25 14:33:27">2021/08/25</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2021/06/19/2021-07-20-Mysql%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag="-MYSQL"
+           data-author="" >
+            <span class="post-title" title="Mysql安装以及常用命令">Mysql安装以及常用命令</span>
+            <span class="post-date" title="2021-06-19 14:33:27">2021/06/19</span>
+        </a>
+        
+        
+        <a  class="All -前端 "
+           href="/2020/12/26/2020-12-26-%E5%89%8D%E7%AB%AF%E9%81%87%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"
+           data-tag="-HTML"
+           data-author="" >
+            <span class="post-title" title="前端遇见问题总结">前端遇见问题总结</span>
+            <span class="post-date" title="2020-12-26 13:44:59">2020/12/26</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2020/11/29/2020-11-29-%E6%95%B0%E6%8D%AE%E5%BA%93%E9%81%87%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"
+           data-tag="-Oracle"
+           data-author="" >
+            <span class="post-title" title="数据库遇见问题总结">数据库遇见问题总结</span>
+            <span class="post-date" title="2020-11-29 15:55:10">2020/11/29</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/10/14/2020-10-14-Activiti%E5%B7%A5%E4%BD%9C%E6%B5%81/"
+           data-tag="-工作流 -Activiti"
+           data-author="" >
+            <span class="post-title" title="Activiti工作流">Activiti工作流</span>
+            <span class="post-date" title="2020-10-14 15:34:05">2020/10/14</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/09/01/2020-09-01-Quartz%E9%9B%86%E7%BE%A4/"
+           data-tag="-定时任务 -Quartz"
+           data-author="" >
+            <span class="post-title" title="Quartz集群">Quartz集群</span>
+            <span class="post-date" title="2020-09-01 11:49:29">2020/09/01</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/18/2020-08-18-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"
+           data-tag="-异常处理 -异常"
+           data-author="" >
+            <span class="post-title" title="spring统一异常处理">spring统一异常处理</span>
+            <span class="post-date" title="2020-08-18 09:10:11">2020/08/18</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/07/2020-08-07-spring%E4%BA%8B%E5%8A%A1/"
+           data-tag="-事务"
+           data-author="" >
+            <span class="post-title" title="spring事务">spring事务</span>
+            <span class="post-date" title="2020-08-07 10:50:40">2020/08/07</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/05/2020-08-05-springMock%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag="-mock -junit"
+           data-author="" >
+            <span class="post-title" title="springMock的使用">springMock的使用</span>
+            <span class="post-date" title="2020-08-05 09:10:50">2020/08/05</span>
+        </a>
+        
+        
+        <a  class="All -服务器 "
+           href="/2020/07/13/2020-07-13-%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86weblogic/"
+           data-tag="-weblogic -oracle"
+           data-author="" >
+            <span class="post-title" title="重新认识weblogic">重新认识weblogic</span>
+            <span class="post-date" title="2020-07-13 14:59:34">2020/07/13</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2020/06/19/2020-06-19-Oracle%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag="-Oracle"
+           data-author="" >
+            <span class="post-title" title="Oracle常用命令">Oracle常用命令</span>
+            <span class="post-date" title="2020-06-19 14:33:27">2020/06/19</span>
+        </a>
+        
+        
+        <a  class="All MQ 消息中间件 "
+           href="/2020/04/28/2020-04-28-Rabbitmq%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="Rabbitmq"
+           data-author="" >
+            <span class="post-title" title="Rabbitmq的介绍及使用">Rabbitmq的介绍及使用</span>
+            <span class="post-date" title="2020-04-28 14:29:48">2020/04/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/04/28/2020-04-28-Spring%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring初始化的几种方式">Spring初始化的几种方式</span>
+            <span class="post-date" title="2020-04-28 11:17:17">2020/04/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/04/20/2020-04-20-springboot%E4%B8%8Bredis%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="springboot下redis的使用">springboot下redis的使用</span>
+            <span class="post-date" title="2020-04-20 11:40:41">2020/04/20</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2020/03/08/2020-03-08-MessageDigest%E7%B1%BB/"
+           data-tag="MessageDigest"
+           data-author="" >
+            <span class="post-title" title="MessageDigest类">MessageDigest类</span>
+            <span class="post-date" title="2020-03-08 21:32:22">2020/03/08</span>
+        </a>
+        
+        
+        <a  class="All Go语言 "
+           href="/2020/03/01/2020-03-01-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"
+           data-tag="Go语言"
+           data-author="" >
+            <span class="post-title" title="Go语言基础语法">Go语言基础语法</span>
+            <span class="post-date" title="2020-03-01 16:27:17">2020/03/01</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/27/2020-02-29-AbstractApplicationContext/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="AbstractApplicationContext">AbstractApplicationContext</span>
+            <span class="post-date" title="2019-11-27 16:28:09">2019/11/27</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/21/2020-02-29-SpringDispatcherServlet/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="SpringDispatcherServlet">SpringDispatcherServlet</span>
+            <span class="post-date" title="2019-11-21 18:48:06">2019/11/21</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2019/11/11/2020-02-29-zookeeper%E9%9B%86%E7%BE%A4%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="zookeeper"
+           data-author="" >
+            <span class="post-title" title="zookeeper集群的安装配置及使用">zookeeper集群的安装配置及使用</span>
+            <span class="post-date" title="2019-11-11 18:48:06">2019/11/11</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2019/11/08/2020-02-29-Docker%E4%B8%8B%E7%9A%84gitlib%E5%AE%89%E8%A3%85%E5%8F%8Agit%E4%BD%BF%E7%94%A8/"
+           data-tag="Docker,gitlib"
+           data-author="" >
+            <span class="post-title" title="Docker下的gitlib安装及git使用">Docker下的gitlib安装及git使用</span>
+            <span class="post-date" title="2019-11-08 18:21:03">2019/11/08</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-ClassPathXmlApplicationContext/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="ClassPathXmlApplicationContext">ClassPathXmlApplicationContext</span>
+            <span class="post-date" title="2019-11-04 22:43:03">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-java%E7%9A%84%E8%89%BA%E6%9C%AF-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="java的艺术-设计模式">java的艺术-设计模式</span>
+            <span class="post-date" title="2019-11-04 18:05:18">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%B8%89)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(三)">从零开始的高并发之路(三)</span>
+            <span class="post-date" title="2019-11-04 16:28:09">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/16/2019-10-16-java%E5%9F%BA%E7%A1%80%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"
+           data-tag="java基础"
+           data-author="" >
+            <span class="post-title" title="java基础查漏补缺">java基础查漏补缺</span>
+            <span class="post-date" title="2019-10-16 23:47:29">2019/10/16</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/16/2019-10-16-set%E9%9B%86%E5%90%88%E4%B9%8Bhashset/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="2019-10-16-set集合之hashset">2019-10-16-set集合之hashset</span>
+            <span class="post-date" title="2019-10-16 22:43:03">2019/10/16</span>
+        </a>
+        
+        
+        <a  class="All Go语言 "
+           href="/2019/10/15/2019-10-15-%E5%88%9D%E8%AF%86Go%E8%AF%AD%E8%A8%80/"
+           data-tag="Go语言"
+           data-author="" >
+            <span class="post-title" title="初识Go语言-环境配置">初识Go语言-环境配置</span>
+            <span class="post-date" title="2019-10-15 15:38:01">2019/10/15</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/14/2019-10-14-HashMap/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="浅析HashMap">浅析HashMap</span>
+            <span class="post-date" title="2019-10-14 15:06:50">2019/10/14</span>
+        </a>
+        
+        
+        <a  class="All 数据结构 "
+           href="/2019/10/10/2019-10-10-%E7%BA%A2%E9%BB%91%E6%A0%91%E7%AE%97%E6%B3%95/"
+           data-tag="算法"
+           data-author="" >
+            <span class="post-title" title="红黑树算法">红黑树算法</span>
+            <span class="post-date" title="2019-10-10 20:53:57">2019/10/10</span>
+        </a>
+        
+        
+        <a  class="All 计算机组成 "
+           href="/2019/10/03/2019-10-03-java%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="java二进制基础知识">java二进制基础知识</span>
+            <span class="post-date" title="2019-10-03 13:37:43">2019/10/03</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/02/2019-10-01-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%B8%80)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(一)">从零开始的高并发之路(一)</span>
+            <span class="post-date" title="2019-10-02 16:28:09">2019/10/02</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/01/2019-10-16-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%BA%8C)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(二)">从零开始的高并发之路(二)</span>
+            <span class="post-date" title="2019-10-01 16:28:09">2019/10/01</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/30/2019-09-30-JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AF%A6%E8%A7%A3/"
+           data-tag="JVM"
+           data-author="" >
+            <span class="post-title" title="JVM 虚拟机详解(一)">JVM 虚拟机详解(一)</span>
+            <span class="post-date" title="2019-09-30 10:28:30">2019/09/30</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/29/2019-09-29-ArrayList%E4%B8%8ELinkedList%E4%B8%8EVector/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="2019-09-29-ArrayList与LinkedList与Vector">2019-09-29-ArrayList与LinkedList与Vector</span>
+            <span class="post-date" title="2019-09-29 12:12:54">2019/09/29</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/29/2019-09-29-%E6%B5%85%E6%9E%90java%E9%9B%86%E5%90%88/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="浅析java集合">浅析java集合</span>
+            <span class="post-date" title="2019-09-29 12:12:54">2019/09/29</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="Toggle full screen shortcut key s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-2024-09-06-ElatsicSearch使用及相关问题" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">ElatsicSearch使用及相关问题</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">ElatsicSearch</a>
+            
+            <a class="color3">es</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-10-10 20:25:39'>2024-09-06 10:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA"><span class="toc-text">搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E6%9C%BA"><span class="toc-text">单机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4CLUSTER"><span class="toc-text">集群CLUSTER</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8A%82%E7%82%B9-Node"><span class="toc-text">节点 Node</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Coordinating-Node"><span class="toc-text">Coordinating Node</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Ingest-Node"><span class="toc-text">Ingest Node</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Master-eligible-nodes"><span class="toc-text">Master eligible nodes</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Data-Node"><span class="toc-text">Data Node</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Remote-eligible-node"><span class="toc-text">Remote-eligible node</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Machine-Learning-Node"><span class="toc-text">Machine Learning Node</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Transform-node"><span class="toc-text">Transform node</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%89%87-Shard"><span class="toc-text">分片 Shard</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E5%AD%98%E5%82%A8-Segments"><span class="toc-text">分段存储 Segments</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="toc-text">增删改查</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">ES 常见问题汇总及解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%BC%82%E5%B8%B8"><span class="toc-text">启动异常</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#max-virtual-memory-areas-vm-max-map-count-65530-is-too-low-increase-to-at-least-262144"><span class="toc-text">max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a><em>搭建</em></h2><hr>
+<h3 id="单机"><a href="#单机" class="headerlink" title="单机"></a>单机</h3><hr>
+<pre><code class="language-shell">docker run -d --name es-single -e ES_JAVA_OPTS=&quot;-Xms512m -Xmx2048m&quot; -v /home/docker/es/config/single:/usr/share/elasticsearch/config -v /home/docker/es/data/single:/usr/share/elasticsearch/data -v /home/docker/es/logs/single:/usr/share/elasticsearch/logs -p 9200:9200 -p 9300:9300 --network inet  elasticsearch:8.1.0
+
+docker run -d --name kibana-single -p 5601:5601 -e ELASTICSEARCH_HOSTS=http://es-single:9200 -e I18N_LOCALE=zh-CN -v /home/docker/kibana/config/kibana-single.yml:/usr/share/kibana/config/kibana.yml --network inet  kibana:8.1.0
+</code></pre>
+<pre><code class="language-conf">#es-single
+cluster.name: &quot;docker-single&quot;
+network.host: 0.0.0.0
+discovery.type: single-node  #单节点模式
+
+# Enable security features
+xpack.security.enabled: false
+xpack.security.enrollment.enabled: false
+xpack.security.http.ssl:
+  enabled: true
+  keystore.path: certs/http.p12
+xpack.security.transport.ssl:
+  enabled: true
+  verification_mode: certificate
+  keystore.path: certs/transport.p12
+  truststore.path: certs/transport.p12
+  ...
+</code></pre>
+<pre><code class="language-conf">#Kibana-single
+# Default Kibana configuration for docker target
+server.host: &quot;0.0.0.0&quot;
+server.shutdownTimeout: &quot;5s&quot;
+elasticsearch.hosts: [ &quot;http://172.17.0.1:9200&quot; ]
+monitoring.ui.container.elasticsearch.enabled: true
+i18n.locale: &quot;zh-CN&quot;
+</code></pre>
+<h3 id="集群CLUSTER"><a href="#集群CLUSTER" class="headerlink" title="集群CLUSTER"></a>集群CLUSTER</h3><hr>
+<img src="/.io//09/06/2024-09-06-ElatsicSearch%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/es_cluster.png" class title="master和data分开集群">
+
+<blockquote>
+<p>&emsp;</p>
+</blockquote>
+<pre><code class="language-shell">### 启动三master 三data
+docker run -d  --name master-a -e ES_JAVA_OPTS=&quot;-Xms1024m -Xmx1024m&quot; -v /home/docker/es/config/master1:/usr/share/elasticsearch/config -v /home/docker/es/data/master1:/usr/share/elasticsearch/data -v /home/docker/es/logs/master1:/usr/share/elasticsearch/logs -p ::9200 -p ::9300 --network inet  elasticsearch:8.1.0\
+&amp;&amp;\
+docker run -d  --name master-b -e ES_JAVA_OPTS=&quot;-Xms1024m -Xmx1024m&quot; -v /home/docker/es/config/master2:/usr/share/elasticsearch/config -v /home/docker/es/data/master2:/usr/share/elasticsearch/data -v /home/docker/es/logs/master2:/usr/share/elasticsearch/logs -p ::9200 -p ::9300 --network inet  elasticsearch:8.1.0\
+&amp;&amp;\
+docker run -d  --name master-c -e ES_JAVA_OPTS=&quot;-Xms1024m -Xmx1024m&quot; -v /home/docker/es/config/master3:/usr/share/elasticsearch/config -v /home/docker/es/data/master3:/usr/share/elasticsearch/data -v /home/docker/es/logs/master3:/usr/share/elasticsearch/logs -p ::9200 -p ::9300 --network inet  elasticsearch:8.1.0\
+&amp;&amp;\
+docker run -d  --name es-data1 -e ES_JAVA_OPTS=&quot;-Xms1024m -Xmx1024m&quot; -v /home/docker/es/config/data1:/usr/share/elasticsearch/config -v /home/docker/es/data/data1:/usr/share/elasticsearch/data -v /home/docker/es/logs/data1:/usr/share/elasticsearch/logs -p ::9200 -p ::9300 --network inet  elasticsearch:8.1.0\
+&amp;&amp;\
+docker run -d  --name es-data2 -e ES_JAVA_OPTS=&quot;-Xms1024m -Xmx1024m&quot; -v /home/docker/es/config/data2:/usr/share/elasticsearch/config -v /home/docker/es/data/data2:/usr/share/elasticsearch/data -v /home/docker/es/logs/data2:/usr/share/elasticsearch/logs -p ::9200 -p ::9300 --network inet  elasticsearch:8.1.0\
+&amp;&amp;\
+docker run -d  --name es-data3 -e ES_JAVA_OPTS=&quot;-Xms1024m -Xmx1024m&quot; -v /home/docker/es/config/data3:/usr/share/elasticsearch/config -v /home/docker/es/data/data3:/usr/share/elasticsearch/data -v /home/docker/es/logs/data3:/usr/share/elasticsearch/logs -p ::9200 -p ::9300 --network inet  elasticsearch:8.1.0
+</code></pre>
+<pre><code class="language-yml">#master 配置三台
+#集群名称 如果改变名称则需要整个集群重启
+cluster.name: my-es-cluster
+#节点名称 默认为主机名
+node.name: master-node-a
+#node.name: master-node-b
+#node.name: master-node-c
+#指定节点角色为主节点
+node.roles: [ master ]
+path.data: /usr/share/elasticsearch/data
+#绑定ip,开启远程访问,可以配置0.0.0.0
+network.host: 0.0.0.0
+#单节点(single-node)还是多节点 默认为多节点
+discovery.type: multi-node
+#主节点选举投票最小节点数 （候选节点数/2+1 eg 3/2+1 ） 从7开始最新版本已无该配置
+#discovery.zen.minimum_master_nodes: 2
+#用于集群发现
+discovery.seed_hosts:
+   - master-a:9300
+   - master-b:9300
+   - master-c:9300
+#指定哪些节点被初始化为主节点
+cluster.initial_master_nodes: 
+   - master-node-a
+   - master-node-b
+   - master-node-c
+#----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------
+xpack.security.enabled: false
+xpack.security.enrollment.enabled: false
+xpack.security.http.ssl:
+  enabled: true
+  keystore.path: certs/http.p12
+xpack.security.transport.ssl:
+  enabled: true
+  verification_mode: certificate
+  keystore.path: certs/transport.p12
+  truststore.path: certs/transport.p12
+#----------------------- END SECURITY AUTO CONFIGURATION -------------------------
+</code></pre>
+<pre><code class="language-yml">#data节点 配置三台
+#集群名称 如果改变名称则需要整个集群重启
+cluster.name: my-es-cluster
+#节点名称 默认为主机名
+node.name: data-node-a
+#node.name: data-node-b
+#node.name: data-node-c
+#指定节点角色为主节点
+node.roles: [ data ]
+path.data: /usr/share/elasticsearch/data
+#绑定ip,开启远程访问,可以配置0.0.0.0
+network.host: 0.0.0.0
+#单节点(single-node)还是多节点 默认为多节点
+discovery.type: multi-node
+#用于集群发现
+discovery.seed_hosts:
+   - master-a:9300
+   - master-b:9300
+   - master-c:9300
+#指定哪些节点被初始化为主节点
+cluster.initial_master_nodes: 
+   - master-node-a
+   - master-node-b
+   - master-node-c
+#----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------
+xpack.security.enabled: false
+xpack.security.enrollment.enabled: false
+xpack.security.http.ssl:
+  enabled: true
+  keystore.path: certs/http.p12
+xpack.security.transport.ssl:
+  enabled: true
+  verification_mode: certificate
+  keystore.path: certs/transport.p12
+  truststore.path: certs/transport.p12
+#----------------------- END SECURITY AUTO CONFIGURATION -------------------------
+</code></pre>
+<pre><code class="language-conf">#Kibana-single
+# Default Kibana configuration for docker target
+server.host: &quot;0.0.0.0&quot;
+server.shutdownTimeout: &quot;5s&quot;
+elasticsearch.hosts: [ &quot;http://master-a:9200&quot; ,&quot;http://master-b:9200&quot;,&quot;http://master-c:9200&quot;]
+monitoring.ui.container.elasticsearch.enabled: true
+i18n.locale: &quot;zh-CN&quot;
+</code></pre>
+<blockquote>
+<p>&emsp;查看集群节点 集群状态</p>
+</blockquote>
+<pre><code class="language-shell">#查看集群节点
+curl http://localhost:9200/_cat/nodes?v
+ip         heap.percent ram.percent cpu load_1m load_5m load_15m node.role master name
+172.18.0.5           12          98   8    1.39    1.47     0.98 d         -      data-node-a
+172.18.0.2           22          98   8    1.39    1.47     0.98 m         *      master-node-a
+172.18.0.3           35          98   8    1.39    1.47     0.98 m         -      master-node-b
+172.18.0.4           40          98   8    1.39    1.47     0.98 m         -      master-node-c
+#集群健康
+curl http://localhost:9200/_cluster/health?pretty
+&#123;
+  &quot;cluster_name&quot; : &quot;my-es-cluster&quot;,
+  &quot;status&quot; : &quot;green&quot;,
+  &quot;timed_out&quot; : false,
+  &quot;number_of_nodes&quot; : 4,
+  &quot;number_of_data_nodes&quot; : 1,
+  &quot;active_primary_shards&quot; : 7,
+  &quot;active_shards&quot; : 7,
+  &quot;relocating_shards&quot; : 0,
+  &quot;initializing_shards&quot; : 0,
+  &quot;unassigned_shards&quot; : 0,
+  &quot;delayed_unassigned_shards&quot; : 0,
+  &quot;number_of_pending_tasks&quot; : 0,
+  &quot;number_of_in_flight_fetch&quot; : 0,
+  &quot;task_max_waiting_in_queue_millis&quot; : 0,
+  &quot;active_shards_percent_as_number&quot; : 100.0
+&#125;
+</code></pre>
+<h4 id="节点-Node"><a href="#节点-Node" class="headerlink" title="节点 Node"></a>节点 Node</h4><hr>
+<blockquote>
+<p><strong>节点数据路径设置</strong> 配置文件中配置 path.data:  &#x2F;var&#x2F;elasticsearch&#x2F;data 也可以使用命令方式 elasticsearch -Epath.data&#x3D;&#x2F;var&#x2F;elasticsearch&#x2F;data</p>
+</blockquote>
+<h5 id="Coordinating-Node"><a href="#Coordinating-Node" class="headerlink" title="Coordinating Node"></a>Coordinating Node</h5><blockquote>
+<p><strong>Coordinating Node</strong>：协调节点(我理解为读节点) 负责接受Client的请求， 将请求分发到合适的节点，最终把结果汇集到一起 每个节点启动后默认都是 coordinating 节点。设置其他类型全部为 false</p>
+</blockquote>
+<blockquote>
+<p><strong>Coordinating only node</strong>：单协调节点  该节点设置为负责协调 处理路由请求、处理搜索缩减阶段和分发批量索引等 ,不负责主数据和数据的存储，但过多的单协调节点会增加集群负担 配置方式 node.roles: [ ] </p>
+</blockquote>
+<h5 id="Ingest-Node"><a href="#Ingest-Node" class="headerlink" title="Ingest Node"></a>Ingest Node</h5><blockquote>
+<p><strong>Ingest Node</strong>：摄取节点可以执行由一个或多个摄取处理器组成的预处理管道。根据摄取处理器执行的操作类型和所需资源 默认节点启动都是 通过node.roles: [ ingest ] 配置</p>
+</blockquote>
+<h5 id="Master-eligible-nodes"><a href="#Master-eligible-nodes" class="headerlink" title="Master eligible nodes"></a>Master eligible nodes</h5><blockquote>
+<p><strong>Master eligible nodes</strong>：候选主节点,专注于管理集群。有资格成为主节点的节点也会充当协调节点,但不应将专用主节点用于此目的 每个节点启动后，默认就是一个Master eligible节点，即都可以参与集群选举，成为Master节点。通过node.roles: [ master ]设置</p>
+</blockquote>
+<blockquote>
+<p><strong>Voting-only master-eligible node</strong>:投票专用的有主节点资格的节点是一种参与主节点选举但不会作为集群中被选出的主节点的节点, 仅用于投票 通过 node.roles: [  master, voting_only ]设置 同时也可以担任其他角色。例如数据节点  node.roles: [ data, master, voting_only ]</p>
+</blockquote>
+<h5 id="Data-Node"><a href="#Data-Node" class="headerlink" title="Data Node"></a>Data Node</h5><blockquote>
+<p><strong>Generic data node</strong>：通用数据节点 包括所有数据节点，负责保存分片数据 节点启动后，默认就是数据节点。数据节点包含索引content 通过node.roles: [ data ]设置</p>
+</blockquote>
+<blockquote>
+<p><strong>Content data node</strong>: 内容数据节点是内容层的一部分。存储在内容层中的数据通常是一系列项目的集合，例如产品目录或文章档案。与时间序列数据不同，内容的值在一段时间内相对保持恒定，所以随着时间推移将其移动到具有不同性能特征的层是没有意义的。内容数据通常有很长的数据保留要求，并且无论数据有多旧，都希望能够快速检索到项目<br>内容层是必需的。系统索引和其他不属于数据流的索引会自动分配到内容层。</p>
+</blockquote>
+<blockquote>
+<p><strong>Hot data node</strong>:  热数据节点是热层的一部分。热层是时间序列数据进入 Elasticsearch 的入口，保存着你最近、最常搜索的时间序列数据。热层中的节点在读取和写入方面都需要快速，这需要更多的硬件资源和更快的存储（固态硬盘）。为了实现弹性，热层中的索引应配置为使用一个或多个副本。 通过node.roles: [ data_hot ]设置</p>
+</blockquote>
+<blockquote>
+<p><strong>Warm data node</strong>：温数据节点是温层的一部分。时间序列数据在被查询的频率低于热层中最近索引的数据时，可以移动到温层。温层通常保存最近几周的数据。仍然允许更新，但可能不频繁。温层中的节点通常不需要像热层中的节点那样快速。为了提高弹性，温层中的索引应配置为使用一个或多个副本。 通过node.roles: [ data_warm ]设置</p>
+</blockquote>
+<blockquote>
+<p><strong>Cold data node</strong>:冷数据节点是冷层的一部分。当你不再需要定期搜索时间序列数据时，它可以从温层移动到冷层。虽然仍然可搜索，但这个层通常针对较低的存储成本而非搜索速度进行优化 通过node.roles: [ data_cold ]设置</p>
+</blockquote>
+<blockquote>
+<p><strong>Frozen data node</strong>:冻结数据节点 一旦数据不再被查询，或者很少被查询，它可能会从冷层移动到冻结层，通过node.roles: [ data_frozen ]设置</p>
+</blockquote>
+<h5 id="Remote-eligible-node"><a href="#Remote-eligible-node" class="headerlink" title="Remote-eligible node"></a>Remote-eligible node</h5><blockquote>
+<p><strong>Remote-eligible node</strong>: 远程节点 可以连接到远程集群 可以跨集群搜索和同步数据</p>
+</blockquote>
+<h5 id="Machine-Learning-Node"><a href="#Machine-Learning-Node" class="headerlink" title="Machine Learning Node"></a>Machine Learning Node</h5><blockquote>
+<p><strong>Machine Learning Node</strong>：负责跑机器学习的节点 node.roles: [ ml, remote_cluster_client]</p>
+</blockquote>
+<h5 id="Transform-node"><a href="#Transform-node" class="headerlink" title="Transform node"></a>Transform node</h5><blockquote>
+<p><strong>Transform node</strong>：转换节点运行转换并处理转换 API 请求 node.roles: [ transform, remote_cluster_client ]</p>
+</blockquote>
+<h4 id="分片-Shard"><a href="#分片-Shard" class="headerlink" title="分片 Shard"></a>分片 Shard</h4><blockquote>
+<p>主分片 ：Primary Shard，主要是用于解决数据水平扩展的问题，通过主分片，可以将数据分发到集群的所有结点上面，每一个分片是一个Lucene的一个实例，分片在创建之后，不允许被修改，因为获取数据需要通过hash取模运算，改了数量就会直接影响结果<br>副本分片 ： Replica Shard，用于解决数据高可用的问题，就是主分片的一个拷贝，主分片数在创建之后不允许被修改，副本分片数是允许被修改的，并且在一定程度上，可以通过增加副本数来提高服务读取数据的性能。但是副本分片最好是设置成0或者1，如果是日志数据，可以直接设置为0，如果是商品信息这种检索数据，那么可以直接设置成为1。</p>
+</blockquote>
+<h4 id="分段存储-Segments"><a href="#分段存储-Segments" class="headerlink" title="分段存储 Segments"></a>分段存储 Segments</h4><blockquote>
+<p>索引文档以段的形式存储在磁盘上，索引文件被拆分为多个子文件，则每个子文件叫作段，每一个段本身都是一个倒排索引，并且段具有不变性，一旦索引的数据被写入硬盘，就不可再修改。<br>在底层采用了分段存储模式，使它在读写时几乎完全避免了锁的出现，大大提升了读写性能。<br>段被写入到磁盘后会生成一个提交点，提交点是一个用来记录所有提交后段信息的文件。<br>一个段一旦拥有了提交点，就说明这个段只有读的权限，失去了写的权限 。相反， 当段在内存中时，就只有写的权限，而不具备读数据的权限，意味着不能被检索。<br>段的概念提出主要是因为：在早期全文检索中为整个文档集合建立了一个很大的倒排索引，并将其写入磁盘中。如果索引有更新，就需要重新全量创建一个索引来替换原来的索引。这种方式在数据量很大时效率很低，并且由于创建一次索引的成本很高，所以对数据的更新不能过于频繁，也就不能保证时效性。</p>
+</blockquote>
+<blockquote>
+<p>段的不变性的优点：<br>不需要锁，如果从来不更新索引，那就不需要担心多进程同时修改数据的问题。一旦索引被读入内核的文件系统缓存，便会留在哪里，由于其不变性。只要文件系统缓存中还有足够的空间，那么大部分读请求会直接请求内存，而不会命中磁盘。这提供了很大的性能提升。其它缓存(像Filter缓存)，在索引的生命周期内始终有效。它们不需要在每次数据改变时被重建，因为数据不会变化。写入单个大的倒排索引允许数据被压缩，减少磁盘I&#x2F;O和需要被缓存到内存的索引的使用量。</p>
+</blockquote>
+<blockquote>
+<p>段的不变性的缺点：<br>当对旧数据进行删除时，旧数据不会马上被删除，而是在.del文件中被标记为删除。而旧数据只能等到段更新时才能被移除，这样会造成大量的空间浪费。若有一条数据频繁的更新，每次更新都是新增新的标记旧的，则会有大量的空间浪费。每次新增数据时都需要新增一个段来存储数据。当段的数量太多时，对服务器的资源例如文件句柄的消耗会非常大。在查询的结果中包含所有的结果集，需要排除被标记删除的旧数据，这增加了查询的负担。</p>
+</blockquote>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><hr>
+<h4 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h4><ul>
+<li><p>ES支持的字段类型</p>
+<blockquote>
+<p>text<br>keyword<br>date<br>float</p>
+</blockquote>
+</li>
+<li><p>创建索引</p>
+</li>
+</ul>
+<pre><code class="language-json">PUT /test_index
+&#123;
+  &quot;settings&quot;: &#123;
+    //更多参考https://www.cainiaojc.com/elasticsearch/elasticsearch-index-modules.html
+    &quot;index&quot;:&#123;
+        //索引具有的分片的数量
+        &quot;number_of_shards&quot;: 6,
+        //每个主分片具有的副本数。
+        &quot;number_of_replicas&quot;: 1 
+    &#125;
+  &#125;,
+  //字段类型定义
+  &quot;mappings&quot;: &#123;
+    &quot;properties&quot;: &#123;
+      &quot;filed1&quot;: &#123;
+        &quot;type&quot;: &quot;text&quot;
+      &#125;,
+      &quot;filed2&quot;: &#123;
+        &quot;type&quot;: &quot;keyword&quot;
+      &#125;,
+      &quot;filed3&quot;: &#123;
+        &quot;type&quot;: &quot;date&quot;
+      &#125;,
+      &quot;filed4&quot;: &#123;
+        &quot;type&quot;: &quot;float&quot;
+      &#125;
+    &#125;
+  &#125;
+&#125;
+</code></pre>
+<ul>
+<li>修改索引setting</li>
+</ul>
+<pre><code class="language-json">PUT /test_index/_settings
+&#123;
+  &quot;index&quot;:&#123;
+  //每个主分片具有的副本数。
+  &quot;number_of_replicas&quot;: 0 
+  &#125; 
+&#125;
+</code></pre>
+<h2 id="ES-常见问题汇总及解决方案"><a href="#ES-常见问题汇总及解决方案" class="headerlink" title="ES 常见问题汇总及解决方案"></a><em>ES 常见问题汇总及解决方案</em></h2><hr>
+<h3 id="启动异常"><a href="#启动异常" class="headerlink" title="启动异常"></a>启动异常</h3><h4 id="max-virtual-memory-areas-vm-max-map-count-65530-is-too-low-increase-to-at-least-262144"><a href="#max-virtual-memory-areas-vm-max-map-count-65530-is-too-low-increase-to-at-least-262144" class="headerlink" title="max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]"></a>max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</h4><blockquote>
+<p>系统中的 vm.max_map_count 参数设置的值太低  编辑 &#x2F;etc&#x2F;sysctl.conf  添加 vm.max_map_count&#x3D;262144  通过sudo sysctl -p 使之生效</p>
+</blockquote>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2025 zzt
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="Toggle full screen shortcut key s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

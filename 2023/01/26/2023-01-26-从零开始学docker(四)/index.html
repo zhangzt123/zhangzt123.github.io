@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>从零开始学docker(四) | Hexo</title>
+  <meta name="keywords" content=" Docker ">
+  <meta name="description" content="从零开始学docker(四) | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="千里之行 始于足下">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://zhangzt123.github.io/archives/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="千里之行 始于足下">
+<meta property="og:locale">
+<meta property="article:author" content="哎呦不错哟">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>哎呦不错哟</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(50)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="-服务器">
+            
+            -服务器
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-前端">
+            
+            -前端
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-数据库">
+            
+            -数据库
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-JAVA -Junit -单元测试">
+            
+            -JAVA -Junit -单元测试
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-spring">
+            
+            -spring
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="计算机组成">
+            
+            计算机组成
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据结构">
+            
+            数据结构
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Docker">
+            
+            Docker
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Go语言">
+            
+            Go语言
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="JAVA">
+            
+            JAVA
+            <small>(14)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MQ">
+            <i class="fold iconfont icon-right"></i>
+            MQ
+            <small>(2)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="MQ&lt;---&gt;消息中间件">
+            
+            消息中间件
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Redis">
+            
+            Redis
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="50">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="search shortcut key i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="switch to outline view shortcut key w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="return"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="case sensitive"></i>
+            <i class="iconfont icon-tag" data-title="label"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">outline</div>
+            <i class="iconfont icon-list" data-title="switch to article list"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-定时任务 -Quartz</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-工作流 -Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-异常处理 -异常</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-HTML</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-Junit</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-mock -junit</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-MYSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-Oracle</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-weblogic -oracle</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>高并发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>缓存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>集合</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ElatsicSearch</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>es</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>gitlib</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Go语言</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java基础</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>JVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Kafka</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MessageDigest</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PostgreSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Rabbitmq</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Redis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sonar</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Spring</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>zookeeper</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/01/01/2025-01-01-Minio/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Minio">Minio</span>
+            <span class="post-date" title="2025-01-01 17:20:03">2025/01/01</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/12/26/2024-12-26-KingBaseEs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="KingBaseEs">KingBaseEs</span>
+            <span class="post-date" title="2024-12-26 08:48:16">2024/12/26</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/12/02/2024-12-02-Artifactory/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2024-12-02-Artifactory">2024-12-02-Artifactory</span>
+            <span class="post-date" title="2024-12-02 13:45:20">2024/12/02</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/27/2024-11-27-PostgreSQL/"
+           data-tag="PostgreSQL"
+           data-author="" >
+            <span class="post-title" title="2024-11-27-PostgreSQL">2024-11-27-PostgreSQL</span>
+            <span class="post-date" title="2024-11-27 15:49:01">2024/11/27</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/27/2024-11-27-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/"
+           data-tag="gitlib,sonar"
+           data-author="" >
+            <span class="post-title" title="自动化质量分析">自动化质量分析</span>
+            <span class="post-date" title="2024-11-27 13:47:59">2024/11/27</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/04/2024-11-04-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式事务">分布式事务</span>
+            <span class="post-date" title="2024-11-04 10:18:00">2024/11/04</span>
+        </a>
+        
+        
+        <a  class="All MQ 消息中间件 "
+           href="/2024/10/23/2024-10-23-kafka%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="Kafka"
+           data-author="" >
+            <span class="post-title" title="kafka的介绍及使用">kafka的介绍及使用</span>
+            <span class="post-date" title="2024-10-23 14:31:43">2024/10/23</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/10/05/2024-10-05-Pytorch/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Pytorch">Pytorch</span>
+            <span class="post-date" title="2024-10-05 15:03:44">2024/10/05</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/09/06/2024-09-06-ElatsicSearch%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"
+           data-tag="ElatsicSearch,es"
+           data-author="" >
+            <span class="post-title" title="ElatsicSearch使用及相关问题">ElatsicSearch使用及相关问题</span>
+            <span class="post-date" title="2024-09-06 10:00:26">2024/09/06</span>
+        </a>
+        
+        
+        <a  class="All Redis "
+           href="/2024/08/29/2024-08-29-Redis%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"
+           data-tag="Redis,缓存"
+           data-author="" >
+            <span class="post-title" title="Redis使用及相关问题">Redis使用及相关问题</span>
+            <span class="post-date" title="2024-08-29 14:44:32">2024/08/29</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2024/08/29/2024-08-29-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%BA%94)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(五)">从零开始学docker(五)</span>
+            <span class="post-date" title="2024-08-29 14:44:32">2024/08/29</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E5%9B%9B)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(四)">从零开始学docker(四)</span>
+            <span class="post-date" title="2023-01-26 10:59:32">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%89)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(三)">从零开始学docker(三)</span>
+            <span class="post-date" title="2023-01-26 10:52:49">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%BA%8C)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(二)">从零开始学docker(二)</span>
+            <span class="post-date" title="2023-01-26 10:50:21">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%80)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(一)">从零开始学docker(一)</span>
+            <span class="post-date" title="2023-01-26 10:49:01">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2021/08/25/2021-08-25-HTTP/"
+           data-tag="-MYSQL"
+           data-author="" >
+            <span class="post-title" title="HTTP">HTTP</span>
+            <span class="post-date" title="2021-08-25 14:33:27">2021/08/25</span>
+        </a>
+        
+        
+        <a  class="All -JAVA -Junit -单元测试 "
+           href="/2021/08/25/2021-08-27-Mockito/"
+           data-tag="-Junit"
+           data-author="" >
+            <span class="post-title" title="Mockito&amp;&amp;PowerMockito">Mockito&amp;&amp;PowerMockito</span>
+            <span class="post-date" title="2021-08-25 14:33:27">2021/08/25</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2021/06/19/2021-07-20-Mysql%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag="-MYSQL"
+           data-author="" >
+            <span class="post-title" title="Mysql安装以及常用命令">Mysql安装以及常用命令</span>
+            <span class="post-date" title="2021-06-19 14:33:27">2021/06/19</span>
+        </a>
+        
+        
+        <a  class="All -前端 "
+           href="/2020/12/26/2020-12-26-%E5%89%8D%E7%AB%AF%E9%81%87%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"
+           data-tag="-HTML"
+           data-author="" >
+            <span class="post-title" title="前端遇见问题总结">前端遇见问题总结</span>
+            <span class="post-date" title="2020-12-26 13:44:59">2020/12/26</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2020/11/29/2020-11-29-%E6%95%B0%E6%8D%AE%E5%BA%93%E9%81%87%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"
+           data-tag="-Oracle"
+           data-author="" >
+            <span class="post-title" title="数据库遇见问题总结">数据库遇见问题总结</span>
+            <span class="post-date" title="2020-11-29 15:55:10">2020/11/29</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/10/14/2020-10-14-Activiti%E5%B7%A5%E4%BD%9C%E6%B5%81/"
+           data-tag="-工作流 -Activiti"
+           data-author="" >
+            <span class="post-title" title="Activiti工作流">Activiti工作流</span>
+            <span class="post-date" title="2020-10-14 15:34:05">2020/10/14</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/09/01/2020-09-01-Quartz%E9%9B%86%E7%BE%A4/"
+           data-tag="-定时任务 -Quartz"
+           data-author="" >
+            <span class="post-title" title="Quartz集群">Quartz集群</span>
+            <span class="post-date" title="2020-09-01 11:49:29">2020/09/01</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/18/2020-08-18-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"
+           data-tag="-异常处理 -异常"
+           data-author="" >
+            <span class="post-title" title="spring统一异常处理">spring统一异常处理</span>
+            <span class="post-date" title="2020-08-18 09:10:11">2020/08/18</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/07/2020-08-07-spring%E4%BA%8B%E5%8A%A1/"
+           data-tag="-事务"
+           data-author="" >
+            <span class="post-title" title="spring事务">spring事务</span>
+            <span class="post-date" title="2020-08-07 10:50:40">2020/08/07</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/05/2020-08-05-springMock%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag="-mock -junit"
+           data-author="" >
+            <span class="post-title" title="springMock的使用">springMock的使用</span>
+            <span class="post-date" title="2020-08-05 09:10:50">2020/08/05</span>
+        </a>
+        
+        
+        <a  class="All -服务器 "
+           href="/2020/07/13/2020-07-13-%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86weblogic/"
+           data-tag="-weblogic -oracle"
+           data-author="" >
+            <span class="post-title" title="重新认识weblogic">重新认识weblogic</span>
+            <span class="post-date" title="2020-07-13 14:59:34">2020/07/13</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2020/06/19/2020-06-19-Oracle%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag="-Oracle"
+           data-author="" >
+            <span class="post-title" title="Oracle常用命令">Oracle常用命令</span>
+            <span class="post-date" title="2020-06-19 14:33:27">2020/06/19</span>
+        </a>
+        
+        
+        <a  class="All MQ 消息中间件 "
+           href="/2020/04/28/2020-04-28-Rabbitmq%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="Rabbitmq"
+           data-author="" >
+            <span class="post-title" title="Rabbitmq的介绍及使用">Rabbitmq的介绍及使用</span>
+            <span class="post-date" title="2020-04-28 14:29:48">2020/04/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/04/28/2020-04-28-Spring%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring初始化的几种方式">Spring初始化的几种方式</span>
+            <span class="post-date" title="2020-04-28 11:17:17">2020/04/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/04/20/2020-04-20-springboot%E4%B8%8Bredis%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="springboot下redis的使用">springboot下redis的使用</span>
+            <span class="post-date" title="2020-04-20 11:40:41">2020/04/20</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2020/03/08/2020-03-08-MessageDigest%E7%B1%BB/"
+           data-tag="MessageDigest"
+           data-author="" >
+            <span class="post-title" title="MessageDigest类">MessageDigest类</span>
+            <span class="post-date" title="2020-03-08 21:32:22">2020/03/08</span>
+        </a>
+        
+        
+        <a  class="All Go语言 "
+           href="/2020/03/01/2020-03-01-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"
+           data-tag="Go语言"
+           data-author="" >
+            <span class="post-title" title="Go语言基础语法">Go语言基础语法</span>
+            <span class="post-date" title="2020-03-01 16:27:17">2020/03/01</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/27/2020-02-29-AbstractApplicationContext/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="AbstractApplicationContext">AbstractApplicationContext</span>
+            <span class="post-date" title="2019-11-27 16:28:09">2019/11/27</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/21/2020-02-29-SpringDispatcherServlet/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="SpringDispatcherServlet">SpringDispatcherServlet</span>
+            <span class="post-date" title="2019-11-21 18:48:06">2019/11/21</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2019/11/11/2020-02-29-zookeeper%E9%9B%86%E7%BE%A4%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="zookeeper"
+           data-author="" >
+            <span class="post-title" title="zookeeper集群的安装配置及使用">zookeeper集群的安装配置及使用</span>
+            <span class="post-date" title="2019-11-11 18:48:06">2019/11/11</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2019/11/08/2020-02-29-Docker%E4%B8%8B%E7%9A%84gitlib%E5%AE%89%E8%A3%85%E5%8F%8Agit%E4%BD%BF%E7%94%A8/"
+           data-tag="Docker,gitlib"
+           data-author="" >
+            <span class="post-title" title="Docker下的gitlib安装及git使用">Docker下的gitlib安装及git使用</span>
+            <span class="post-date" title="2019-11-08 18:21:03">2019/11/08</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-ClassPathXmlApplicationContext/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="ClassPathXmlApplicationContext">ClassPathXmlApplicationContext</span>
+            <span class="post-date" title="2019-11-04 22:43:03">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-java%E7%9A%84%E8%89%BA%E6%9C%AF-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="java的艺术-设计模式">java的艺术-设计模式</span>
+            <span class="post-date" title="2019-11-04 18:05:18">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%B8%89)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(三)">从零开始的高并发之路(三)</span>
+            <span class="post-date" title="2019-11-04 16:28:09">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/16/2019-10-16-java%E5%9F%BA%E7%A1%80%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"
+           data-tag="java基础"
+           data-author="" >
+            <span class="post-title" title="java基础查漏补缺">java基础查漏补缺</span>
+            <span class="post-date" title="2019-10-16 23:47:29">2019/10/16</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/16/2019-10-16-set%E9%9B%86%E5%90%88%E4%B9%8Bhashset/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="2019-10-16-set集合之hashset">2019-10-16-set集合之hashset</span>
+            <span class="post-date" title="2019-10-16 22:43:03">2019/10/16</span>
+        </a>
+        
+        
+        <a  class="All Go语言 "
+           href="/2019/10/15/2019-10-15-%E5%88%9D%E8%AF%86Go%E8%AF%AD%E8%A8%80/"
+           data-tag="Go语言"
+           data-author="" >
+            <span class="post-title" title="初识Go语言-环境配置">初识Go语言-环境配置</span>
+            <span class="post-date" title="2019-10-15 15:38:01">2019/10/15</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/14/2019-10-14-HashMap/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="浅析HashMap">浅析HashMap</span>
+            <span class="post-date" title="2019-10-14 15:06:50">2019/10/14</span>
+        </a>
+        
+        
+        <a  class="All 数据结构 "
+           href="/2019/10/10/2019-10-10-%E7%BA%A2%E9%BB%91%E6%A0%91%E7%AE%97%E6%B3%95/"
+           data-tag="算法"
+           data-author="" >
+            <span class="post-title" title="红黑树算法">红黑树算法</span>
+            <span class="post-date" title="2019-10-10 20:53:57">2019/10/10</span>
+        </a>
+        
+        
+        <a  class="All 计算机组成 "
+           href="/2019/10/03/2019-10-03-java%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="java二进制基础知识">java二进制基础知识</span>
+            <span class="post-date" title="2019-10-03 13:37:43">2019/10/03</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/02/2019-10-01-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%B8%80)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(一)">从零开始的高并发之路(一)</span>
+            <span class="post-date" title="2019-10-02 16:28:09">2019/10/02</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/01/2019-10-16-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%BA%8C)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(二)">从零开始的高并发之路(二)</span>
+            <span class="post-date" title="2019-10-01 16:28:09">2019/10/01</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/30/2019-09-30-JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AF%A6%E8%A7%A3/"
+           data-tag="JVM"
+           data-author="" >
+            <span class="post-title" title="JVM 虚拟机详解(一)">JVM 虚拟机详解(一)</span>
+            <span class="post-date" title="2019-09-30 10:28:30">2019/09/30</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/29/2019-09-29-ArrayList%E4%B8%8ELinkedList%E4%B8%8EVector/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="2019-09-29-ArrayList与LinkedList与Vector">2019-09-29-ArrayList与LinkedList与Vector</span>
+            <span class="post-date" title="2019-09-29 12:12:54">2019/09/29</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/29/2019-09-29-%E6%B5%85%E6%9E%90java%E9%9B%86%E5%90%88/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="浅析java集合">浅析java集合</span>
+            <span class="post-date" title="2019-09-29 12:12:54">2019/09/29</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="Toggle full screen shortcut key s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-2023-01-26-从零开始学docker(四)" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">从零开始学docker(四)</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Docker">Docker</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">Docker</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-01-30 21:05:21'>2023-01-26 10:59</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%95%9C%E5%83%8F"><span class="toc-text">镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA"><span class="toc-text">镜像构建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%AE%B5%E6%9E%84%E5%BB%BA"><span class="toc-text">多段构建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BuildKit%E5%B7%A5%E5%85%B7%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA"><span class="toc-text">BuildKit工具镜像构建</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dockerCompose"><span class="toc-text">dockerCompose</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dockerCompose%E6%9E%84%E5%BB%BA-%E8%BF%90%E8%A1%8C%E9%95%9C%E5%83%8F"><span class="toc-text">dockerCompose构建|运行镜像</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a><strong>镜像</strong></h2><br>
+
+<blockquote>
+<p>镜像采用分层构建 联合挂载 机制 最底层为bootfs (用于系统引导的文件系统 包括bootloader和kernel 容器启动后会被卸载),然后是rootfs(位于bootfs<br>之上表现为docker的根文件系统 由内核挂载为只读模式，在在镜像最上面挂载可写层。)</p>
+</blockquote>
+<p><img src="/.io//image.png" alt="image.png"></p>
+<h3 id="镜像构建"><a href="#镜像构建" class="headerlink" title="镜像构建"></a><strong>镜像构建</strong></h3><br>
+
+<pre><code class="language-shell"># 镜像构建命令
+docker image build -f DockerFile Context
+
+</code></pre>
+<br>
+
+
+<p><font color="#008000"><strong>NOTE</strong></font></p>
+<blockquote>
+<ul>
+<li>注释信息 以# 开头</li>
+<li>语句顺序执行</li>
+<li>对大小写不敏感 约定俗称 关键字使用大写</li>
+<li>第一个非注释行必须为FROM 命令 通过一个已有镜像制作</li>
+<li>由于docker采用分层结构所以 每条语句都会产生新的层 ，所以尽量将语句放在一起写</li>
+<li>主要 COPY ADD 本地文件时可以使用任何指的文件夹下的内容<br>docker build path|url|-</li>
+</ul>
+<p>   eg:  docker build . 指的是当前目录 所以只能使用当前目录下的文件</p>
+<ul>
+<li>可在dockerfile同目录下添加.dockerignore忽略文件 类似于git的.ignore</li>
+<li>环境变量参数使用$param 或者${param}<br>${param+word}变量不为空使用word<br>${param-word} 变量为空使用默认值word</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FROM</td>
+<td>镜像来源</td>
+</tr>
+<tr>
+<td>MAINTANIER</td>
+<td>【使用：MAINTANIER “<a href="mailto:&#x7a;&#122;&#116;&#122;&#122;&#x74;&#64;&#101;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">zztzzt@email.com</a>“】镜像作者</td>
+</tr>
+<tr>
+<td>LABEL</td>
+<td>使用:单行多个&#x2F;多行 <br>LABEL key&#x3D;val key1&#x3D;val1 ….. <br> LABEL key&#x3D;val <br>LABEL  key1&#x3D;val1</td>
+</tr>
+<tr>
+<td>COPY</td>
+<td>复制文件到容器 COPY src target  src可以是多个为目录时则必须以&#x2F;结尾<br>COPY [–chown&#x3D;<user>:<group>] src… target<br>COPY [–chown&#x3D;<user>:<group>] [“src”,… “target”]</group></user></group></user></td>
+</tr>
+<tr>
+<td>ADD</td>
+<td>添加文件到容器 使用：<br> ADD src … target  <br> ADD [“src”,”src”….”target”]</td>
+</tr>
+<tr>
+<td>VOLUME</td>
+<td>指的用于挂载的目录挂载点 保证在容器启动时如果忘记指的会默认创建一个匿名存储卷来存储挂载点是不,这样容器消失后数据可以被保存下来.  使用:<br> VOLUME &#x2F;date <br> VOLUME &#x2F;date &#x2F;date1 <br>VOLUME[“&#x2F;date”,”&#x2F;date1”….. ]</td>
+</tr>
+<tr>
+<td>EXPOSE</td>
+<td>用于为容器打开指定要监听的端口实现与外部通信【EXPOSE 8080 8080&#x2F;tcp 8080&#x2F;udp】 tcp 和udp二选一 默认为tcp 该端口为可以暴露的接口 启动时并不会直接暴露</td>
+</tr>
+<tr>
+<td>ENV</td>
+<td>用于为镜像定义所需环境变量 可被dockerfile文件之后的指令所使用  和docker run –env 不同 此处是用在build过程中设置好的环境变量 【使用：ENV key&#x3D;val key1&#x3D;val1 ….. 】\反斜杠在此处还可用于转义空格<br> eg: COPY XXXXX  $key1</td>
+</tr>
+<tr>
+<td>ARG</td>
+<td>参数 可通过–build-arg key&#x3D;val 传入 也可被ENV使用<br>eg:<br> ARG author&#x3D;zzt<br> ENV AUTHOR&#x3D;${author+default}</td>
+</tr>
+<tr>
+<td>RUN</td>
+<td>运行sh命令在build过程【使用 ：RUN 命令1 &amp;&amp; 命令2 】 仅可运行基础镜像中存在的命令</td>
+</tr>
+<tr>
+<td>CMD</td>
+<td>运行命令在启动过程 <br>仅可运行基础镜像中存在的命令 <br>多个命令仅最后一个生效 <br>命令可以被docker run 启动时的命令替换掉<br>数组写法不可使用环境变量参数<br></td>
+</tr>
+<tr>
+<td>ENTRYPOINT</td>
+<td>和CMD相比 默认情况命令不会类替换掉 如要替换 <br>使用Docker container run –entrypoints “” container<br>定义多个ENTRYPOINT 最后一个生效<br>和CMD同时存在情况下 CMD会被当做参数交给ENTRYPOINT 执行<br>可通过添加entrypoint.sh 来让ENTRYPOINT 执行该文件 带入参数</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>指定再容器中用哪个用户运行 USER user[:group] 或者USER UID[:GID]</td>
+</tr>
+<tr>
+<td>ONBUILD</td>
+<td>添加触发器 触发命令可以是dockerfile支持的任何命令 构建命令不会在自身文件构建是触发，在另一个镜像基于该镜像构建时会先触发该指令在处理后面的指令</td>
+</tr>
+<tr>
+<td>HEALTHCHECK</td>
+<td>健康检查<br>–interval&#x3D;30s(default) 每隔30检查一次<br>–timeout&#x3D; 30s (default) 超时时间<br>–start-period&#x3D; 0s  (default) 启动时健康检查延迟时间（等待程序启动完成）<br>–retries&#x3D;3 (default) 允许的失败次数</td>
+</tr>
+<tr>
+<td>SHELL</td>
+<td>指定程序默认要使用的shell程序<br> SHELL [“执行工具”,”参数”,”参数”, ….]</td>
+</tr>
+<tr>
+<td>STOPSIGNAL</td>
+<td>指定推出时的信号值 可以是SIG&lt; name &gt; 也可以是与内核syscall表中的位置匹配的无符号数字，例如9。默认值为SIGTERM</td>
+</tr>
+</tbody></table>
+<p><br><br></p>
+<ul>
+<li>示例</li>
+</ul>
+<pre><code class="language-Dockerfile">#注释
+FROM image:tag
+MAINTANIER 镜像作者
+LABEL key1=val1 key2=val2
+WORKDIR /home/docker
+COPY ./testfile /home/
+ADD  ./testfile1 /home/
+VOLUME /date0
+VOLUME /date1 /date2
+VOLUME [&quot;/date3&quot;,&quot;/date4&quot;]
+USER zzt:zztgroup
+EXPOSE 80
+EXPOSE 8080/tcp 9090/udp
+SHELL [&quot;/bin/bash&quot;, &quot;-c&quot;]
+RUN touch file
+STOPSIGNAL SIGSTOP
+CMD [&quot;java&quot;,&quot;-server&quot; ,&quot;-jar&quot;,&quot;xxxx.jar&quot;]
+# CMD [&quot;&lt;command&gt;&quot;,&quot;param1&quot;,&quot;param2&quot;....]
+HEALTHCHECK --interval=30s --timeout= 30s --start-period= 0s --retries=3 CMD curl -f http://localhost:8080/ ||exit 1
+</code></pre>
+<h3 id="多段构建"><a href="#多段构建" class="headerlink" title="多段构建"></a><strong>多段构建</strong></h3><br>
+>docker版本大于17.05 
+>多段构建时后面镜像可以基于之前镜像作为基础镜像 在镜像中为要构建的镜像添加AS标签进行关联 构建时默认不指定--target 标签时会全部构建 并且只有最后一个会获得imageName和tag 指定标签后 会从第一个开始构建直到指定的标签为止。比如 docker image build -f Dockerfile_state -t myweb1:v1 --target Myweb2  ./ 会从myweb1一直构建到myweb2 后面则不进行构建
+
+<br>
+
+<pre><code class="language-DOCKERFILE">FROM openjdk:8 AS Myweb1
+LABEL  name=&quot;Myweb1&quot; \
+       author=zzt
+LABEL createtime =2023.01.11
+
+FROM Myweb1 AS Myweb2
+LABEL  name1=&quot;Myweb2&quot; \
+       author=zzt
+LABEL createtime =2023.01.11
+
+FROM Myweb1 AS Myweb3
+LABEL  name1=&quot;Myweb3&quot; \
+       author=zzt
+LABEL createtime =2023.01.11
+
+FROM Myweb1 AS Myweb4
+LABEL  name1=&quot;Myweb4&quot; \
+       author=zzt
+LABEL createtime =2023.01.11
+</code></pre>
+<h4 id="BuildKit工具镜像构建"><a href="#BuildKit工具镜像构建" class="headerlink" title="BuildKit工具镜像构建"></a><strong><a target="_blank" rel="noopener" href="https://docs.docker.com/build/buildkit/">BuildKit</a>工具镜像构建</strong></h4><blockquote>
+<ul>
+<li>docker版本大于18.06</li>
+<li>通过docker daemon.json添加  {“features”: { “buildkit” : true }} 或者命令行输入$DOCKER_BUILDKIT&#x3D;1 docker build .</li>
+<li>支持 # syntax&#x3D;docker&#x2F;dockerfile:1.2 文件开始添加 指的使用dockerfile的版本语法</li>
+</ul>
+</blockquote>
+<h2 id="dockerCompose"><a href="#dockerCompose" class="headerlink" title="dockerCompose"></a><strong>dockerCompose</strong></h2><blockquote>
+<p>&emsp;一个可以一次多个容器的工具使用yml作为配置。 <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/compose-versioning/">compose-version</a>兼容版本映射关系</p>
+</blockquote>
+<h3 id="dockerCompose构建-运行镜像"><a href="#dockerCompose构建-运行镜像" class="headerlink" title="dockerCompose构建|运行镜像"></a><strong>dockerCompose构建|运行镜像</strong></h3><pre><code class="language-shell">#构建镜像
+docker compose -f MyDockerCompose.yml --profile dev  build
+#启动镜像
+docker compose -f MyDockerCompose.yml --profile dev  up
+#启动镜像 后台运行
+docker compose -f MyDockerCompose.yml --profile dev  up -d
+</code></pre>
+<blockquote>
+<p>示例</p>
+</blockquote>
+<pre><code class="language-yml">version: &quot;3.9&quot; #指定兼容的版本信息
+
+services:
+  myweb: #你的服务名
+    # container_name: myweb-compose #容器名称 如果指定则副本数量只能是1个
+    profiles:
+      - dev
+      - pro
+#构建信息定义
+    build: #指定服务是构建还是镜像 build image 2者不可同时出现
+      context: . #指定上下文 docker build path的path   . 当前目录
+      dockerfile: ./Dockerfile #dockerfile文件
+      args: #参数 相当于 docker build --build-arg
+        stoptime: 10
+        stoptime1: 10
+      labels: #标签 可以写入到镜像中
+        version: &quot;v1&quot;
+        redisversion: &quot;7.0.7&quot;
+      tags: #镜像标签 可多个
+        - &quot;myweb:v1&quot;
+      platforms: #镜像平台 linux/arm64/v8  windows/amd64 osx
+        - &quot;linux/amd64&quot;
+#部署信息定义
+    deploy:
+      mode: replicated # 部署模式 replicated（指定个数副本） 和 global （每个物理节点一个）
+      replicas: 2 # replicated副本模式时候指定副本个数
+      restart_policy: #重启策略 
+        condition: on-failure #重启条件 none,on-failure,any
+        delay: 0s #等待重启时间间隔
+        max_attempts: 3 #重启允许失败次数 condition =any 是不允许指定
+        window: 1m #等待重启成功的空窗期
+      rollback_config: #回滚配置
+        parallelism: 1 #每次回滚的容器数.0全部容器同时回滚
+        delay: 0s #每组容器回滚的等待时间 默认0s
+        failure_action: pause #失败后要做的操作 continue or pause
+        monitor: 1m # 失败后每次更新任务到监控的时间 默认0S  允许单位(ns|us|ms|s|m|h)
+        max_failure_ratio: 0 # 回滚失败率 默认0
+        order: stop-first #回滚期间的操作顺序 stop-first(先停止再启动) start-first(先启动再停止)
+      update_config: #更新配置
+        parallelism: 1 #每次更新的容器数.0全部容器同时回滚
+        delay: 0s #每组容器更新的等待时间 默认0s
+        failure_action: pause #失败后要做的操作 continue or pause
+        monitor: 1m # 失败后每次更新任务到监控的时间 默认0S  允许单位(ns|us|ms|s|m|h)
+        max_failure_ratio: 0 # 更新失败率 默认0
+        order: stop-first #更新期间的操作顺序 stop-first(先停止再启动) start-first(先启动再停止)
+      endpoint_mode: vip #访问集群服务的方式 vip(虚拟ip) dnsrr(轮询)2种
+      labels:
+        mylable: &quot;lable&quot;
+#存储卷信息定义   
+    volumes: 
+      - type: volume #type包括 volume, bind, tmpfs 
+        source: mydata #存储卷或者地址 tmpfs类型时无效
+        target: //home/docker/data0001 #挂载到容器内地址
+        read_only: false #存储卷是只读的
+        volume:
+          nocopy: true
+      - type: bind #type包括 volume, bind, tmpfs 
+        source: /home/docker/data0002 #tmpfs类型时无效
+        target: /data #挂载到容器内地址
+        read_only: true #存储卷是只读的
+        bind:
+          propagation: private #绑定类型传播机制 rprivate, private, rshared, shared, rslave, slave
+          create_host_path: true # 自动创建本地路径
+          selinux: Z #z (shared) or Z (private)
+    # volumes_from: # 从某个容器或服务名复制来相同的挂载信息
+    #   - service_name
+    #   - service_name:ro
+    #   - container:container_name
+    #   - container:container_name:rw
+#网络信息定义
+    ports:
+      # - &quot;3000&quot;
+      # - &quot;3000-3005&quot;
+      - &quot;8080-8090:8080&quot;
+      # - &quot;9090-9091:8080-8081&quot;
+      # - &quot;49100:22&quot;
+      # - &quot;127.0.0.1:8001:8001&quot;
+      # - &quot;127.0.0.1:5000-5010:5000-5010&quot;
+      # - &quot;6060:6060/udp&quot;
+    expose: #容器可暴露端口
+      - &quot;8080&quot;
+    networks: #网络配置 可指定多个顶层networks的key
+      - myweb-network1
+      # - myweb-network2
+    command: [&quot;java&quot;,&quot;-jar&quot;,&quot;demo.jar&quot;] #命令 相当于docker run xxxcontainer command
+    # entrypoint: xxxx.sh
+    # entrypoint:  # 会覆盖镜像中的entrypoint指令
+    #   - java
+    #   - -jar
+    #   - demo.jar
+    # env_file: #添加环境变量通过文件 文件格式 key=val #用于注释
+    #    - .env  
+    environment: #添加环境变量  environment和env_file同时出现优先取environment
+       - aaa=bbb
+    # extends: #从另一个compose文件扩展
+    #   file: xxxx.yml
+    #   service: xxxx
+    healthcheck: #健康检查
+      disable: true #禁用健康检查
+      test: [&quot;CMD&quot;, &quot;curl&quot;, &quot;-f&quot;, &quot;http://localhost:8080&quot;]  # test如果使用list则第一个必须是NONE, CMD or CMD-SHELL中的一个
+      # test: [&quot;CMD-SHELL&quot;, &quot;curl -f http://localhost:8080||exit 1&quot;]
+      # test: curl -f http://localhost:8080||exit 1 
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  mywebmvntemplate:
+    profiles:
+      - dev
+      - pro
+    build:
+      context: .
+      dockerfile: ./Dockerfile_v1
+      tags:
+        - &quot;myweb_mvn_template:v1&quot;
+  mywebbytemp:
+    profiles:
+      - dev
+      - pro
+    depends_on: # 指定相互之间的依赖 简单写法|添加条件写法
+      - mywebmvntemplate
+#     depends_on:
+#       mywebmvntemplate:
+# # 依赖条件 service_started service_healthy service_completed_successfully
+#         condition: service_healthy
+    build:
+      context: .
+      dockerfile: ./Dockerfile_v2
+      tags:
+        - &quot;mywebbytemp:v1&quot;
+    ports:
+      - &quot;9090:8080&quot;
+  myimageapp:
+    profiles:
+      - dev
+      - pro
+    image: mywebbytemp:v1
+    depends_on:
+      # - mywebmvntemplate
+      - mywebbytemp
+    ports:
+      - &quot;9091:8080&quot;
+
+volumes: #顶层位置可以存储卷被多个服务使用 mydata值为空 会根据默认配置创建存储卷
+  mydata:
+    name: &quot;my-data&quot; #自定义卷名称
+    labels:
+      - &quot;key=val&quot;
+      - &quot;key2=val2&quot;
+    #external: true #external为true则不会自动创建mydata没有时会报错
+
+networks: #顶层网络配置
+  myweb-network1:
+    name: myweb-network1
+    external: false #为true时不创建该网络找不到该网络报错
+    driver: overlay #网络驱动汇总
+    attachable: true # 是否连接到该网络
+    labels:
+      - &quot;key1=val1&quot;
+      - &quot;key2=val2&quot;
+</code></pre>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2025 zzt
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="Toggle full screen shortcut key s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

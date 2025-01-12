@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redis使用及相关问题 | Hexo</title>
+  <meta name="keywords" content=" Redis , 缓存 ">
+  <meta name="description" content="Redis使用及相关问题 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="千里之行 始于足下">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://zhangzt123.github.io/archives/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="千里之行 始于足下">
+<meta property="og:locale">
+<meta property="article:author" content="哎呦不错哟">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>哎呦不错哟</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(50)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="-服务器">
+            
+            -服务器
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-前端">
+            
+            -前端
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-数据库">
+            
+            -数据库
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-JAVA -Junit -单元测试">
+            
+            -JAVA -Junit -单元测试
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-spring">
+            
+            -spring
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="计算机组成">
+            
+            计算机组成
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据结构">
+            
+            数据结构
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Docker">
+            
+            Docker
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Go语言">
+            
+            Go语言
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="JAVA">
+            
+            JAVA
+            <small>(14)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MQ">
+            <i class="fold iconfont icon-right"></i>
+            MQ
+            <small>(2)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="MQ&lt;---&gt;消息中间件">
+            
+            消息中间件
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Redis">
+            
+            Redis
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="50">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="search shortcut key i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="switch to outline view shortcut key w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="return"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="case sensitive"></i>
+            <i class="iconfont icon-tag" data-title="label"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">outline</div>
+            <i class="iconfont icon-list" data-title="switch to article list"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-定时任务 -Quartz</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-工作流 -Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-异常处理 -异常</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-HTML</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-Junit</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-mock -junit</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-MYSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-Oracle</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-weblogic -oracle</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>高并发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>缓存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>集合</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ElatsicSearch</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>es</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>gitlib</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Go语言</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java基础</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>JVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Kafka</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MessageDigest</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PostgreSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Rabbitmq</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Redis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sonar</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Spring</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>zookeeper</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/01/01/2025-01-01-Minio/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Minio">Minio</span>
+            <span class="post-date" title="2025-01-01 17:20:03">2025/01/01</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/12/26/2024-12-26-KingBaseEs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="KingBaseEs">KingBaseEs</span>
+            <span class="post-date" title="2024-12-26 08:48:16">2024/12/26</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/12/02/2024-12-02-Artifactory/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2024-12-02-Artifactory">2024-12-02-Artifactory</span>
+            <span class="post-date" title="2024-12-02 13:45:20">2024/12/02</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/27/2024-11-27-PostgreSQL/"
+           data-tag="PostgreSQL"
+           data-author="" >
+            <span class="post-title" title="2024-11-27-PostgreSQL">2024-11-27-PostgreSQL</span>
+            <span class="post-date" title="2024-11-27 15:49:01">2024/11/27</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/27/2024-11-27-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/"
+           data-tag="gitlib,sonar"
+           data-author="" >
+            <span class="post-title" title="自动化质量分析">自动化质量分析</span>
+            <span class="post-date" title="2024-11-27 13:47:59">2024/11/27</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/04/2024-11-04-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式事务">分布式事务</span>
+            <span class="post-date" title="2024-11-04 10:18:00">2024/11/04</span>
+        </a>
+        
+        
+        <a  class="All MQ 消息中间件 "
+           href="/2024/10/23/2024-10-23-kafka%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="Kafka"
+           data-author="" >
+            <span class="post-title" title="kafka的介绍及使用">kafka的介绍及使用</span>
+            <span class="post-date" title="2024-10-23 14:31:43">2024/10/23</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/10/05/2024-10-05-Pytorch/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Pytorch">Pytorch</span>
+            <span class="post-date" title="2024-10-05 15:03:44">2024/10/05</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/09/06/2024-09-06-ElatsicSearch%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"
+           data-tag="ElatsicSearch,es"
+           data-author="" >
+            <span class="post-title" title="ElatsicSearch使用及相关问题">ElatsicSearch使用及相关问题</span>
+            <span class="post-date" title="2024-09-06 10:00:26">2024/09/06</span>
+        </a>
+        
+        
+        <a  class="All Redis "
+           href="/2024/08/29/2024-08-29-Redis%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"
+           data-tag="Redis,缓存"
+           data-author="" >
+            <span class="post-title" title="Redis使用及相关问题">Redis使用及相关问题</span>
+            <span class="post-date" title="2024-08-29 14:44:32">2024/08/29</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2024/08/29/2024-08-29-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%BA%94)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(五)">从零开始学docker(五)</span>
+            <span class="post-date" title="2024-08-29 14:44:32">2024/08/29</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E5%9B%9B)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(四)">从零开始学docker(四)</span>
+            <span class="post-date" title="2023-01-26 10:59:32">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%89)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(三)">从零开始学docker(三)</span>
+            <span class="post-date" title="2023-01-26 10:52:49">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%BA%8C)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(二)">从零开始学docker(二)</span>
+            <span class="post-date" title="2023-01-26 10:50:21">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%80)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(一)">从零开始学docker(一)</span>
+            <span class="post-date" title="2023-01-26 10:49:01">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2021/08/25/2021-08-25-HTTP/"
+           data-tag="-MYSQL"
+           data-author="" >
+            <span class="post-title" title="HTTP">HTTP</span>
+            <span class="post-date" title="2021-08-25 14:33:27">2021/08/25</span>
+        </a>
+        
+        
+        <a  class="All -JAVA -Junit -单元测试 "
+           href="/2021/08/25/2021-08-27-Mockito/"
+           data-tag="-Junit"
+           data-author="" >
+            <span class="post-title" title="Mockito&amp;&amp;PowerMockito">Mockito&amp;&amp;PowerMockito</span>
+            <span class="post-date" title="2021-08-25 14:33:27">2021/08/25</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2021/06/19/2021-07-20-Mysql%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag="-MYSQL"
+           data-author="" >
+            <span class="post-title" title="Mysql安装以及常用命令">Mysql安装以及常用命令</span>
+            <span class="post-date" title="2021-06-19 14:33:27">2021/06/19</span>
+        </a>
+        
+        
+        <a  class="All -前端 "
+           href="/2020/12/26/2020-12-26-%E5%89%8D%E7%AB%AF%E9%81%87%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"
+           data-tag="-HTML"
+           data-author="" >
+            <span class="post-title" title="前端遇见问题总结">前端遇见问题总结</span>
+            <span class="post-date" title="2020-12-26 13:44:59">2020/12/26</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2020/11/29/2020-11-29-%E6%95%B0%E6%8D%AE%E5%BA%93%E9%81%87%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"
+           data-tag="-Oracle"
+           data-author="" >
+            <span class="post-title" title="数据库遇见问题总结">数据库遇见问题总结</span>
+            <span class="post-date" title="2020-11-29 15:55:10">2020/11/29</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/10/14/2020-10-14-Activiti%E5%B7%A5%E4%BD%9C%E6%B5%81/"
+           data-tag="-工作流 -Activiti"
+           data-author="" >
+            <span class="post-title" title="Activiti工作流">Activiti工作流</span>
+            <span class="post-date" title="2020-10-14 15:34:05">2020/10/14</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/09/01/2020-09-01-Quartz%E9%9B%86%E7%BE%A4/"
+           data-tag="-定时任务 -Quartz"
+           data-author="" >
+            <span class="post-title" title="Quartz集群">Quartz集群</span>
+            <span class="post-date" title="2020-09-01 11:49:29">2020/09/01</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/18/2020-08-18-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"
+           data-tag="-异常处理 -异常"
+           data-author="" >
+            <span class="post-title" title="spring统一异常处理">spring统一异常处理</span>
+            <span class="post-date" title="2020-08-18 09:10:11">2020/08/18</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/07/2020-08-07-spring%E4%BA%8B%E5%8A%A1/"
+           data-tag="-事务"
+           data-author="" >
+            <span class="post-title" title="spring事务">spring事务</span>
+            <span class="post-date" title="2020-08-07 10:50:40">2020/08/07</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/05/2020-08-05-springMock%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag="-mock -junit"
+           data-author="" >
+            <span class="post-title" title="springMock的使用">springMock的使用</span>
+            <span class="post-date" title="2020-08-05 09:10:50">2020/08/05</span>
+        </a>
+        
+        
+        <a  class="All -服务器 "
+           href="/2020/07/13/2020-07-13-%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86weblogic/"
+           data-tag="-weblogic -oracle"
+           data-author="" >
+            <span class="post-title" title="重新认识weblogic">重新认识weblogic</span>
+            <span class="post-date" title="2020-07-13 14:59:34">2020/07/13</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2020/06/19/2020-06-19-Oracle%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag="-Oracle"
+           data-author="" >
+            <span class="post-title" title="Oracle常用命令">Oracle常用命令</span>
+            <span class="post-date" title="2020-06-19 14:33:27">2020/06/19</span>
+        </a>
+        
+        
+        <a  class="All MQ 消息中间件 "
+           href="/2020/04/28/2020-04-28-Rabbitmq%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="Rabbitmq"
+           data-author="" >
+            <span class="post-title" title="Rabbitmq的介绍及使用">Rabbitmq的介绍及使用</span>
+            <span class="post-date" title="2020-04-28 14:29:48">2020/04/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/04/28/2020-04-28-Spring%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring初始化的几种方式">Spring初始化的几种方式</span>
+            <span class="post-date" title="2020-04-28 11:17:17">2020/04/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/04/20/2020-04-20-springboot%E4%B8%8Bredis%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="springboot下redis的使用">springboot下redis的使用</span>
+            <span class="post-date" title="2020-04-20 11:40:41">2020/04/20</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2020/03/08/2020-03-08-MessageDigest%E7%B1%BB/"
+           data-tag="MessageDigest"
+           data-author="" >
+            <span class="post-title" title="MessageDigest类">MessageDigest类</span>
+            <span class="post-date" title="2020-03-08 21:32:22">2020/03/08</span>
+        </a>
+        
+        
+        <a  class="All Go语言 "
+           href="/2020/03/01/2020-03-01-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"
+           data-tag="Go语言"
+           data-author="" >
+            <span class="post-title" title="Go语言基础语法">Go语言基础语法</span>
+            <span class="post-date" title="2020-03-01 16:27:17">2020/03/01</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/27/2020-02-29-AbstractApplicationContext/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="AbstractApplicationContext">AbstractApplicationContext</span>
+            <span class="post-date" title="2019-11-27 16:28:09">2019/11/27</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/21/2020-02-29-SpringDispatcherServlet/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="SpringDispatcherServlet">SpringDispatcherServlet</span>
+            <span class="post-date" title="2019-11-21 18:48:06">2019/11/21</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2019/11/11/2020-02-29-zookeeper%E9%9B%86%E7%BE%A4%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="zookeeper"
+           data-author="" >
+            <span class="post-title" title="zookeeper集群的安装配置及使用">zookeeper集群的安装配置及使用</span>
+            <span class="post-date" title="2019-11-11 18:48:06">2019/11/11</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2019/11/08/2020-02-29-Docker%E4%B8%8B%E7%9A%84gitlib%E5%AE%89%E8%A3%85%E5%8F%8Agit%E4%BD%BF%E7%94%A8/"
+           data-tag="Docker,gitlib"
+           data-author="" >
+            <span class="post-title" title="Docker下的gitlib安装及git使用">Docker下的gitlib安装及git使用</span>
+            <span class="post-date" title="2019-11-08 18:21:03">2019/11/08</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-ClassPathXmlApplicationContext/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="ClassPathXmlApplicationContext">ClassPathXmlApplicationContext</span>
+            <span class="post-date" title="2019-11-04 22:43:03">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-java%E7%9A%84%E8%89%BA%E6%9C%AF-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="java的艺术-设计模式">java的艺术-设计模式</span>
+            <span class="post-date" title="2019-11-04 18:05:18">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%B8%89)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(三)">从零开始的高并发之路(三)</span>
+            <span class="post-date" title="2019-11-04 16:28:09">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/16/2019-10-16-java%E5%9F%BA%E7%A1%80%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"
+           data-tag="java基础"
+           data-author="" >
+            <span class="post-title" title="java基础查漏补缺">java基础查漏补缺</span>
+            <span class="post-date" title="2019-10-16 23:47:29">2019/10/16</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/16/2019-10-16-set%E9%9B%86%E5%90%88%E4%B9%8Bhashset/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="2019-10-16-set集合之hashset">2019-10-16-set集合之hashset</span>
+            <span class="post-date" title="2019-10-16 22:43:03">2019/10/16</span>
+        </a>
+        
+        
+        <a  class="All Go语言 "
+           href="/2019/10/15/2019-10-15-%E5%88%9D%E8%AF%86Go%E8%AF%AD%E8%A8%80/"
+           data-tag="Go语言"
+           data-author="" >
+            <span class="post-title" title="初识Go语言-环境配置">初识Go语言-环境配置</span>
+            <span class="post-date" title="2019-10-15 15:38:01">2019/10/15</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/14/2019-10-14-HashMap/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="浅析HashMap">浅析HashMap</span>
+            <span class="post-date" title="2019-10-14 15:06:50">2019/10/14</span>
+        </a>
+        
+        
+        <a  class="All 数据结构 "
+           href="/2019/10/10/2019-10-10-%E7%BA%A2%E9%BB%91%E6%A0%91%E7%AE%97%E6%B3%95/"
+           data-tag="算法"
+           data-author="" >
+            <span class="post-title" title="红黑树算法">红黑树算法</span>
+            <span class="post-date" title="2019-10-10 20:53:57">2019/10/10</span>
+        </a>
+        
+        
+        <a  class="All 计算机组成 "
+           href="/2019/10/03/2019-10-03-java%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="java二进制基础知识">java二进制基础知识</span>
+            <span class="post-date" title="2019-10-03 13:37:43">2019/10/03</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/02/2019-10-01-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%B8%80)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(一)">从零开始的高并发之路(一)</span>
+            <span class="post-date" title="2019-10-02 16:28:09">2019/10/02</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/01/2019-10-16-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%BA%8C)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(二)">从零开始的高并发之路(二)</span>
+            <span class="post-date" title="2019-10-01 16:28:09">2019/10/01</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/30/2019-09-30-JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AF%A6%E8%A7%A3/"
+           data-tag="JVM"
+           data-author="" >
+            <span class="post-title" title="JVM 虚拟机详解(一)">JVM 虚拟机详解(一)</span>
+            <span class="post-date" title="2019-09-30 10:28:30">2019/09/30</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/29/2019-09-29-ArrayList%E4%B8%8ELinkedList%E4%B8%8EVector/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="2019-09-29-ArrayList与LinkedList与Vector">2019-09-29-ArrayList与LinkedList与Vector</span>
+            <span class="post-date" title="2019-09-29 12:12:54">2019/09/29</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/29/2019-09-29-%E6%B5%85%E6%9E%90java%E9%9B%86%E5%90%88/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="浅析java集合">浅析java集合</span>
+            <span class="post-date" title="2019-09-29 12:12:54">2019/09/29</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="Toggle full screen shortcut key s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-2024-08-29-Redis使用及相关问题" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Redis使用及相关问题</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Redis">Redis</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">Redis</a>
+            
+            <a class="color3">缓存</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-12-30 22:40:07'>2024-08-29 14:44</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-text">Redis基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">Redis数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%E6%90%AD%E5%BB%BA-%E4%B8%BB%E4%BB%8E-%E5%93%A8%E5%85%B5-%E9%9B%86%E7%BE%A4"><span class="toc-text">Docker搭建 主从  哨兵 集群</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker%E6%90%AD%E5%BB%BA%E5%8D%95%E4%BE%8BRedis"><span class="toc-text">Docker搭建单例Redis</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F"><span class="toc-text">主从模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F"><span class="toc-text">哨兵模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F"><span class="toc-text">集群模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E6%A7%BDhashslot"><span class="toc-text">哈希槽hashslot</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text">持久化</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">Redis常见问题汇总及解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F"><span class="toc-text">缓存穿透</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9"><span class="toc-text">缓存雪崩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8jvm%E5%86%85%E5%AD%98%E5%92%8Credis%E5%81%9A%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98-%E5%B9%B6%E4%B8%94%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">如何利用jvm内存和redis做二级缓存 并且保证缓存数据的一致性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E7%8E%B0%E5%A4%A7key"><span class="toc-text">发现大key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DB%E5%92%8C%E7%BC%93%E5%AD%98%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%E9%97%AE%E9%A2%98"><span class="toc-text">DB和缓存的一致性问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%B6%E8%BF%9F%E5%8F%8C%E5%88%A0"><span class="toc-text">延迟双删</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0%E7%BC%93%E5%AD%98"><span class="toc-text">异步更新缓存</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Redis基本使用"><a href="#Redis基本使用" class="headerlink" title="Redis基本使用"></a><em>Redis基本使用</em></h2><h3 id="Redis数据结构"><a href="#Redis数据结构" class="headerlink" title="Redis数据结构"></a>Redis数据结构</h3><ul>
+<li><p>字符串(String)</p>
+<blockquote>
+<p>set</p>
+</blockquote>
+</li>
+<li><p>列表(List)</p>
+<blockquote>
+<p>list</p>
+</blockquote>
+</li>
+<li><p>哈希(Hash) </p>
+<blockquote>
+<p>hash </p>
+</blockquote>
+</li>
+<li><p>集合(Set)</p>
+<blockquote>
+<p>set</p>
+</blockquote>
+</li>
+<li><p>有序集合(Zset)</p>
+<blockquote>
+<p>set</p>
+</blockquote>
+</li>
+<li><p>HyperLogLogs (基数统计) </p>
+<blockquote>
+<p>…</p>
+</blockquote>
+</li>
+<li><p>Bitmap (位存储)</p>
+<blockquote>
+<p>…</p>
+</blockquote>
+</li>
+<li><p>geospatial (地理位置)</p>
+<blockquote>
+<p>…</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Docker搭建-主从-哨兵-集群"><a href="#Docker搭建-主从-哨兵-集群" class="headerlink" title="Docker搭建 主从  哨兵 集群"></a>Docker搭建 主从  哨兵 集群</h3><hr>
+<blockquote>
+<p>配置文件示例 <a target="_blank" rel="noopener" href="https://github.com/redis/redis/blob/7.4.0/redis.conf">https://github.com/redis/redis/blob/7.4.0/redis.conf</a> <a target="_blank" rel="noopener" href="https://github.com/redis/redis/blob/7.4.0/sentinel.conf">https://github.com/redis/redis/blob/7.4.0/sentinel.conf</a></p>
+</blockquote>
+<h4 id="Docker搭建单例Redis"><a href="#Docker搭建单例Redis" class="headerlink" title="Docker搭建单例Redis"></a>Docker搭建单例Redis</h4><pre><code class="language-shell">
+#单例运行
+docker run -d --name redis -v /home/docker/redis/config/redis-single.conf:/usr/local/etc/redis/redis.conf -v /home/docker/redis/data/:/data/  -p 6379:6379 --rm redis:7.4.0 redis-server /usr/local/etc/redis/redis.conf
+
+#操作
+docker exec -it containerId redis-cli
+</code></pre>
+<pre><code class="language-conf">#redis.conf
+################################## NETWORK #####################################
+#不要用127.0.0.1 绑定具体的ip 否则无法通过redis-cli -h ip -p port 进行外部访问
+# bind 192.168.1.100 10.0.0.1     # listens on two specific IPv4 addresses
+# bind 127.0.0.1 ::1              # listens on loopback IPv4 and IPv6
+# bind * -::*                     # like the default, all available interfaces
+bind * -::*
+#关闭保护模式否则只能本机访问
+protected-mode no
+port 6379
+################################# GENERAL #####################################
+pidfile /var/run/redis_6379.pid
+loglevel notice
+#日志文件
+logfile &quot;/data/redis-master.log&quot;
+databases 16
+################################ SNAPSHOTTING  ################################
+save 3600 1 300 100 60 1
+#存储文件
+dbfilename redis_master_dump.rdb
+# Note that you must specify a directory here, not a file name.
+dir ./
+################################# REPLICATION #################################
+replica-serve-stale-data yes
+replica-read-only yes
+repl-diskless-sync yes
+repl-diskless-sync-delay 5
+repl-diskless-sync-max-replicas 0
+repl-diskless-load disabled
+repl-disable-tcp-nodelay no
+...
+</code></pre>
+<pre><code class="language-cmd">127.0.0.1:6379&gt; info server
+# Server
+redis_version:7.4.0
+redis_git_sha1:00000000
+redis_git_dirty:0
+redis_build_id:a4a1a8bba24ad866
+redis_mode:standalone
+os:Linux 6.8.0-40-generic x86_64
+arch_bits:64
+monotonic_clock:POSIX clock_gettime
+multiplexing_api:epoll
+atomicvar_api:c11-builtin
+gcc_version:12.2.0
+process_id:1
+process_supervised:no
+run_id:076e63887ee1e69251e0c523f27e2ee28399f9ee
+tcp_port:6379
+server_time_usec:1726197123775604
+uptime_in_seconds:1438
+uptime_in_days:0
+hz:10
+configured_hz:10
+lru_clock:14921091
+executable:/data/redis-server
+config_file:/usr/local/etc/redis/redis.conf
+io_threads_active:0
+listener0:name=tcp,bind=127.0.0.1,bind=-::1,port=6379
+</code></pre>
+<h4 id="主从模式"><a href="#主从模式" class="headerlink" title="主从模式"></a>主从模式</h4><img src="/.io//08/29/2024-08-29-Redis%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/master-salve.png" class>
+
+<pre><code class="language-shell">#使用自定义的网络
+#master
+docker run -d --name redis-master -v /home/docker/redis/config/redis-master.conf:/usr/local/etc/redis/redis.conf -v /home/docker/redis/data/:/data/ -v /home/docker/redis/logs:/usr/local/etc/redis/log/ --network inet -p 6379:6379 --rm  redis:7.4.0 redis-server /usr/local/etc/redis/redis.conf  &amp;&amp;
+#slave1
+docker run -d --name redis-slave1 -v /home/docker/redis/config/redis-slave1.conf:/usr/local/etc/redis/redis.conf -v /home/docker/redis/data/:/data/ -v /home/docker/redis/logs:/usr/local/etc/redis/log/ --network inet -p 6380:6379 --rm redis:7.4.0 redis-server /usr/local/etc/redis/redis.conf  &amp;&amp;
+#slave2
+docker run -d --name redis-slave2 -v /home/docker/redis/config/redis-slave2.conf:/usr/local/etc/redis/redis.conf -v /home/docker/redis/data/:/data/ -v /home/docker/redis/logs:/usr/local/etc/redis/log/ --network inet -p 6381:6379 --rm redis:7.4.0 redis-server /usr/local/etc/redis/redis.conf
+</code></pre>
+<pre><code class="language-conf">#redis.conf
+################################## NETWORK #####################################
+#不要用127.0.0.1 绑定具体的ip 否则无法通过redis-cli -h ip -p port 进行外部访问
+# bind 192.168.1.100 10.0.0.1     # listens on two specific IPv4 addresses
+# bind 127.0.0.1 ::1              # listens on loopback IPv4 and IPv6
+# bind * -::*                     # like the default, all available interfaces
+bind * -::*
+#关闭保护模式否则只能本机访问
+protected-mode no
+#master
+port 6379
+#salve1
+#port 6380
+#salve2
+#port 6381
+################################# GENERAL #####################################
+pidfile /var/run/redis_6379.pid
+#pidfile /var/run/redis_6380.pid
+#pidfile /var/run/redis_6381.pid
+
+loglevel notice
+#日志文件
+logfile &quot;/data/redis-master.log&quot;
+#logfile &quot;/data/redis-salve1.log&quot;
+#logfile &quot;/data/redis-salve2.log&quot;
+databases 16
+################################ SNAPSHOTTING  ################################
+save 3600 1 300 100 60 1
+#存储文件
+dbfilename redis_master_dump.rdb
+#dbfilename redis_salve1_dump.rdb
+#dbfilename redis_salve2_dump.rdb
+
+# Note that you must specify a directory here, not a file name.
+dir ./
+################################# REPLICATION #################################
+#当在从节点配置时指定master
+# replicaof &lt;masterip&gt; &lt;masterport&gt;
+#replicaof redis-master 6379
+...
+</code></pre>
+<pre><code class="language-cmd"> docker exec -it b822875a5056 redis-cli info REPLICATION
+# Replication
+role:master
+connected_slaves:2
+slave0:ip=172.18.0.3,port=6380,state=online,offset=14672,lag=0
+slave1:ip=172.18.0.4,port=6381,state=online,offset=14672,lag=0
+master_failover_state:no-failover
+master_replid:bff2af97b86f24cffb57550003a93538fd3aed59
+master_replid2:c85dd5eb038484fbd9faca0a429066a496722fec
+master_repl_offset:14672
+second_repl_offset:11859
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:11859
+repl_backlog_histlen:2814
+</code></pre>
+<h4 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h4><img src="/.io//08/29/2024-08-29-Redis%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/sentinel.png" class>
+
+<pre><code class="language-shell"># 在主从基础上加入哨兵
+#Sentinel1
+docker run -d --name redis-sentinel1 -v /home/docker/redis/config/redis-sentinel.conf:/usr/local/etc/redis/sentinel.conf  -v /home/docker/redis/logs/sentinel1.log:/tmp/sentinel.log  --network inet -p 26379:26379 --rm  redis:7.4.0 redis-sentinel /usr/local/etc/redis/sentinel.conf  &amp;&amp;
+#Sentinel2
+docker run -d --name redis-sentinel2 -v /home/docker/redis/config/redis-sentinel.conf:/usr/local/etc/redis/sentinel.conf  -v /home/docker/redis/logs/sentinel2.log:/tmp/sentinel.log  --network inet -p 26380:26379 --rm redis:7.4.0 redis-sentinel /usr/local/etc/redis/sentinel.conf  &amp;&amp;
+#Sentinel3
+docker run -d --name redis-sentinel3 -v /home/docker/redis/config/redis-sentinel.conf:/usr/local/etc/redis/sentinel.conf  -v /home/docker/redis/logs/sentinel3.log:/tmp/sentinel.log --network inet -p 26381:26379 --rm redis:7.4.0 redis-sentinel /usr/local/etc/redis/sentinel.conf 
+</code></pre>
+<pre><code class="language-conf">#sentinel.conf
+protected-mode no
+daemonize no
+pidfile /var/run/redis-sentinel.pid
+loglevel notice
+logfile &quot;/data/sentinel.log&quot;
+# dir &lt;working-directory&gt;
+dir /tmp
+#  监控的master的ip 端口 以及 需要几个sentinel同意
+#6.2 以上版本的 sentinel 才能解析主机名
+# sentinel monitor &lt;master-name&gt; &lt;ip&gt; &lt;redis-port&gt; &lt;quorum&gt;
+sentinel monitor mymaster redis-master 6379 2
+# HOSTNAMES SUPPORT 主机名支持
+SENTINEL resolve-hostnames yes
+#
+SENTINEL announce-hostnames yes
+...
+</code></pre>
+<pre><code class="language-shell">#master 正常时
+docker exec redis-master redis-cli info Replication
+# Replication
+role:master
+connected_slaves:2
+slave0:ip=172.18.0.3,port=6380,state=online,offset=103968,lag=0
+slave1:ip=172.18.0.4,port=6379,state=online,offset=103968,lag=0
+master_failover_state:no-failover
+master_replid:26974803eec7dc51775e322c38428771928691ae
+master_replid2:aa8b907c48b8501f8d8d5f895d4d359913c47897
+master_repl_offset:103968
+second_repl_offset:17260
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:17260
+repl_backlog_histlen:86709
+
+#master挂掉  redis-slave1 被选为master
+docker stop redis-master
+docker exec redis-slave1 redis-cli info Replication
+# Replication
+role:master
+connected_slaves:1
+slave0:ip=172.18.0.4,port=6379,state=online,offset=140844,lag=0
+master_failover_state:no-failover
+master_replid:b04d5e13f36a9d9dc8795cf15558b0b4b60f9260
+master_replid2:26974803eec7dc51775e322c38428771928691ae
+master_repl_offset:140844
+second_repl_offset:130355
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:17260
+repl_backlog_histlen:123585
+
+#master回归正常后 master 变为redis-slave1的从节点
+docker exec redis-slave1 redis-cli -p 6380 info Replication
+# Replication
+role:master
+connected_slaves:2
+slave0:ip=172.18.0.4,port=6379,state=online,offset=170223,lag=0
+slave1:ip=172.18.0.2,port=6379,state=online,offset=170223,lag=1
+master_failover_state:no-failover
+master_replid:b04d5e13f36a9d9dc8795cf15558b0b4b60f9260
+master_replid2:26974803eec7dc51775e322c38428771928691ae
+master_repl_offset:170358
+second_repl_offset:130355
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:17260
+repl_backlog_histlen:153099
+
+</code></pre>
+<h4 id="集群模式"><a href="#集群模式" class="headerlink" title="集群模式"></a>集群模式</h4><img src="/.io//08/29/2024-08-29-Redis%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/cluster.png" class>
+
+<pre><code class="language-shell">sudo sysctl vm.overcommit_memory=1
+
+#docker stop cluster1 cluster2 cluster3 cluster4 cluster5 cluster6
+docker run -d --name cluster1 -v /home/docker/redis/config/redis-cluster.conf:/usr/local/etc/redis/redis.conf -v /home/docker/redis/data/cluster1/:/data/  --network inet -p 6379:6379 -p ::16379  --rm  redis:7.4.0 redis-server /usr/local/etc/redis/redis.conf --cluster-announce-hostname cluster1 --cluster-announce-human-nodename cluster1\
+&amp;&amp;\
+docker run -d --name cluster2 -v /home/docker/redis/config/redis-cluster.conf:/usr/local/etc/redis/redis.conf -v /home/docker/redis/data/cluster2/:/data/  --network inet -p 6380:6379 -p ::16379  --rm redis:7.4.0 redis-server /usr/local/etc/redis/redis.conf  --cluster-announce-hostname cluster2 --cluster-announce-human-nodename cluster2\
+&amp;&amp;\
+docker run -d --name cluster3 -v /home/docker/redis/config/redis-cluster.conf:/usr/local/etc/redis/redis.conf -v /home/docker/redis/data/cluster3/:/data/  --network inet -p 6381:6379 -p ::16379  --rm redis:7.4.0 redis-server /usr/local/etc/redis/redis.conf  --cluster-announce-hostname cluster3 --cluster-announce-human-nodename cluster3\
+&amp;&amp;\
+docker run -d --name cluster4 -v /home/docker/redis/config/redis-cluster.conf:/usr/local/etc/redis/redis.conf -v /home/docker/redis/data/cluster4/:/data/  --network inet -p 6382:6379 -p ::16379  --rm redis:7.4.0 redis-server /usr/local/etc/redis/redis.conf  --cluster-announce-hostname cluster4 --cluster-announce-human-nodename cluster4\
+&amp;&amp;\
+docker run -d --name cluster5 -v /home/docker/redis/config/redis-cluster.conf:/usr/local/etc/redis/redis.conf -v /home/docker/redis/data/cluster5/:/data/  --network inet -p 6383:6379 -p ::16379  --rm redis:7.4.0 redis-server /usr/local/etc/redis/redis.conf  --cluster-announce-hostname cluster5 --cluster-announce-human-nodename cluster5\
+&amp;&amp;\
+docker run -d --name cluster6 -v /home/docker/redis/config/redis-cluster.conf:/usr/local/etc/redis/redis.conf -v /home/docker/redis/data/cluster6/:/data/  --network inet -p 6384:6379 -p ::16379  --rm redis:7.4.0 redis-server /usr/local/etc/redis/redis.conf  --cluster-announce-hostname cluster6 --cluster-announce-human-nodename cluster6
+# 执行加入集群命令
+# docker exec -it cluster1 redis-cli --cluster create  cluster1:6379 cluster2:6379 cluster3:6379 cluster4:6379 cluster5:6379 cluster6:6379   --cluster-replicas 1 
+#输入yes
+</code></pre>
+<pre><code class="language-conf">
+# 修改节点端口
+port 6379
+bind * -::*
+logfile &quot;/data/redis.log&quot;
+# 保护模式改为no，允许外部网络访问
+protected-mode no
+# 设置后台运行，改为yes
+daemonize no
+# pid文件路径配置
+pidfile /var/run/redis_6379.pid
+
+save 3600 1 300 100 60 1
+dbfilename redis_dump.rdb
+stop-writes-on-bgsave-error yes
+rdbcompression yes
+rdbchecksum yes
+
+
+# 开启集群模式
+cluster-enabled yes
+# 集群配置文件，根据端口不同修改
+cluster-config-file nodes-6379.conf
+#通过主机名找到集群
+cluster-preferred-endpoint-type hostname
+...
+</code></pre>
+<pre><code class="language-shell">#查看集群信息
+docker exec -it cluster1 redis-cli cluster info
+cluster_state:ok
+cluster_slots_assigned:16384
+cluster_slots_ok:16384
+cluster_slots_pfail:0
+cluster_slots_fail:0
+cluster_known_nodes:6
+cluster_size:3
+cluster_current_epoch:6
+cluster_my_epoch:1
+cluster_stats_messages_ping_sent:178
+cluster_stats_messages_pong_sent:172
+cluster_stats_messages_sent:350
+cluster_stats_messages_ping_received:172
+cluster_stats_messages_pong_received:178
+cluster_stats_messages_received:350
+total_cluster_links_buffer_limit_exceeded:0
+#
+docker exec -it cluster1 redis-cli cluster nodes
+49ae9c854a0122709c784a5653a7a7873d91db4e 172.18.0.7:6379@16379,cluster6 slave d450087aae42a2b9a724e92db72cd0c3402753e7 0 1726544317000 2 connected
+704651b58d37c065c848faf2a65580e78fec219e 172.18.0.4:6379@16379,cluster3 master - 0 1726544318000 3 connected 10923-16383
+2cdc0f8009cbc5fd39b12ef49a4010cb9dffbd35 172.18.0.5:6379@16379,cluster4 slave 704651b58d37c065c848faf2a65580e78fec219e 0 1726544316459 3 connected
+36e60ceae53ead77730569651a1780c7b518e9df 172.18.0.2:6379@16379,cluster1 myself,master - 0 0 1 connected 0-5460
+d450087aae42a2b9a724e92db72cd0c3402753e7 172.18.0.3:6379@16379,cluster2 master - 0 1726544318483 2 connected 5461-10922
+0dccee28bc5b8baa01568f13382cac380f0e66d9 172.18.0.6:6379@16379,cluster5 slave 36e60ceae53ead77730569651a1780c7b518e9df 0 1726544316000 1 connected
+
+
+# 直接连接会让你去cluster2上去操作
+zhangzhitong@zhangzhitong-virtual-machine:/home/docker$ docker exec cluster1 redis-cli get key1
+MOVED 9189 cluster2:6379
+#集群方式连接redis-cli -c
+zhangzhitong@zhangzhitong-virtual-machine:/home/docker$ docker exec cluster1 redis-cli -c get key1
+
+zhangzhitong@zhangzhitong-virtual-machine:/home/docker$ docker exec cluster1 redis-cli -c set key1 zzt
+OK
+zhangzhitong@zhangzhitong-virtual-machine:/home/docker$ docker exec cluster1 redis-cli -c get key1
+zzt
+</code></pre>
+<h5 id="哈希槽hashslot"><a href="#哈希槽hashslot" class="headerlink" title="哈希槽hashslot"></a>哈希槽hashslot</h5><blockquote>
+<p>Redis 集群并没有使用一致性 hash，而是引入了哈希槽的概念。Redis 集群有 16384（2^14）个哈<br>希槽，每个 key 通过 CRC16 校验后对 16384 取模来决定放置哪个槽，集群的每个节点负责一部分<br>hash 槽。<br>集群使用公式slot&#x3D;CRC16（key）&#x2F;16384来计算key属于哪个槽，其中CRC16(key)语句用于计算key的CRC16 校验和</p>
+</blockquote>
+<h5 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h5><blockquote>
+<p>RDB：RDB是Redis默认的持久化方式。按照一定的时间周期策略把内存的数据以快照的形式保存到硬盘的二进制文件。即Snapshot快照存储，对应产生的数据文件为dump.rdb，通过配置文件中的save参数来定义快照的周期。（ 快照可以是其所表示的数据的一个副本，也可以是数据的一个复制品。）</p>
+</blockquote>
+<blockquote>
+<p>AOF：Redis会将每一个收到的写命令都通过Write函数追加到文件最后，类似于MySQL的binlog。当Redis重启是会通过重新执行文件中保存的写命令来在内存中重建整个数据库的内容。 当两种方式同时开启时，数据恢复Redis会优先选择AOF恢复。</p>
+</blockquote>
+<h2 id="Redis常见问题汇总及解决方案"><a href="#Redis常见问题汇总及解决方案" class="headerlink" title="Redis常见问题汇总及解决方案"></a><em>Redis常见问题汇总及解决方案</em></h2><h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a><strong>缓存穿透</strong></h3><blockquote>
+<p>数据从缓存中查不到之直接查库仍然未查到  可以通过布隆过滤器解决 </p>
+</blockquote>
+<h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a><strong>缓存雪崩</strong></h3><blockquote>
+<p>大量数据从缓存中失效掉 导致数据库被大量访问</p>
+</blockquote>
+<h3 id="如何利用jvm内存和redis做二级缓存-并且保证缓存数据的一致性"><a href="#如何利用jvm内存和redis做二级缓存-并且保证缓存数据的一致性" class="headerlink" title="如何利用jvm内存和redis做二级缓存 并且保证缓存数据的一致性"></a><strong>如何利用jvm内存和redis做二级缓存 并且保证缓存数据的一致性</strong></h3><h3 id="发现大key"><a href="#发现大key" class="headerlink" title="发现大key"></a><strong>发现大key</strong></h3><blockquote>
+<p>bigkey 是指键值占用内存空间非常大的 key。通过命令可以找出</p>
+</blockquote>
+<pre><code class="language-shell">#迭代数据库中的所有键，并为每种类型（字符串、列表、集合、有序集合和哈希）报告最大的键和其大小。
+redis-cli --bigkeys
+</code></pre>
+<h3 id="DB和缓存的一致性问题"><a href="#DB和缓存的一致性问题" class="headerlink" title="DB和缓存的一致性问题"></a><strong>DB和缓存的一致性问题</strong></h3><blockquote>
+<p>1.先删除缓存，再更新数据库。如果数据库更新失败了，那么数据库中是旧数据，缓存中是空的，那数据就不会不一致。因为读的时候缓存没有，所以去读了数据库中的旧数据，然后更新到缓存中 2.在高并发时 会出现 一个请求删除了缓存 但在数据写操作未完成时 另一个请求将数据库中的旧值再次写入缓存 导致缓存和数据库不一致。 此时可以对操作进行加锁 保证一个请求的删除和写数据库完成时另一个在去读，或者对同一数据的操作路由分发到同一台机器 将写读操作写入队列 顺序完成 保证数据一致性 同时也会导致请求的倾斜.</p>
+</blockquote>
+<h4 id="延迟双删"><a href="#延迟双删" class="headerlink" title="延迟双删"></a>延迟双删</h4><blockquote>
+<p>先删除缓存 再写数据库 再延迟删除缓存 出现不一致情况较小</p>
+</blockquote>
+<h4 id="异步更新缓存"><a href="#异步更新缓存" class="headerlink" title="异步更新缓存"></a>异步更新缓存</h4><blockquote>
+<p>MySQL binlog 配合canal+kafka增量订阅消费-&gt;消息队列&gt;增量数据更新到redis<br>– </p>
+</blockquote>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2025 zzt
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="Toggle full screen shortcut key s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

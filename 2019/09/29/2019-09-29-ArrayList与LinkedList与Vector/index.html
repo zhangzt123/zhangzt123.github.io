@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>2019-09-29-ArrayList与LinkedList与Vector | Hexo</title>
+  <meta name="keywords" content=" 集合 ">
+  <meta name="description" content="2019-09-29-ArrayList与LinkedList与Vector | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="千里之行 始于足下">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://zhangzt123.github.io/archives/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="千里之行 始于足下">
+<meta property="og:locale">
+<meta property="article:author" content="哎呦不错哟">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>哎呦不错哟</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(50)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="-服务器">
+            
+            -服务器
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-前端">
+            
+            -前端
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-数据库">
+            
+            -数据库
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-JAVA -Junit -单元测试">
+            
+            -JAVA -Junit -单元测试
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="-spring">
+            
+            -spring
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="计算机组成">
+            
+            计算机组成
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据结构">
+            
+            数据结构
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Docker">
+            
+            Docker
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Go语言">
+            
+            Go语言
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="JAVA">
+            
+            JAVA
+            <small>(14)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MQ">
+            <i class="fold iconfont icon-right"></i>
+            MQ
+            <small>(2)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="MQ&lt;---&gt;消息中间件">
+            
+            消息中间件
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Redis">
+            
+            Redis
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="50">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="search shortcut key i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="switch to outline view shortcut key w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="return"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="case sensitive"></i>
+            <i class="iconfont icon-tag" data-title="label"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">outline</div>
+            <i class="iconfont icon-list" data-title="switch to article list"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-定时任务 -Quartz</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-工作流 -Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-异常处理 -异常</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-HTML</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-Junit</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-mock -junit</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-MYSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-Oracle</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>-weblogic -oracle</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>高并发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>缓存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>集合</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ElatsicSearch</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>es</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>gitlib</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Go语言</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java基础</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>JVM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Kafka</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MessageDigest</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PostgreSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Rabbitmq</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Redis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sonar</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Spring</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>zookeeper</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/01/01/2025-01-01-Minio/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Minio">Minio</span>
+            <span class="post-date" title="2025-01-01 17:20:03">2025/01/01</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/12/26/2024-12-26-KingBaseEs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="KingBaseEs">KingBaseEs</span>
+            <span class="post-date" title="2024-12-26 08:48:16">2024/12/26</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/12/02/2024-12-02-Artifactory/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2024-12-02-Artifactory">2024-12-02-Artifactory</span>
+            <span class="post-date" title="2024-12-02 13:45:20">2024/12/02</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/27/2024-11-27-PostgreSQL/"
+           data-tag="PostgreSQL"
+           data-author="" >
+            <span class="post-title" title="2024-11-27-PostgreSQL">2024-11-27-PostgreSQL</span>
+            <span class="post-date" title="2024-11-27 15:49:01">2024/11/27</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/27/2024-11-27-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/"
+           data-tag="gitlib,sonar"
+           data-author="" >
+            <span class="post-title" title="自动化质量分析">自动化质量分析</span>
+            <span class="post-date" title="2024-11-27 13:47:59">2024/11/27</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/11/04/2024-11-04-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式事务">分布式事务</span>
+            <span class="post-date" title="2024-11-04 10:18:00">2024/11/04</span>
+        </a>
+        
+        
+        <a  class="All MQ 消息中间件 "
+           href="/2024/10/23/2024-10-23-kafka%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="Kafka"
+           data-author="" >
+            <span class="post-title" title="kafka的介绍及使用">kafka的介绍及使用</span>
+            <span class="post-date" title="2024-10-23 14:31:43">2024/10/23</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/10/05/2024-10-05-Pytorch/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Pytorch">Pytorch</span>
+            <span class="post-date" title="2024-10-05 15:03:44">2024/10/05</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/09/06/2024-09-06-ElatsicSearch%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"
+           data-tag="ElatsicSearch,es"
+           data-author="" >
+            <span class="post-title" title="ElatsicSearch使用及相关问题">ElatsicSearch使用及相关问题</span>
+            <span class="post-date" title="2024-09-06 10:00:26">2024/09/06</span>
+        </a>
+        
+        
+        <a  class="All Redis "
+           href="/2024/08/29/2024-08-29-Redis%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"
+           data-tag="Redis,缓存"
+           data-author="" >
+            <span class="post-title" title="Redis使用及相关问题">Redis使用及相关问题</span>
+            <span class="post-date" title="2024-08-29 14:44:32">2024/08/29</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2024/08/29/2024-08-29-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%BA%94)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(五)">从零开始学docker(五)</span>
+            <span class="post-date" title="2024-08-29 14:44:32">2024/08/29</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E5%9B%9B)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(四)">从零开始学docker(四)</span>
+            <span class="post-date" title="2023-01-26 10:59:32">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%89)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(三)">从零开始学docker(三)</span>
+            <span class="post-date" title="2023-01-26 10:52:49">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%BA%8C)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(二)">从零开始学docker(二)</span>
+            <span class="post-date" title="2023-01-26 10:50:21">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2023/01/26/2023-01-26-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6docker(%E4%B8%80)/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="从零开始学docker(一)">从零开始学docker(一)</span>
+            <span class="post-date" title="2023-01-26 10:49:01">2023/01/26</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2021/08/25/2021-08-25-HTTP/"
+           data-tag="-MYSQL"
+           data-author="" >
+            <span class="post-title" title="HTTP">HTTP</span>
+            <span class="post-date" title="2021-08-25 14:33:27">2021/08/25</span>
+        </a>
+        
+        
+        <a  class="All -JAVA -Junit -单元测试 "
+           href="/2021/08/25/2021-08-27-Mockito/"
+           data-tag="-Junit"
+           data-author="" >
+            <span class="post-title" title="Mockito&amp;&amp;PowerMockito">Mockito&amp;&amp;PowerMockito</span>
+            <span class="post-date" title="2021-08-25 14:33:27">2021/08/25</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2021/06/19/2021-07-20-Mysql%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag="-MYSQL"
+           data-author="" >
+            <span class="post-title" title="Mysql安装以及常用命令">Mysql安装以及常用命令</span>
+            <span class="post-date" title="2021-06-19 14:33:27">2021/06/19</span>
+        </a>
+        
+        
+        <a  class="All -前端 "
+           href="/2020/12/26/2020-12-26-%E5%89%8D%E7%AB%AF%E9%81%87%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"
+           data-tag="-HTML"
+           data-author="" >
+            <span class="post-title" title="前端遇见问题总结">前端遇见问题总结</span>
+            <span class="post-date" title="2020-12-26 13:44:59">2020/12/26</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2020/11/29/2020-11-29-%E6%95%B0%E6%8D%AE%E5%BA%93%E9%81%87%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"
+           data-tag="-Oracle"
+           data-author="" >
+            <span class="post-title" title="数据库遇见问题总结">数据库遇见问题总结</span>
+            <span class="post-date" title="2020-11-29 15:55:10">2020/11/29</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/10/14/2020-10-14-Activiti%E5%B7%A5%E4%BD%9C%E6%B5%81/"
+           data-tag="-工作流 -Activiti"
+           data-author="" >
+            <span class="post-title" title="Activiti工作流">Activiti工作流</span>
+            <span class="post-date" title="2020-10-14 15:34:05">2020/10/14</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/09/01/2020-09-01-Quartz%E9%9B%86%E7%BE%A4/"
+           data-tag="-定时任务 -Quartz"
+           data-author="" >
+            <span class="post-title" title="Quartz集群">Quartz集群</span>
+            <span class="post-date" title="2020-09-01 11:49:29">2020/09/01</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/18/2020-08-18-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"
+           data-tag="-异常处理 -异常"
+           data-author="" >
+            <span class="post-title" title="spring统一异常处理">spring统一异常处理</span>
+            <span class="post-date" title="2020-08-18 09:10:11">2020/08/18</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/07/2020-08-07-spring%E4%BA%8B%E5%8A%A1/"
+           data-tag="-事务"
+           data-author="" >
+            <span class="post-title" title="spring事务">spring事务</span>
+            <span class="post-date" title="2020-08-07 10:50:40">2020/08/07</span>
+        </a>
+        
+        
+        <a  class="All -spring "
+           href="/2020/08/05/2020-08-05-springMock%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag="-mock -junit"
+           data-author="" >
+            <span class="post-title" title="springMock的使用">springMock的使用</span>
+            <span class="post-date" title="2020-08-05 09:10:50">2020/08/05</span>
+        </a>
+        
+        
+        <a  class="All -服务器 "
+           href="/2020/07/13/2020-07-13-%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86weblogic/"
+           data-tag="-weblogic -oracle"
+           data-author="" >
+            <span class="post-title" title="重新认识weblogic">重新认识weblogic</span>
+            <span class="post-date" title="2020-07-13 14:59:34">2020/07/13</span>
+        </a>
+        
+        
+        <a  class="All -数据库 "
+           href="/2020/06/19/2020-06-19-Oracle%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag="-Oracle"
+           data-author="" >
+            <span class="post-title" title="Oracle常用命令">Oracle常用命令</span>
+            <span class="post-date" title="2020-06-19 14:33:27">2020/06/19</span>
+        </a>
+        
+        
+        <a  class="All MQ 消息中间件 "
+           href="/2020/04/28/2020-04-28-Rabbitmq%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="Rabbitmq"
+           data-author="" >
+            <span class="post-title" title="Rabbitmq的介绍及使用">Rabbitmq的介绍及使用</span>
+            <span class="post-date" title="2020-04-28 14:29:48">2020/04/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/04/28/2020-04-28-Spring%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Spring初始化的几种方式">Spring初始化的几种方式</span>
+            <span class="post-date" title="2020-04-28 11:17:17">2020/04/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2020/04/20/2020-04-20-springboot%E4%B8%8Bredis%E7%9A%84%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="springboot下redis的使用">springboot下redis的使用</span>
+            <span class="post-date" title="2020-04-20 11:40:41">2020/04/20</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2020/03/08/2020-03-08-MessageDigest%E7%B1%BB/"
+           data-tag="MessageDigest"
+           data-author="" >
+            <span class="post-title" title="MessageDigest类">MessageDigest类</span>
+            <span class="post-date" title="2020-03-08 21:32:22">2020/03/08</span>
+        </a>
+        
+        
+        <a  class="All Go语言 "
+           href="/2020/03/01/2020-03-01-Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"
+           data-tag="Go语言"
+           data-author="" >
+            <span class="post-title" title="Go语言基础语法">Go语言基础语法</span>
+            <span class="post-date" title="2020-03-01 16:27:17">2020/03/01</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/27/2020-02-29-AbstractApplicationContext/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="AbstractApplicationContext">AbstractApplicationContext</span>
+            <span class="post-date" title="2019-11-27 16:28:09">2019/11/27</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/21/2020-02-29-SpringDispatcherServlet/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="SpringDispatcherServlet">SpringDispatcherServlet</span>
+            <span class="post-date" title="2019-11-21 18:48:06">2019/11/21</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2019/11/11/2020-02-29-zookeeper%E9%9B%86%E7%BE%A4%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/"
+           data-tag="zookeeper"
+           data-author="" >
+            <span class="post-title" title="zookeeper集群的安装配置及使用">zookeeper集群的安装配置及使用</span>
+            <span class="post-date" title="2019-11-11 18:48:06">2019/11/11</span>
+        </a>
+        
+        
+        <a  class="All Docker "
+           href="/2019/11/08/2020-02-29-Docker%E4%B8%8B%E7%9A%84gitlib%E5%AE%89%E8%A3%85%E5%8F%8Agit%E4%BD%BF%E7%94%A8/"
+           data-tag="Docker,gitlib"
+           data-author="" >
+            <span class="post-title" title="Docker下的gitlib安装及git使用">Docker下的gitlib安装及git使用</span>
+            <span class="post-date" title="2019-11-08 18:21:03">2019/11/08</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-ClassPathXmlApplicationContext/"
+           data-tag="Spring"
+           data-author="" >
+            <span class="post-title" title="ClassPathXmlApplicationContext">ClassPathXmlApplicationContext</span>
+            <span class="post-date" title="2019-11-04 22:43:03">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-java%E7%9A%84%E8%89%BA%E6%9C%AF-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="java的艺术-设计模式">java的艺术-设计模式</span>
+            <span class="post-date" title="2019-11-04 18:05:18">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/11/04/2020-02-29-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%B8%89)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(三)">从零开始的高并发之路(三)</span>
+            <span class="post-date" title="2019-11-04 16:28:09">2019/11/04</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/16/2019-10-16-java%E5%9F%BA%E7%A1%80%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"
+           data-tag="java基础"
+           data-author="" >
+            <span class="post-title" title="java基础查漏补缺">java基础查漏补缺</span>
+            <span class="post-date" title="2019-10-16 23:47:29">2019/10/16</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/16/2019-10-16-set%E9%9B%86%E5%90%88%E4%B9%8Bhashset/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="2019-10-16-set集合之hashset">2019-10-16-set集合之hashset</span>
+            <span class="post-date" title="2019-10-16 22:43:03">2019/10/16</span>
+        </a>
+        
+        
+        <a  class="All Go语言 "
+           href="/2019/10/15/2019-10-15-%E5%88%9D%E8%AF%86Go%E8%AF%AD%E8%A8%80/"
+           data-tag="Go语言"
+           data-author="" >
+            <span class="post-title" title="初识Go语言-环境配置">初识Go语言-环境配置</span>
+            <span class="post-date" title="2019-10-15 15:38:01">2019/10/15</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/14/2019-10-14-HashMap/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="浅析HashMap">浅析HashMap</span>
+            <span class="post-date" title="2019-10-14 15:06:50">2019/10/14</span>
+        </a>
+        
+        
+        <a  class="All 数据结构 "
+           href="/2019/10/10/2019-10-10-%E7%BA%A2%E9%BB%91%E6%A0%91%E7%AE%97%E6%B3%95/"
+           data-tag="算法"
+           data-author="" >
+            <span class="post-title" title="红黑树算法">红黑树算法</span>
+            <span class="post-date" title="2019-10-10 20:53:57">2019/10/10</span>
+        </a>
+        
+        
+        <a  class="All 计算机组成 "
+           href="/2019/10/03/2019-10-03-java%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="java二进制基础知识">java二进制基础知识</span>
+            <span class="post-date" title="2019-10-03 13:37:43">2019/10/03</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/02/2019-10-01-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%B8%80)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(一)">从零开始的高并发之路(一)</span>
+            <span class="post-date" title="2019-10-02 16:28:09">2019/10/02</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/10/01/2019-10-16-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E8%B7%AF(%E4%BA%8C)/"
+           data-tag="多线程,高并发"
+           data-author="" >
+            <span class="post-title" title="从零开始的高并发之路(二)">从零开始的高并发之路(二)</span>
+            <span class="post-date" title="2019-10-01 16:28:09">2019/10/01</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/30/2019-09-30-JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AF%A6%E8%A7%A3/"
+           data-tag="JVM"
+           data-author="" >
+            <span class="post-title" title="JVM 虚拟机详解(一)">JVM 虚拟机详解(一)</span>
+            <span class="post-date" title="2019-09-30 10:28:30">2019/09/30</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/29/2019-09-29-ArrayList%E4%B8%8ELinkedList%E4%B8%8EVector/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="2019-09-29-ArrayList与LinkedList与Vector">2019-09-29-ArrayList与LinkedList与Vector</span>
+            <span class="post-date" title="2019-09-29 12:12:54">2019/09/29</span>
+        </a>
+        
+        
+        <a  class="All JAVA "
+           href="/2019/09/29/2019-09-29-%E6%B5%85%E6%9E%90java%E9%9B%86%E5%90%88/"
+           data-tag="集合"
+           data-author="" >
+            <span class="post-title" title="浅析java集合">浅析java集合</span>
+            <span class="post-date" title="2019-09-29 12:12:54">2019/09/29</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="Toggle full screen shortcut key s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-2019-09-29-ArrayList与LinkedList与Vector" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">2019-09-29-ArrayList与LinkedList与Vector</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="JAVA">JAVA</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color3">集合</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2019-10-20 17:04:49'>2019-09-29 12:12</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%8F%E8%A8%80"><span class="toc-text">序言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E5%85%B3%E7%B3%BB%E5%9B%BE"><span class="toc-text">集合关系图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ArrayList%E5%92%8CVector"><span class="toc-text">ArrayList和Vector</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LinkedList"><span class="toc-text">LinkedList</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a><strong>序言</strong></h1><blockquote>
+<p>&emsp;&emsp;在我们的日常编码中，ArrayList、LinkedList、Vector 这三个是我们经常使用的几个集合，通常，我们会定义一个ArrayList类来存储一个对象的集合，那么 ，他和数组之间有什么不同呢，我们知道，ArrayList和LinkedList之间，当我们在不考虑线程安全情况下，我们通过是要做频繁的操作还是对的数据频繁的查找速度来判断是否采用哪个合适，这又是为什么呢，在多线程的情况下，为什么说ArrayList线程不安全呢，  接下来，带着这些问题， 我将带着大家从源码角度逐步分析，慢慢揭开他们神秘的面纱。</p>
+</blockquote>
+<h1 id="集合关系图"><a href="#集合关系图" class="headerlink" title="集合关系图"></a><strong>集合关系图</strong></h1><blockquote>
+<p>  &emsp;&emsp;我们看这样一幅简图， 图中我们可以看出三者关系，ArrayList，Vector和LinkedList分别继承AbstractListList和AbstractSequentialList ，三者都实现了List接口。 在继续之前，我们先来学习些基础的<a href="https://zhangzt123.github.io/2019/10/03/2019-10-03-java%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">位运算知识</a>吧</p>
+</blockquote>
+<img src="/.io//09/29/2019-09-29-ArrayList%E4%B8%8ELinkedList%E4%B8%8EVector/%E5%9B%BE%E4%B8%80.jpg" class title="图1">
+
+<h2 id="ArrayList和Vector"><a href="#ArrayList和Vector" class="headerlink" title="ArrayList和Vector"></a><strong>ArrayList和Vector</strong></h2><blockquote>
+<p>平时，我们在使用ArrayList时候，我们可以常使用 add方法，可get方法，remove方法，等来操作ArrayList的数据。此处 ，我们可以采用数组模拟这样一个集合。如下虽然游标位置有所不同但确实实现了类似arraylist的效果。</p>
+</blockquote>
+<pre><code class="language-java">/**
+ * @author zhangzt
+ */
+public class MyArrayList &#123;
+	//初始化一个大小为10的数组
+	MyArrayList()&#123;
+		data=new Object[10];
+	&#125;
+	//数据的集合
+	Object[] data;
+	//MyArrayList的大小 int默认值为0
+	int size;
+	//添加数据
+	public void add(Object obj)
+	&#123;
+		//判断要插入数据是否满足data数组的大小 不满足需要自动扩容
+		int temp =size+1;
+		if(temp&gt;data.length)// 判断范围
+		&#123;
+			//扩容
+			copy(data,data.length*2);
+		&#125;
+		//满足条件就把数据插入数组
+		data[size++]=obj;
+	&#125;
+	//获取指定位置的数据
+	public Object get(int index)
+	&#123;
+		if(index&lt;=size) &#123;
+			return data[index-1];
+		&#125;else &#123;return null;&#125;
+	&#125;
+	//移除指定位置的数据
+	public boolean remove(int index)
+	&#123;
+		if(index&lt;=size)&#123; // 判断是否在MyArrayList 大小范围里
+		data[index-1]=null;
+		for(int i=index-1;i&lt;data.length;i++)
+		&#123;
+			data[i]=i+1&gt;=data.length?null:data[i+1];
+		&#125;
+			size--;
+			return true;
+		&#125;else
+		&#123;
+			return false;
+		&#125;
+	&#125;
+	//复制数组到新数组
+	private void copy(Object[] olddata, int i) &#123;
+		if (olddata != null &amp;&amp; i &gt; olddata.length) &#123;
+			Object[] newdata = new Object[i];
+			for (int j = 0; j &lt; olddata.length; j++) &#123;
+				newdata[j] = olddata[j];
+			&#125;
+			data = newdata;
+		&#125;
+	&#125;
+&#125;
+
+class MyArrayListTest&#123;
+	public static MyArrayList myArrayList = new MyArrayList();
+	public static void main(String[] args) &#123;
+		myArrayList.add(&quot;11&quot;);
+		myArrayList.add(&quot;12&quot;);
+		myArrayList.add(&quot;13&quot;);
+		myArrayList.add(&quot;14&quot;);
+		myArrayList.add(&quot;15&quot;);
+		System.out.println(myArrayList.size);
+		System.out.println(&quot;第一个元素&quot;+myArrayList.get(1));
+		System.out.println( &quot;第二个元素&quot;+myArrayList.get(2));
+		myArrayList.remove(1);
+		System.out.println(&quot;第一个元素&quot;+myArrayList.get(1));
+////////////////////////////////////////////////////////
+		ArrayList&lt;String&gt; arrayList= new ArrayList&lt;&gt;();
+		arrayList.add(&quot;11&quot;);
+		arrayList.add(&quot;12&quot;);
+		arrayList.add(&quot;13&quot;);
+		arrayList.add(&quot;14&quot;);
+		arrayList.add(&quot;15&quot;);
+		System.out.println(arrayList.size());
+		System.out.println(&quot;第一个元素&quot;+arrayList.get(1));
+		System.out.println( &quot;第二个元素&quot;+arrayList.get(2));
+		arrayList.remove(1);
+		System.out.println(&quot;第一个元素&quot;+arrayList.get(1));
+	&#125;
+		&#125;
+</code></pre>
+<blockquote>
+<p>接下来我们看下在真正的Arraylist中是如何实现的。首先我们可以看到他有很多的成员变量，其中最为重要的就是elementData和size 分别表示存储的数据和大小。</p>
+</blockquote>
+<pre><code class="language-java"> /**
+     * Default initial capacity.
+     * 默认初始化的容量大小
+     */
+    private static final int DEFAULT_CAPACITY = 10;
+    /**
+     * Shared empty array instance used for empty instances.
+     * 为 ArrayList(int initialCapacity) 分配一个空数组
+     */
+    private static final Object[] EMPTY_ELEMENTDATA = &#123;&#125;;
+    /**
+     * Shared empty array instance used for default sized empty instances. We
+     * distinguish this from EMPTY_ELEMENTDATA to know how much to inflate when
+     * first element is added.
+     *为ArrayList()分配一个空数组  通过当第一次add()时扩容来区分EMPTY_ELEMENTDATA
+     */
+    private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = &#123;&#125;;
+    /**
+     * The array buffer into which the elements of the ArrayList are stored.
+     * The capacity of the ArrayList is the length of this array buffer. Any
+     * empty ArrayList with elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA
+     * will be expanded to DEFAULT_CAPACITY when the first element is added.
+     *任何一个ArrayList都用它存储，他的容量就是ArrayList的容量，任何一个ArrayList
+     *的elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA 当第一次add()时
+     *将扩容到DEFAULT_CAPACITY（10）
+     */
+    transient Object[] elementData; // non-private to simplify nested class access
+    /**
+     * The size of the ArrayList (the number of elements it contains).
+     *  ArrayList的大小 
+     * @serial
+     */
+    private int size;
+    
+</code></pre>
+<blockquote>
+<p>*<strong>NOTE:</strong> transient 表示成员变量不参与序列化过程。</p>
+</blockquote>
+<blockquote>
+<p>*<strong>NOTE:</strong> 声明的变量是临时变量是不会初始化的，只有类的成员变量才会被初始化 eg：ArrayList的size 全局默认为0</p>
+</blockquote>
+<pre><code class="language-java">/**
+    * Appends the specified element to the end of this list.
+    * 追加明确的元素到list最后
+    * @param e element to be appended to this list
+    * @return &lt;tt&gt;true&lt;/tt&gt; (as specified by &#123;@link Collection#add&#125;)
+    */
+   public boolean add(E e) &#123;
+       ensureCapacityInternal(size + 1);  // Increments modCount!! 扩容
+       elementData[size++] = e;
+       return true;
+   &#125;
+</code></pre>
+<pre><code class="language-java">
+private void ensureCapacityInternal(int minCapacity) &#123;
+       if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) &#123;//判断是不是初始那个数组（第一次add）
+           minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);//和初始化大小比较取大的
+       &#125;
+
+       ensureExplicitCapacity(minCapacity);
+   &#125;
+</code></pre>
+<pre><code class="language-java">private void ensureExplicitCapacity(int minCapacity) &#123;
+       modCount++;
+       // overflow-conscious code
+       if (minCapacity - elementData.length &gt; 0)//判断是否大于现在的大小
+           grow(minCapacity);
+   &#125;
+</code></pre>
+<pre><code class="language-java">private void grow(int minCapacity) &#123;
+       // overflow-conscious code
+       int oldCapacity = elementData.length;
+	//假设旧的大小为10 
+       int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1); 
+	//10&gt;&gt;1  10 右移 1
+	// 1010 --&gt; 0101 --&gt;5 十进制
+	//扩容后的为10 + 5 =15 扩容到15 原来的1.5倍
+       if (newCapacity - minCapacity &lt; 0)
+           newCapacity = minCapacity;
+       if (newCapacity - MAX_ARRAY_SIZE &gt; 0)
+           newCapacity = hugeCapacity(minCapacity);
+       // minCapacity is usually close to size, so this is a win:
+       elementData = Arrays.copyOf(elementData, newCapacity);//数组复制
+	//Arrays.copyof 最终调用System.arraycopy 这是个native方法 
+	//所有他会调用底层c++ 的 复制方法把一个数组向另一个数组复制
+   &#125;
+</code></pre>
+<pre><code class="language-java">public static void arraycopy(Object src,int srcPos,Object dest, int destPos,int length)
+/*
+*Object src：源数组
+*int srcPos：源数组下标
+*Object dest：目标数组
+*int destPos：目标数组下标
+*int length：复制的长度
+* 
+*/
+</code></pre>
+<blockquote>
+<p>接下来我们看get和remove方法</p>
+</blockquote>
+<pre><code class="language-java">//获取指定位置元素
+public E get(int index) &#123;
+       rangeCheck(index);
+
+       return elementData(index);
+   &#125;
+//移除指定位置元素 返回指定位置的旧值
+public E remove(int index) &#123;
+           rangeCheck(index);
+       modCount++;//迭代器使用暂不考虑
+       E oldValue = elementData(index);//获得旧值
+
+       int numMoved = size - index - 1;
+       if (numMoved &gt; 0)
+           System.arraycopy(elementData, index+1, elementData, index,
+                            numMoved);//将自己的被删除位置向前复制一个位置，复制numMoved长度
+       elementData[--size] = null; // 置为null触发GC
+
+       return oldValue;
+    &#125;
+//校验移除的值是否是list的范围里
+private void rangeCheck(int index) &#123;
+       if (index &gt;= size)
+           throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+   &#125;
+</code></pre>
+<pre><code class="language-java">//和删除同理
+public void add(int index, E element) &#123;
+       rangeCheckForAdd(index);
+
+       ensureCapacityInternal(size + 1);  // Increments modCount!!
+       System.arraycopy(elementData, index, elementData, index + 1,
+                        size - index);
+       elementData[index] = element;
+       size++;
+   &#125;
+</code></pre>
+<blockquote>
+<p>看到这可能有很多让人会问他和数组间到底有啥区别呢，就我个人理解他们的区别在于数组的灵活性没有ArrayList高，如果你想在数组的指定位置插入数据将会非常的麻烦，而且我们知道，要声明一个数组就需要指定数组的大小，那么我们无法准确的确定这个值到底应该是多大，所有就可能会出现不够用，或浪费内存的问题，而ArrayList的自动扩缩容解决了这个问题。使之更加灵活，但相对数组会有微量的性能的牺牲。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>接着，我们查看Vector的源码，我们看到，他和ArrayList拥有类似的方法，唯一较为特别的地方就是每个方法上都拥有synchronized关键字，他表示这个方法是同步的，，这时就涉及到了在多线程的环境下，为什么说ArrayList是不安全的，Vector是安全的，我们回看ArrayList的add方法，我们注意到，集合大小的增加采用size++ 的方式，size++表示我们首先要先将size加载到内存中，然后在执行加操作，也就是说这不是个原子性的操作，例如，启动了2个线程，线程A先把size加载到工作内存中，线程B也把size加载到工作内存中，当A执行完毕返回后，由于B线程中所使用的并不是A加完之后的结果，所有会导致，A线程添加的数据会被B线程替换掉，导致数据错乱，产生非常严重的后果。在Vector中，add方法被synchronized修饰，通过锁保证了size++的原子性，表示当A 正在执行的时候，B是不可以执行add操作的，会在add方法上添加monitorenter 和monitorexit 阻塞B的执行,B等待A执行完毕后再次执行add的操作。</p>
+</blockquote>
+<pre><code class="language-java">public synchronized boolean add(E e) &#123;
+        modCount++;
+        ensureCapacityHelper(elementCount + 1);
+        elementData[elementCount++] = e;
+        return true;
+    &#125;
+</code></pre>
+<hr>
+<h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a><strong>LinkedList</strong></h2><blockquote>
+<p>linkedlist由一个双向链表组成，他的每个节点包含指向它上一个的节点和指向下一个的节点。他与Arraylist不同，并非由连续的内存组成。LinkedList初始化可通过 LinkedList() 和LinkedList(Collection&lt;? extends E&gt; c) 两种方式，两种方式都没有初始化LinkedList大小的方法。说明LinkedList自动扩展大小的。</p>
+</blockquote>
+
+
+<pre><code class="language-java">//LinkedList大小
+transient int size = 0;
+
+    /**
+    指向第一个元素
+     * Pointer to first node.
+     * Invariant: (first == null &amp;&amp; last == null) ||
+     *            (first.prev == null &amp;&amp; first.item != null)
+     */
+    transient Node&lt;E&gt; first;
+
+    /**指向最后一个元素
+     * Pointer to last node.
+     * Invariant: (first == null &amp;&amp; last == null) ||
+     *            (last.next == null &amp;&amp; last.item != null)
+     */
+    transient Node&lt;E&gt; last;
+
+/**初始化一个空的list
+     * Constructs an empty list.
+     */
+    public LinkedList() &#123;
+    &#125;
+
+    /**通过一个特殊的集合构建一个list
+     * Constructs a list containing the elements of the specified
+     * collection, in the order they are returned by the collection&#39;s
+     * iterator.
+     *
+     * @param  c the collection whose elements are to be placed into this list
+     * @throws NullPointerException if the specified collection is null
+     */
+    public LinkedList(Collection&lt;? extends E&gt; c) &#123;
+        this();
+        addAll(c);
+    &#125;
+
+     public boolean addAll(Collection&lt;? extends E&gt; c) &#123;
+        return addAll(size, c);
+    &#125;
+
+     public boolean addAll(int index, Collection&lt;? extends E&gt; c) &#123;
+        checkPositionIndex(index);
+
+        Object[] a = c.toArray();
+        int numNew = a.length;
+        if (numNew == 0)
+            return false;
+
+        Node&lt;E&gt; pred, succ;
+        if (index == size) &#123;//如果要添加的位置和集合大小相同 则从last开始添加新节点
+            succ = null;
+            pred = last;
+        &#125; else &#123; //否则从指定节点开始
+            succ = node(index);
+            pred = succ.prev;
+        &#125;
+        //遍历用来构建的集合转成的数组
+        for (Object o : a) &#123;
+            @SuppressWarnings(&quot;unchecked&quot;) E e = (E) o;
+            Node&lt;E&gt; newNode = new Node&lt;&gt;(pred, e, null);
+            if (pred == null)
+                first = newNode;
+            else
+                pred.next = newNode; //pred（最后一个节点或指定节点的的上一个节点）的下一个节点是新节点
+            pred = newNode;//修改为新节点 用于数组中下一个节点的添加时从新结点开始
+        &#125;
+
+        if (succ == null) &#123;
+            last = pred;
+        &#125; else &#123;
+            pred.next = succ; //数组中的节点连接完成后 将最后一个节点连接到查找到的节点
+            succ.prev = pred; //查找到的节点的上一个节点连接为新节点
+        &#125;
+
+        size += numNew;//原集合大小+数组大小
+        modCount++;
+        return true;
+    &#125;
+
+//校验索引是一个大于等于0 且在list范围内 的数
+private void checkPositionIndex(int index) &#123;
+        if (!isPositionIndex(index))
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+    &#125;
+private boolean isPositionIndex(int index) &#123;
+        return index &gt;= 0 &amp;&amp; index &lt;= size;
+    &#125;
+//查找节点 判断索引位置 小于一半时从头开始遍历 反之从尾开始遍历
+Node&lt;E&gt; node(int index) &#123;
+        // assert isElementIndex(index);
+        //       eg: 10 右移1 等于5
+        if (index &lt; (size &gt;&gt; 1)) &#123;
+            Node&lt;E&gt; x = first;
+            for (int i = 0; i &lt; index; i++)
+                x = x.next;
+            return x;
+        &#125; else &#123;
+            Node&lt;E&gt; x = last;
+            for (int i = size - 1; i &gt; index; i--)
+                x = x.prev;
+            return x;
+        &#125;
+    &#125;
+</code></pre>
+<blockquote>
+<p>添加节点方法有 add(E e) ,add(int index, E element)，addAll(int index, Collection&lt;? extends E&gt; c)，addFirst(E e),addLast(E e) 几种，分别表示在集合最后添加一个节点，在指定位置添加节点，在指定位置添加一个集合，在list开头添加一个节点，和在list最后添加一个节点。  删除节点同理， 就是修改指向要删除节点的指针，并把要删除的节点置为null有利于GC回收， 以下是Linkedlist源码。  </p>
+</blockquote>
+<pre><code class="language-java">//创建新的节点，使它的下个节点为原来的frist节点，修改原来frist节点的prev节点为新节点
+private void linkFirst(E e) &#123;
+        final Node&lt;E&gt; f = first;
+        final Node&lt;E&gt; newNode = new Node&lt;&gt;(null, e, f);
+        first = newNode;
+        if (f == null)
+            last = newNode;
+        else
+            f.prev = newNode;
+        size++;
+        modCount++;
+    &#125;
+//创建新的节点，使他prev节点为原来的last节点，修改原来的last节点的next节点为新节点
+void linkLast(E e) &#123;
+        final Node&lt;E&gt; l = last;
+        final Node&lt;E&gt; newNode = new Node&lt;&gt;(l, e, null);
+        last = newNode;
+        if (l == null)
+            first = newNode;
+        else
+            l.next = newNode;
+        size++;
+        modCount++;
+    &#125;
+
+void linkBefore(E e, Node&lt;E&gt; succ) &#123;
+        // assert succ != null;
+        final Node&lt;E&gt; pred = succ.prev;//要插入节点的上一个节点
+        final Node&lt;E&gt; newNode = new Node&lt;&gt;(pred, e, succ); //创建新结点时上一个节点是pred 下一个节点是要插入的节点
+        succ.prev = newNode;//改要插入节点的上一个节点是新结点
+        if (pred == null)
+            first = newNode;
+        else
+            pred.next = newNode;//pred的下一个节点是新结点
+        size++;
+        modCount++;
+    &#125;
+
+public boolean add(E e) &#123;
+        linkLast(e);
+        return true;
+    &#125;
+
+public void add(int index, E element) &#123;
+        checkPositionIndex(index);//校验大于0 小于List大小
+
+        if (index == size)
+            linkLast(element);
+        else
+            linkBefore(element, node(index));
+    &#125;
+public void addFirst(E e) &#123;
+        linkFirst(e);
+    &#125;
+ public void addLast(E e) &#123;
+        linkLast(e);
+    &#125;
+</code></pre>
+<blockquote>
+<p>获取节点元素有getFirst()，getLast()，get(int index)，他们可以通过首尾位置遍历，查找到对应的节点并获得到相应的数据。</p>
+</blockquote>
+<pre><code class="language-java">public E getFirst() &#123;
+        final Node&lt;E&gt; f = first;
+        if (f == null)
+            throw new NoSuchElementException();
+        return f.item;
+    &#125;
+public E getLast() &#123;
+        final Node&lt;E&gt; l = last;
+        if (l == null)
+            throw new NoSuchElementException();
+        return l.item;
+    &#125;
+public E get(int index) &#123;
+        checkElementIndex(index);
+        return node(index).item;
+    &#125;
+</code></pre>
+<blockquote>
+<p>Linkedlist同时实现了Deque接口，表示他可以成为一个<strong>没有大小限制的队列或栈</strong>，我们知道，队列满足”先进先出”原则，而栈则是符合”后进先出 ，先进后出”原则，我们可以通过offer(E e) 和poll() 方法实现入队出队，可以用push(E e)和pop()来实现栈。</p>
+</blockquote>
+<pre><code class="language-java">
+     public boolean offer(E e) &#123;
+        return add(e);//在队尾添加元素
+    &#125;
+    public E poll() &#123;
+        final Node&lt;E&gt; f = first; 
+        return (f == null) ? null : unlinkFirst(f);//获取第一个节点的元素
+    &#125;
+    private E unlinkFirst(Node&lt;E&gt; f) &#123;
+        // assert f == first &amp;&amp; f != null;
+        final E element = f.item;
+        final Node&lt;E&gt; next = f.next;
+        f.item = null;
+        f.next = null; // help GC
+        first = next;
+        if (next == null)
+            last = null;
+        else
+            next.prev = null;
+        size--;
+        modCount++;
+        return element;
+    &#125;
+
+    public void push(E e) &#123;
+        addFirst(e);
+    &#125;
+    public E pop() &#123;
+        return removeFirst();
+    &#125;
+</code></pre>
+<blockquote>
+<p>回到问题中 ， 通过源码， 我们知道Arraylist是有数组实现， 是一块连续的内存空间，在查找指定元素时，通过索引就可以快速的取得，而当要扩展时，通过copy数组的方式来实现，而LinkedList则是由一个双向链表实现，当我们要查找指定元素是，需要遍历整个链表获取，但是 ，由于它是不连续的内存空间，当需要扩展是，只需要修改链表中节点的指针就可以实现。这就是Arraylist和linkedlist之间最本质的区别。</p>
+</blockquote>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2025 zzt
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="Toggle full screen shortcut key s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>
